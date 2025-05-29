@@ -13,19 +13,19 @@ require_once(__DIR__ . "/../include/header.php");
                 <br>
 
                 <!-- Formulário de login -->
-                <form id="frmLogin" action="./LoginController.php?action=logon" method="POST" >
+                <form id="frmLogin" action="./LoginController.php?action=logon" method="POST">
                     <div class="mb-3">
                         <label class="form-label" for="txtLogin">Login:</label>
                         <input type="text" class="form-control" name="login" id="txtLogin"
                             maxlength="15" placeholder="Informe o login"
-                            value="<?php echo isset($dados['login']) ? $dados['login'] : '' ?>" />        
+                            value="<?php echo isset($dados['login']) ? $dados['login'] : '' ?>" />
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="txtSenha">Senha:</label>
                         <input type="password" class="form-control" name="senha" id="txtSenha"
                             maxlength="15" placeholder="Informe a senha"
-                            value="<?php echo isset($dados['senha']) ? $dados['senha'] : '' ?>" />        
+                            value="<?php echo isset($dados['senha']) ? $dados['senha'] : '' ?>" />
                     </div>
 
                     <button type="submit" class="btn btn-success mt-3">Logar</button>
@@ -39,6 +39,6 @@ require_once(__DIR__ . "/../include/header.php");
     </div>
 </div>
 
-<?php  
+<?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>

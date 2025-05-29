@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS `usuarios` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `papel` ENUM('jogador', 'administrador') NOT NULL,
-    `nome_usuario` VARCHAR(100) NOT NULL,
+    `nome` VARCHAR(100) NOT NULL,
     `apelido` VARCHAR(50) NULL DEFAULT NULL,
     `email` VARCHAR(100) NOT NULL,
     `telefone` VARCHAR(20) NULL DEFAULT NULL,
@@ -84,3 +84,52 @@ CREATE TABLE IF NOT EXISTS `notificacoes` (
     PRIMARY KEY (`id`),
     CONSTRAINT `notificacoes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+
+-- Dados iniciais do base de dados
+INSERT INTO
+    usuarios (
+        papel,
+        nome,
+        apelido,
+        email,
+        telefone,
+        data_nascimento,
+        senha
+    )
+VALUES (
+        'administrador',
+        'Eduarda Prestes',
+        'Duda',
+        'rpeduarda09@gmail.com',
+        '45 998389538',
+        '2006-10-09',
+        '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
+    );
+    VALUES (
+        'administrador',
+        'Leonardo',
+        'Leo',
+        'rpeduarda09@gmail.com',
+        '45 998389538',
+        '2006-10-09',
+        '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
+    );
+    VALUES (
+        'administrador',
+        'Guilherme Pazinato',
+        'Pazinato',
+        'rpeduarda09@gmail.com',
+        '45 998389538',
+        '2006-10-09',
+        '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
+    );
+    VALUES (
+        'administrador',
+        'Raul Fagundes',
+        'Raul',
+        'rpeduarda09@gmail.com',
+        '45 998389538',
+        '2006-10-09',
+        '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
+    );
+/* Senha 123 */

@@ -7,14 +7,14 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 //Banco de dados: conexão MySQL
-define('DB_HOST', 'mysql-server');
+define('DB_HOST', 'localhost');
 define('DB_NAME', 'db_dungeonbook');
 define('DB_USER', 'root');
-define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', 'bancodedados');
 
 //Caminho para adionar imagens, scripts e chamar páginas no sistema
 //Deve ter o nome da pasta do projeto no servidor APACHE
-define('BASEURL', '/crud_pi_template/app');
+define('BASEURL', '/TCC/app');
 
 //Nome do sistema
 define('APP_NAME', 'Template do Projeto Integrador');
@@ -36,5 +36,3 @@ define('SESSAO_USUARIO_PAPEL', "usuarioLogadoPapel");
 //Arquivos
 define('PATH_ARQUIVOS', __DIR__ . "/../../arquivos");
 define('BASEURL_ARQUIVOS', BASEURL . "/../arquivos");
-
-
