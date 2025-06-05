@@ -43,17 +43,15 @@ class UsuarioDAO
             " - Erro: mais de um usuário encontrado.");
     }
 
-        //TODO - mudar os parametros
-
-    //Método para buscar um usuário por seu login e senha
-    public function findByLoginSenha(string $login, string $senha)
+    //Método para buscar um usuário por seu email e senha
+    public function findByEmailSenha(string $email, string $senha)
     {
         $conn = Connection::getConn();
 
         $sql = "SELECT * FROM usuarios u" .
-            " WHERE BINARY u.login = ?";
+            " WHERE BINARY u.email = ?";
         $stm = $conn->prepare($sql);
-        $stm->execute([$login]);
+        $stm->execute([$email]);
         $result = $stm->fetchAll();
 
         $usuarios = $this->mapUsuarios($result);
@@ -67,7 +65,7 @@ class UsuarioDAO
         } elseif (count($usuarios) == 0)
             return null;
 
-        die("UsuarioDAO.findByLoginSenha()" .
+        die("UsuarioDAO.findByEmailSenha()" .
             " - Erro: mais de um usuário encontrado.");
     }
 
@@ -77,8 +75,8 @@ class UsuarioDAO
         //TODO - mudar os parametros
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO usuarios (nome_usuario, login, senha, papel)" .
-            " VALUES (:nome, :login, :senha, :papel)";
+        $sql = "INSERT INTO usuarios (pepel, nome, apelido, email, telefone, data_nascimento, senha, foto)" .
+            " VALUES (pepel, nome, apelido, email, telefone, data_nascimento, senha, foto)";
 
         $senhaCripto = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
 
@@ -99,7 +97,7 @@ class UsuarioDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE usuarios SET nome = :nome, login = :login," .
+        $sql = "UPDATE usuarios SET nome = :nome, email = :email," .
             " senha = :senha, papel = :papel" .
             " WHERE id_usuario = :id";
 
@@ -159,7 +157,7 @@ class UsuarioDAO
         $usuarios = array();
         foreach ($result as $reg) {
             $usuario = new Usuario();
-            $usuario->setId($reg['id_usuario']);
+            $usuario->setId($reg['id']);
             $usuario->setPapel($reg['papel']);
             $usuario->setNome($reg['nome']);
             $usuario->setApelido($reg['apelido']);

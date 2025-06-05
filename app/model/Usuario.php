@@ -1,10 +1,11 @@
-<?php 
+<?php
 #Nome do arquivo: Usuario.php
 #Objetivo: classe Model para Usuario
 
 require_once(__DIR__ . "/enum/UsuarioPapel.php");
 
-class Usuario {
+class Usuario
+{
 
     private ?int $id;
     private ?string $papel;
@@ -12,7 +13,7 @@ class Usuario {
     private ?string $apelido;
     private ?string $email;
     private ?string $telefone;
-    private ?string $data_nascimento;
+    private ?string $dataNascimento;
     private ?string $senha;
     private ?string $foto;
 
@@ -125,19 +126,19 @@ class Usuario {
     }
 
     /**
-     * Get the value of data_nascimento
+     * Get the value of dataNascimento
      */
     public function getDataNascimento(): ?string
     {
-        return $this->data_nascimento;
+        return $this->dataNascimento;
     }
 
     /**
-     * Set the value of data_nascimento
+     * Set the value of dataNascimento
      */
-    public function setDataNascimento(?string $data_nascimento): self
+    public function setDataNascimento(?string $dataNascimento): self
     {
-        $this->data_nascimento = $data_nascimento;
+        $this->dataNascimento = $dataNascimento;
 
         return $this;
     }

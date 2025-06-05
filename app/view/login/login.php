@@ -15,16 +15,16 @@ require_once(__DIR__ . "/../include/header.php");
                 <!-- Formulário de login -->
                 <form id="frmLogin" action="./LoginController.php?action=logon" method="POST">
                     <div class="mb-3">
-                        <label class="form-label" for="txtLogin">Login:</label>
-                        <input type="text" class="form-control" name="login" id="txtLogin"
-                            maxlength="15" placeholder="Informe o login"
-                            value="<?php echo isset($dados['login']) ? $dados['login'] : '' ?>" />
+                        <label class="form-label" for="txtLogin">E-mail:</label>
+                        <input type="text" class="form-control" name="email" id="txtLogin"
+                            maxlength="50" placeholder="Informe o email"
+                            value="<?php echo isset($dados['email']) ? $dados['email'] : '' ?>" />
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label" for="txtSenha">Senha:</label>
                         <input type="password" class="form-control" name="senha" id="txtSenha"
-                            maxlength="15" placeholder="Informe a senha"
+                            maxlength="50" placeholder="Informe a senha"
                             value="<?php echo isset($dados['senha']) ? $dados['senha'] : '' ?>" />
                     </div>
 

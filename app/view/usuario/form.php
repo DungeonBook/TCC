@@ -26,23 +26,23 @@ require_once(__DIR__ . "/../include/menu.php");
                 </div>
                 
                 <div class="mb-3">
-                    <label class="form-label" for="txtLogin">Login:</label>
-                    <input class="form-control" type="text" id="txtLogin" name="login" 
-                        maxlength="15" placeholder="Informe o login"
-                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getLogin() : ''); ?>"/>
+                    <label class="form-label" for="txtLogin">Email:</label>
+                    <input class="form-control" type="text" id="txtLogin" name="email" 
+                        maxlength="50" placeholder="Informe o email"
+                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getEmail() : ''); ?>"/>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="txtSenha">Senha:</label>
                     <input class="form-control" type="password" id="txtPassword" name="senha" 
-                        maxlength="15" placeholder="Informe a senha"
+                        maxlength="50" placeholder="Informe a senha"
                         value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getSenha() : ''); ?>"/>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="txtConfSenha">Confirmação da senha:</label>
                     <input class="form-control" type="password" id="txtConfSenha" name="conf_senha" 
-                        maxlength="15" placeholder="Informe a confirmação da senha"
+                        maxlength="50" placeholder="Informe a confirmação da senha"
                         value="<?php echo isset($dados['confSenha']) ? $dados['confSenha'] : '';?>"/>
                 </div>
 
@@ -67,7 +67,7 @@ require_once(__DIR__ . "/../include/menu.php");
                     value="<?= $dados['id']; ?>" />
 
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-success">Gravar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </div>
             </form>            
         </div>

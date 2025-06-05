@@ -104,32 +104,32 @@ VALUES (
         '45 998389538',
         '2006-10-09',
         '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
-    );
-    VALUES (
+    ),
+    (
         'administrador',
         'Leonardo',
         'Leo',
-        'rpeduarda09@gmail.com',
-        '45 998389538',
-        '2006-10-09',
+        'agathasakamoto14@gmail.com',
+        '45 999791332',
+        '2006-05-18',
         '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
-    );
-    VALUES (
+    ),
+    (
         'administrador',
         'Guilherme Pazinato',
         'Pazinato',
-        'rpeduarda09@gmail.com',
-        '45 998389538',
-        '2006-10-09',
+        'pazinatoguilherme1@gmail.com',
+        '45 988089779',
+        '2006-09-01',
         '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
-    );
-    VALUES (
+    ),
+    (
         'administrador',
-        'Raul Fagundes',
+        'Raul Carvalho',
         'Raul',
-        'rpeduarda09@gmail.com',
-        '45 998389538',
-        '2006-10-09',
+        'raul170507@gmail.com',
+        '45 999902914',
+        '2007-05-17',
         '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
     );
 /* Senha 123 */

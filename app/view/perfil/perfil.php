@@ -19,8 +19,8 @@ require_once(__DIR__ . "/../include/menu.php");
         </div>
 
         <div class="col-12 mb-2">
-            <span class="fw-bold">Login:</span>
-            <span><?= $dados['usuario']->getLogin() ?></span>
+            <span class="fw-bold">Email:</span>
+            <span><?= $dados['usuario']->getEmail() ?></span>
         </div>
 
         <div class="col-12 mb-2">
@@ -30,8 +30,8 @@ require_once(__DIR__ . "/../include/menu.php");
 
         <div class="col-12 mb-2">
             <div class="fw-bold">Foto:</div>
-            <?php if($dados['usuario']->getFotoPerfil()): ?>
-                <img src="<?= BASEURL_ARQUIVOS . '/' . $dados['usuario']->getFotoPerfil() ?>"
+            <?php if($dados['usuario']->getFoto()): ?>
+                <img src="<?= BASEURL_ARQUIVOS . '/' . $dados['usuario']->getFoto() ?>"
                     height="300">
             <?php endif; ?>
         </div>
@@ -50,10 +50,10 @@ require_once(__DIR__ . "/../include/menu.php");
                         id="txtFoto" name="foto" />
                 </div>
 
-                <input type="hidden" name="fotoAnterior" value="<?= $dados['usuario']->getFotoPerfil() ?>">
+                <input type="hidden" name="fotoAnterior" value="<?= $dados['usuario']->getFoto() ?>">
                 
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-success">Gravar</button>
+                    <button type="submit" class="btn btn-success">Salvar</button>
                 </div>
             </form>            
         </div>

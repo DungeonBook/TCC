@@ -17,7 +17,7 @@ define('DB_PASSWORD', 'bancodedados');
 define('BASEURL', '/TCC/app');
 
 //Nome do sistema
-define('APP_NAME', 'Template do Projeto Integrador');
+define('APP_NAME', 'DungeonBook');
 
 //Página de logout do sistema
 define('LOGIN_PAGE', BASEURL . '/controller/LoginController.php?action=login');
