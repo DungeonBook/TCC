@@ -31,6 +31,11 @@ require_once(__DIR__ . "/../include/header.php");
                     <button type="submit" class="btn btn-success mt-3">Logar</button>
                 </form>
             </div>
+
+            <div>
+                <a href="./UsuarioController.php?action=autoCadastro">Não possui conta? Clique aqui</a>
+
+            </div>
         </div>
 
         <div class="col-6">

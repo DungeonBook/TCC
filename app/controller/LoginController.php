@@ -59,7 +59,7 @@ class LoginController extends Controller
     {
         $this->loginService->removerUsuarioSessao();
 
-        $this->loadView("login/login.php", [], "", "Usuário deslogado com suscesso!");
+        $this->loadView("login/login.php", [], "", "Usuário deslogado com sucesso!");
     }
 }
 

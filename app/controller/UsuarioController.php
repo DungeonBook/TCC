@@ -15,8 +15,8 @@ class UsuarioController extends Controller
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct()
     {
-        if (! $this->usuarioEstaLogado())
-            return;
+        //if (! $this->usuarioEstaLogado())
+        //    return;
 
         $this->usuarioDao = new UsuarioDAO();
         $this->usuarioService = new UsuarioService();
@@ -78,7 +78,6 @@ class UsuarioController extends Controller
         $usuario->setTelefone($telefone);
         $usuario->setDataNascimento($data_nascimento);
         $usuario->setSenha($senha);
-        $usuario->setConfSenha($confSenha);
         $usuario->setFoto($foto);
         $usuario->setPapel($papel);
 
@@ -126,6 +125,13 @@ class UsuarioController extends Controller
         } else {
             $this->list("Usuário não encontrado!");
         }
+    }
+
+    protected function autoCadastro()
+    {
+
+
+        //Carregar uma view
     }
 
     protected function listJson()
