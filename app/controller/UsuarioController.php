@@ -15,9 +15,6 @@ class UsuarioController extends Controller
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct()
     {
-        //if (! $this->usuarioEstaLogado())
-        //    return;
-
         $this->usuarioDao = new UsuarioDAO();
         $this->usuarioService = new UsuarioService();
 
@@ -26,6 +23,9 @@ class UsuarioController extends Controller
 
     protected function list(string $msgErro = "", string $msgSucesso = "")
     {
+        if (! $this->usuarioEstaLogado())
+            return;
+
         $dados["lista"] = $this->usuarioDao->list();
 
         $this->loadView("usuario/list.php", $dados,  $msgErro, $msgSucesso);
@@ -33,6 +33,9 @@ class UsuarioController extends Controller
 
     protected function create()
     {
+        if (! $this->usuarioEstaLogado())
+            return;
+
         $dados['id'] = 0;
         $dados['papeis'] = UsuarioPapel::getAllAsArray();
 
@@ -41,6 +44,9 @@ class UsuarioController extends Controller
 
     protected function edit()
     {
+        if (! $this->usuarioEstaLogado())
+            return;
+
         //Busca o usuário na base pelo ID    
         $usuario = $this->findUsuarioById();
         if ($usuario) {
@@ -57,6 +63,9 @@ class UsuarioController extends Controller
 
     protected function save()
     {
+        if (! $this->usuarioEstaLogado())
+            return;
+
         //Capturar os dados do formulário
         $id = $_POST['id'];
         $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;
@@ -66,7 +75,6 @@ class UsuarioController extends Controller
         $data_nascimento = trim($_POST['data_nascimento']) != "" ? trim($_POST['data_nascimento']) : NULL;
         $senha = trim($_POST['senha']) != "" ? trim($_POST['senha']) : NULL;
         $confSenha = trim($_POST['conf_senha']) != "" ? trim($_POST['conf_senha']) : NULL;
-        $foto = trim($_POST['foto']) != "" ? trim($_POST['foto']) : NULL;
         $papel = $_POST['papel'];
 
         //Criar o objeto Usuario
@@ -78,7 +86,7 @@ class UsuarioController extends Controller
         $usuario->setTelefone($telefone);
         $usuario->setDataNascimento($data_nascimento);
         $usuario->setSenha($senha);
-        $usuario->setFoto($foto);
+        $usuario->setFoto(null);
         $usuario->setPapel($papel);
 
         //Validar os dados (camada service)
@@ -113,6 +121,10 @@ class UsuarioController extends Controller
 
     protected function delete()
     {
+        if (! $this->usuarioEstaLogado())
+            return;
+
+
         //Busca o usuário na base pelo ID    
         $usuario = $this->findUsuarioById();
 
@@ -134,16 +146,10 @@ class UsuarioController extends Controller
         //Carregar uma view
     }
 
-    protected function listJson()
-    {
-        //Retornar uma lista de usuários em forma JSON
-        $usuarios = $this->usuarioDao->list();
-        $json = json_encode($usuarios);
-
-        echo $json;
-
-        //[{},{},{}]
+    protected function saveAutoCadastro() {
+        
     }
+
 
     private function findUsuarioById()
     {

@@ -13,7 +13,7 @@ class UsuarioDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM usuarios u ORDER BY u.nome_usuario";
+        $sql = "SELECT * FROM usuarios u ORDER BY u.nome";
         $stm = $conn->prepare($sql);
         $stm->execute();
         $result = $stm->fetchAll();
@@ -27,7 +27,7 @@ class UsuarioDAO
         $conn = Connection::getConn();
 
         $sql = "SELECT * FROM usuarios u" .
-            " WHERE u.id_usuario = ?";
+            " WHERE u.id = ?";
         $stm = $conn->prepare($sql);
         $stm->execute([$id]);
         $result = $stm->fetchAll();
@@ -75,8 +75,8 @@ class UsuarioDAO
         //TODO - mudar os parametros
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO usuarios (pepel, nome, apelido, email, telefone, data_nascimento, senha, foto)" .
-            " VALUES (pepel, nome, apelido, email, telefone, data_nascimento, senha, foto)";
+        $sql = "INSERT INTO usuarios (papel, nome, apelido, email, telefone, data_nascimento, senha)" .
+            " VALUES (:papel, :nome, :apelido, :email, :telefone, :data_nascimento, :senha)";
 
         $senhaCripto = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
 
@@ -88,7 +88,6 @@ class UsuarioDAO
         $stm->bindValue("telefone", $usuario->getTelefone());
         $stm->bindValue("data_nascimento", $usuario->getDataNascimento());
         $stm->bindValue("senha", $senhaCripto);
-        $stm->bindValue("foto", $usuario->getFoto());
         $stm->execute();
     }
 
@@ -97,20 +96,20 @@ class UsuarioDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE usuarios SET nome = :nome, email = :email," .
+        $sql = "UPDATE usuarios SET nome = :nome, apelido = :apelido, email = :email," .
+            " telefone = :telefone, data_nascimento = :data_nascimento," .
             " senha = :senha, papel = :papel" .
-            " WHERE id_usuario = :id";
+            " WHERE id = :id";
 
         $stm = $conn->prepare($sql);
-        $stm->bindValue("papel", $usuario->getPapel());
         $stm->bindValue("nome", $usuario->getNome());
         $stm->bindValue("apelido", $usuario->getApelido());
         $stm->bindValue("email", $usuario->getEmail());
         $stm->bindValue("telefone", $usuario->getTelefone());
         $stm->bindValue("data_nascimento", $usuario->getDataNascimento());
         $stm->bindValue("senha", password_hash($usuario->getSenha(), PASSWORD_DEFAULT));
+        $stm->bindValue("papel", $usuario->getPapel());
         $stm->bindValue("id", $usuario->getId());
-        $stm->bindValue("foto", $usuario->getFoto());
         $stm->execute();
     }
 
@@ -119,7 +118,7 @@ class UsuarioDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "DELETE FROM usuarios WHERE id_usuario = :id";
+        $sql = "DELETE FROM usuarios WHERE id = :id";
 
         $stm = $conn->prepare($sql);
         $stm->bindValue("id", $id);

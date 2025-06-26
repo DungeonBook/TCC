@@ -21,15 +21,36 @@ require_once(__DIR__ . "/../include/menu.php");
                 <div class="mb-3">
                     <label class="form-label" for="txtNome">Nome:</label>
                     <input class="form-control" type="text" id="txtNome" name="nome" 
-                        maxlength="70" placeholder="Informe o nome"
+                        maxlength="100" placeholder="Informe o nome"
                         value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getNome() : ''); ?>" />
                 </div>
-                
+
+                <div class="mb-3">
+                    <label class="form-label" for="txtApelido">Apelido:</label>
+                    <input class="form-control" type="text" id="txtApelido" name="apelido" 
+                        maxlength="50" placeholder="Informe o seu apelido"
+                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getApelido() : ''); ?>" />
+                </div>
+
                 <div class="mb-3">
                     <label class="form-label" for="txtLogin">Email:</label>
                     <input class="form-control" type="text" id="txtLogin" name="email" 
-                        maxlength="50" placeholder="Informe o email"
+                        maxlength="100" placeholder="Informe o email"
                         value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getEmail() : ''); ?>"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="txtTelefone">Celular:</label>
+                    <input class="form-control" type="text" id="txtTelefone" name="telefone" 
+                        maxlength="20" placeholder="Informe o seu celular"
+                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getTelefone() : ''); ?>"/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="txtDataNascimento">Data de Nascimento:</label>
+                    <input class="form-control" type="date" id="txtDataNascimento" name="data_nascimento" 
+                        maxlength="50" placeholder="Informe a sua data de nascimento"
+                        value="<?php echo (isset($dados["usuario"]) ? $dados["usuario"]->getDataNascimento() : ''); ?>"/>
                 </div>
 
                 <div class="mb-3">
