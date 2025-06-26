@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
     `senha` VARCHAR(255) NOT NULL,
     `foto` VARCHAR(255) NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `email` (`email` ASC) VISIBLE
+    UNIQUE INDEX `email` (`email` ASC) VISIBLE,
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
 
 -- Table `denuncias`

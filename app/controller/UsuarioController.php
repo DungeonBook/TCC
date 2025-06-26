@@ -141,13 +141,61 @@ class UsuarioController extends Controller
 
     protected function autoCadastro()
     {
+        if (! $this->usuarioEstaLogado())
+            return;
 
+        $dados['id'] = 0;
 
-        //Carregar uma view
+        $this->loadView("usuario/formAutoCadastro.php", $dados);
+    
     }
 
     protected function saveAutoCadastro() {
-        
+
+       if (! $this->usuarioEstaLogado())
+            return;
+
+        //Capturar os dados do formulário
+        $id = $_POST['id'];
+        $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;
+        $apelido = trim($_POST['apelido']) != "" ? trim($_POST['apelido']) : NULL;
+        $email = trim($_POST['email']) != "" ? trim($_POST['email']) : NULL;
+        $telefone = trim($_POST['telefone']) != "" ? trim($_POST['telefone']) : NULL;
+        $data_nascimento = trim($_POST['data_nascimento']) != "" ? trim($_POST['data_nascimento']) : NULL;
+        $senha = trim($_POST['senha']) != "" ? trim($_POST['senha']) : NULL;
+        $confSenha = trim($_POST['conf_senha']) != "" ? trim($_POST['conf_senha']) : NULL;
+
+        //Criar o objeto Usuario
+        $usuario = new Usuario();
+        $usuario->setId($id);
+        $usuario->setNome($nome);
+        $usuario->setApelido($apelido);
+        $usuario->setEmail($email);
+        $usuario->setTelefone($telefone);
+        $usuario->setDataNascimento($data_nascimento);
+        $usuario->setSenha($senha);
+        $usuario->setFoto(null);
+
+        //Validar os dados (camada service)
+        $erros = $this->usuarioService->validarDados($usuario, $confSenha);
+        if (! $erros) {
+            //Inserir no Base de Dados
+            try {
+                if ($usuario->getId() == 0)
+                    $this->usuarioDao->insert($usuario);
+                else
+                    $this->usuarioDao->update($usuario);
+
+                header("location: " . BASEURL . "/controller/UsuarioController.php?action=list");
+                exit;
+            } catch (PDOException $e) {
+                //Iserir erro no array
+                array_push($erros, "Erro ao gravar no banco de dados!");
+                //array_push($erros, $e->getMessage());
+            }
+        }
+
+        $this->loadView("usuario/formAutoCadastro.php", $dados, $msgErro);
     }
 
 
