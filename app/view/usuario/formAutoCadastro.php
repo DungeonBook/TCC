@@ -17,7 +17,7 @@ require_once(__DIR__ . "/../include/menu.php");
         
         <div class="col-6">
             <form id="frmUsuario" method="POST" 
-                action="<?= BASEURL ?>/controller/UsuarioController.php?action=save" >
+                action="<?= BASEURL ?>/controller/UsuarioController.php?action=saveAutoCadastro" >
                 <div class="mb-3">
                     <label class="form-label" for="txtNome">Nome:</label>
                     <input class="form-control" type="text" id="txtNome" name="nome" 

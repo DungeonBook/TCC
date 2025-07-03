@@ -25,13 +25,13 @@ class UsuarioService
             array_push($erros, "O campo Celular é obrigatório.");
 
         if (! $usuario->getDataNascimento())
-            array_push($erros, "O campo DataNascimento é obrigatório.");
+            array_push($erros, "O campo Data de Nascimento é obrigatório.");
 
         if (! $usuario->getSenha())
             array_push($erros, "O campo Senha é obrigatório.");
 
         if (! $confSenha)
-            array_push($erros, "O campo Confirmação da senha é obrigatório.");
+            array_push($erros, "O campo Confirmação da Senha é obrigatório.");
 
         if (! $usuario->getPapel())
             array_push($erros, "O campo Papel é obrigatório");
@@ -63,16 +63,13 @@ class UsuarioService
             array_push($erros, "O campo Celular é obrigatório.");
 
         if (! $usuario->getDataNascimento())
-            array_push($erros, "O campo DataNascimento é obrigatório.");
+            array_push($erros, "O campo Data de Nascimento é obrigatório.");
 
         if (! $usuario->getSenha())
             array_push($erros, "O campo Senha é obrigatório.");
 
         if (! $confSenha)
-            array_push($erros, "O campo Confirmação da senha é obrigatório.");
-
-        if (! $usuario->getPapel())
-            array_push($erros, "O campo Papel é obrigatório");
+            array_push($erros, "O campo Confirmação da Senha é obrigatório.");
 
         //Validar se a senha é igual a contra senha
         if ($usuario->getSenha() && $confSenha && $usuario->getSenha() != $confSenha)

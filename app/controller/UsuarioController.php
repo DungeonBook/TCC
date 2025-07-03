@@ -141,19 +141,13 @@ class UsuarioController extends Controller
 
     protected function autoCadastro()
     {
-        if (! $this->usuarioEstaLogado())
-            return;
-
         $dados['id'] = 0;
 
         $this->loadView("usuario/formAutoCadastro.php", $dados);
-    
     }
 
-    protected function saveAutoCadastro() {
-
-       if (! $this->usuarioEstaLogado())
-            return;
+    protected function saveAutoCadastro()
+    {
 
         //Capturar os dados do formulário
         $id = $_POST['id'];
@@ -175,18 +169,17 @@ class UsuarioController extends Controller
         $usuario->setDataNascimento($data_nascimento);
         $usuario->setSenha($senha);
         $usuario->setFoto(null);
+        $usuario->setPapel(UsuarioPapel::JOGADOR);
+
 
         //Validar os dados (camada service)
-        $erros = $this->usuarioService->validarDados($usuario, $confSenha);
+        $erros = $this->usuarioService->validarAutoCadastro($usuario, $confSenha);
         if (! $erros) {
             //Inserir no Base de Dados
             try {
-                if ($usuario->getId() == 0)
-                    $this->usuarioDao->insert($usuario);
-                else
-                    $this->usuarioDao->update($usuario);
+                $this->usuarioDao->insert($usuario);
 
-                header("location: " . BASEURL . "/controller/UsuarioController.php?action=list");
+                header("location: " . BASEURL . "/controller/LoginController.php?action=login");
                 exit;
             } catch (PDOException $e) {
                 //Iserir erro no array
@@ -194,6 +187,11 @@ class UsuarioController extends Controller
                 //array_push($erros, $e->getMessage());
             }
         }
+
+        $dados['id'] = 0;
+        $dados["usuario"] = $usuario;
+
+        $msgErro = implode("<br>", $erros);
 
         $this->loadView("usuario/formAutoCadastro.php", $dados, $msgErro);
     }
