@@ -28,8 +28,20 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
                 <div class="dropdown-menu">
                     <a class="dropdown-item"
                         href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
-                    <a class="dropdown-item" href="#">
-                        Salas</a>
+                    <a class="dropdown-item" href="#">Outro cadastro</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+                    data-bs-toggle="dropdown">
+                    Salas
+                </a>
+
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                        href="<?= BASEURL . '/controller/SalaService.php' ?>">Criar Sala</a>
+                    <a class="dropdown-item" href="#">Listar Salas</a>
                 </div>
             </li>
 

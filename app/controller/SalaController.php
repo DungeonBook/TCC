@@ -2,7 +2,7 @@
 #Classe controller para Usuário
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/SalaDAO.php");
-//require_once(__DIR__ . "/../service/SalaService.php");
+require_once(__DIR__ . "/../service/SalaService.php");
 require_once(__DIR__ . "/../model/Sala.php");
 
 
@@ -10,6 +10,7 @@ class SalaController extends Controller
 {
 
     private SalaDAO $salaDAO;
+    //private UsuarioService $usuarioService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct()

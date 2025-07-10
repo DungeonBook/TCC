@@ -2,61 +2,43 @@
 
 require_once(__DIR__ . "/../model/Sala.php");
 
-class SalaService {
-
-    /* Método para validar os dados do usuário que vem do formulário */
-    public function criarSala(SalaService $sala)
+class SalaService
+{
+    /**
+     * Valida e cria uma Sala a partir dos dados recebidos do formulário ou de uma requisição
+     * @param array $dados
+     * @return Sala
+     * @throws Exception se algum dado estiver inválido
+     */
+    public function criarSala(array $dados): Sala
     {
-        $erros = array();
+        $nome = trim($dados['nome'] ?? '');
+        $descricao = trim($dados['descricao'] ?? '');
 
-        //Validar campos vazios
+        if (empty($nome)) {
+            throw new Exception("O nome da sala é obrigatório.");
+        }
 
-        if (! $sala->quantMinJogadores())
-            array_push($erros, "O campo quantidade miníma de jogadores é obrigatória.");
+        // Cria o objeto Sala preenchendo os dados
+        $sala = new Sala();
+        $sala->setNome($nome);
+        $sala->setDescricao($descricao);
 
-        if (! $sala->quantMaxJogadores())
-            array_push($erros, "O campo quantidade máxima de jogadores é obrigatória.");
+        // Aqui você pode incluir regras de negócio adicionais
+        // Ex: Limitar o tamanho do nome ou impedir palavras proibidas
 
-        if (! $sala->horariosDisponiveis())
-            array_push($erros, "O campo horarios é obrigatório.");
-
-        if (! $sala->indentificador())
-            array_push($erros, "O campo identificador é obrigatório.");
-
-        if (! $sala->modalidade())
-            array_push($erros, "O campo modalidade é obrigatório.");
-
-        if (! $sala->descricao())
-            array_push($erros, "O campo descrição é obrigatório.");
-
-        return $erros;
+        return $sala;
     }
 
-    /* Método para validar os dados do usuário que vem do formulário */
-    public function validarSala(SalaService $sala)
+    /**
+     * Exemplo de validação para remoção de sala
+     * (opcional - depende da sua regra de negócio)
+     */
+    public function validarRemocao(Sala $sala)
     {
-        $erros = array();
-
-        //Validar campos vazios
-
-        if (! $sala->getQuantMinJogadores())
-            array_push($erros, "O campo quantidade miníma de jogadores é obrigatória.");
-
-        if (! $usuario->getQuantMaxJogadores())
-            array_push($erros, "O campo quantidade máxima de jogadores é obrigatória.");
-
-        if (! $usuario->getHorariosDisponiveis())
-            array_push($erros, "O campo horarios é obrigatório.");
-
-        if (! $usuario->getIndentificador())
-            array_push($erros, "O campo identificador é obrigatório.");
-
-        if (! $usuario->getModalidade())
-            array_push($erros, "O campo modalidade é obrigatório.");
-
-        if (! $usuario->getDescricao())
-            array_push($erros, "O campo descrição é obrigatório.");
-
-        return $erros;
+        // Exemplo: impedir exclusão se sala for "Principal"
+        if (strtolower($sala->getNome()) === 'principal') {
+            throw new Exception("A sala Principal não pode ser removida.");
+        }
     }
 }

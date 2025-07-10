@@ -1,67 +1,45 @@
-<?php
+<?php require_once(__DIR__ . "/../include/header.php"); ?>
 
-require_once(__DIR__ . "/../include/header.php");
-require_once(__DIR__ . "/../include/menu.php");
-?>
+<div class="container mt-4">
+    <h2>Minhas Salas</h2>
 
-<h3 class="text-center">Salas</h3>
+    <?php if (!empty($msgErro)): ?>
+        <div class="alert alert-danger"><?= $msgErro ?></div>
+    <?php endif; ?>
 
-<div class="container">
-    <div class="row">
-        <div class="col-3">
-            <a class="btn btn-success" 
-                href="<?= BASEURL ?>/controller/SalaController.php?action=create">
-                Criar</a>
-        </div>
+    <?php if (!empty($msgSucesso)): ?>
+        <div class="alert alert-success"><?= $msgSucesso ?></div>
+    <?php endif; ?>
 
-        <div class="col-9">
-            <?php require_once(__DIR__ . "/../include/msg.php"); ?>
-        </div>
-    </div>
+    <a href="index.php?controller=sala&action=create" class="btn btn-primary mb-3">Nova Sala</a>
 
-    <div class="row" style="margin-top: 10px;">
-        <div class="col-12">
-            <table id="Salas" class='table table-striped table-bordered'>
-                <thead>
+    <?php if (empty($dados['lista'])): ?>
+        <p>Nenhuma sala encontrada.</p>
+    <?php else: ?>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($dados['lista'] as $sala): ?>
                     <tr>
-                        <th>ID</th>
-                        <th>quantidade miníma de jogadores</th>
-                        <th>quantidade máxima de jogadores</th>
-                        <th>horarios</th>
-                        <th>identificador</th>
-                        <th>modalidade</th>
-                        <th>descrição</th>
-                        <th>Alterar</th>
-                        <th>Excluir</th>
+                        <td><?= htmlspecialchars($sala->getId()) ?></td>
+                        <td><?= htmlspecialchars($sala->getNome()) ?></td>
+                        <td><?= htmlspecialchars($sala->getDescricao()) ?></td>
+                        <td>
+                            <a href="index.php?controller=sala&action=edit&id=<?= $sala->getId() ?>" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="index.php?controller=sala&action=delete&id=<?= $sala->getId() ?>" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta sala?');">Excluir</a>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($dados['lista'] as $sala): ?>
-                        <tr>
-                            <td><?php echo $sala->getId(); ?></td>
-                            <td><?= $sala->getQuantMinJogadores(); ?></td>
-                            <td><?= $sala->getQuantMaxJogadores(); ?></td>
-                            <td><?= $sala->getHorariosDisponiveis(); ?></td>
-                            <td><?= $sala->getIndentificador(); ?></td>
-                            <td><?= $sala->getModalidade(); ?></td>
-                            <td><?= $sala->getDescricao(); ?></td>
-                            <td><a class="btn btn-primary" 
-                                href="<?= BASEURL ?>/controller/SalaController.php?action=edit&id=<?= $sala->getId() ?>">
-                                Alterar</a> 
-                            </td>
-                            <td><a class="btn btn-danger" 
-                                onclick="return confirm('Confirma a exclusão da Sala?');"
-                                href="<?= BASEURL ?>/controller/SalaController.php?action=delete&id=<?= $sala->getId() ?>">
-                                Excluir</a> 
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
 </div>
 
-<?php  
-require_once(__DIR__ . "/../include/footer.php");
-?>
+<?php require_once(__DIR__ . "/../include/footer.php"); ?>
