@@ -10,7 +10,6 @@ class SalaController extends Controller
 {
 
     private SalaDAO $salaDAO;
-    //private UsuarioService $usuarioService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct()

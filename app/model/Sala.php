@@ -13,10 +13,6 @@ class Sala {
     private ?string $modalidade;
     private ?string $descricao;
     private ?int $status;
-
-
-    
-
     
 
     /**

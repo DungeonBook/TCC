@@ -8,7 +8,7 @@ include_once(__DIR__ . "/../model/Usuario.php");
 class UsuarioDAO
 {
 
-    //Método para listar os usuaários a partir da base de dados
+    //Método para listar os usuários a partir da base de dados
     public function list()
     {
         $conn = Connection::getConn();
