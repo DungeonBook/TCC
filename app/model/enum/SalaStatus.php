@@ -7,11 +7,11 @@ class SalaStatus
 
     public static string $SEPARADOR = "|";
 
-    const JOGADOR = "jogador";
-    const ADMINISTRADOR = "administrador";
+    const ATIVO = "ativo";
+    const INATIVO = "inativo";
 
     public static function getAllAsArray()
     {
-        return [SalaStatus::JOGADOR, SalaStatus::ADMINISTRADOR];
+        return [SalaStatus::ATIVO, SalaStatus::INATIVO];
     }
 }

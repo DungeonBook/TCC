@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `modalidades` (
 -- Table `salas`
 CREATE TABLE IF NOT EXISTS `salas` (
     `id` INT NOT NULL AUTO_INCREMENT,
+    `nome_sala` VARCHAR NOT NULL,
     `criador_id` INT NOT NULL,
     `quant_min_jogadores` INT NOT NULL,
     `quant_max_jogadores` INT NOT NULL,
@@ -50,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `salas` (
 -- Table `salas_jogadores`
 CREATE TABLE IF NOT EXISTS `salas_jogadores` (
     `id` INT NOT NULL AUTO_INCREMENT,
+    `nome_sala_Jogadores` VARCHAR NOT NULL,
     `usuario_id` INT NOT NULL,
     `sala_id` INT NOT NULL,
     `data_hora` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,

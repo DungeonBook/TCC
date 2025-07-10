@@ -1,19 +1,20 @@
 <?php
 
-include_once(__DIR__ . "/Sala.php");
+include_once(__DIR__ . "/Modalidade.php");
+include_once(__DIR__ . "/Usuario.php");
 
-class Sala {
+class Sala
+{
 
     private ?int $id;
     private ?Usuario $usuario;
-    private ?int $quantMinJogadores;
+    private ?string $nomeSala;
     private ?int $quantMaxJogadores;
     private ?string $horariosDisponiveis;
     private ?string $indentificador;
-    private ?string $modalidade;
+    private ?Modalidade $modalidade;
     private ?string $descricao;
     private ?int $status;
-    
 
     /**
      * Get the value of id
@@ -52,19 +53,19 @@ class Sala {
     }
 
     /**
-     * Get the value of quantMinJogadores
+     * Get the value of nomeSala
      */
-    public function getQuantMinJogadores(): ?int
+    public function getNomeSala(): ?string
     {
-        return $this->quantMinJogadores;
+        return $this->nomeSala;
     }
 
     /**
-     * Set the value of quantMinJogadores
+     * Set the value of nomeSala
      */
-    public function setQuantMinJogadores(?int $quantMinJogadores): self
+    public function setNomeSala(?string $nomeSala): self
     {
-        $this->quantMinJogadores = $quantMinJogadores;
+        $this->nomeSala = $nomeSala;
 
         return $this;
     }
@@ -126,7 +127,7 @@ class Sala {
     /**
      * Get the value of modalidade
      */
-    public function getModalidade(): ?string
+    public function getModalidade(): ?Modalidade
     {
         return $this->modalidade;
     }
@@ -134,7 +135,7 @@ class Sala {
     /**
      * Set the value of modalidade
      */
-    public function setModalidade(?string $modalidade): self
+    public function setModalidade(?Modalidade $modalidade): self
     {
         $this->modalidade = $modalidade;
 

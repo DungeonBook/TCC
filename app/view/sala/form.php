@@ -7,19 +7,21 @@
         <div class="alert alert-danger"><?= $msgErro ?></div>
     <?php endif; ?>
 
-    <form action="index.php?controller=sala&action=save" method="POST">
+    <form action="./SalaController.php?action=save" method="POST">
 
         <input type="hidden" name="id" value="<?= $dados['id'] ?? 0 ?>">
 
         <div class="form-group mb-3">
             <label for="nome">Nome da sala</label>
             <input type="text" name="nome" id="nome" class="form-control" 
-                   value="<?= htmlspecialchars($dados['nome'] ?? '') ?>" required>
+                   value="<?= htmlspecialchars($dados['nome'] ?? '') ?>" >
         </div>
 
         <div class="form-group mb-3">
             <label for="descricao">Descrição</label>
-            <textarea name="descricao" id="descricao" class="form-control" rows="3"><?= htmlspecialchars($dados['descricao'] ?? '') ?></textarea>
+            <textarea name="descricao" id="descricao" class="form-control" rows="3">
+                <?= htmlspecialchars($dados['descricao'] ?? '') ?>
+            </textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Salvar</button>
