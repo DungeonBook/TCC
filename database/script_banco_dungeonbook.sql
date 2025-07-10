@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
     `senha` VARCHAR(255) NOT NULL,
     `foto` VARCHAR(255) NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `email` (`email` ASC) VISIBLE,
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+    UNIQUE INDEX `email` (`email` ASC) 
+) ENGINE = InnoDB;
 
 -- Table `denuncias`
 CREATE TABLE IF NOT EXISTS `denuncias` (
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `denuncias` (
     `status` ENUM('pendente', 'resolvida') NULL DEFAULT 'pendente',
     PRIMARY KEY (`id`),
     CONSTRAINT `denuncias_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB;
 
 -- Table `modalidades`
 CREATE TABLE IF NOT EXISTS `modalidades` (
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `salas` (
     PRIMARY KEY (`id`),
     CONSTRAINT `salas_ibfk_1` FOREIGN KEY (`criador_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
     CONSTRAINT `fk_salas_modalidades1` FOREIGN KEY (`modalidades_id`) REFERENCES `modalidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB;
 
 -- Table `salas_jogadores`
 CREATE TABLE IF NOT EXISTS `salas_jogadores` (
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `salas_jogadores` (
     ),
     CONSTRAINT `salas_jogadores_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
     CONSTRAINT `salas_jogadores_ibfk_2` FOREIGN KEY (`sala_id`) REFERENCES `salas` (`id`) ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB;
 
 -- Table `mensagens`
 CREATE TABLE IF NOT EXISTS `mensagens` (
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `mensagens` (
     `texto` TEXT NOT NULL,
     PRIMARY KEY (`id`),
     CONSTRAINT `mensagens_ibfk_1` FOREIGN KEY (`salas_jogadores_id`) REFERENCES `salas_jogadores` (`id`) ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB;
 
 -- Table `notificacoes`
 CREATE TABLE IF NOT EXISTS `notificacoes` (
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `notificacoes` (
     `status` ENUM('nao_lida', 'lida') NULL DEFAULT 'nao_lida',
     PRIMARY KEY (`id`),
     CONSTRAINT `notificacoes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB;
 
 -- Dados iniciais do base de dados
 INSERT INTO
