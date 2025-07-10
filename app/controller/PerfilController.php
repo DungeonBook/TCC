@@ -5,43 +5,53 @@ require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../service/UsuarioService.php");
 require_once(__DIR__ . "/../service/ArquivoService.php");
 
-class PerfilController extends Controller {
+class PerfilController extends Controller
+{
 
     private UsuarioDAO $usuarioDao;
     private UsuarioService $usuarioService;
     private ArquivoService $arquivoService;
 
-    public function __construct() {
-        if(! $this->usuarioEstaLogado())
+    public function __construct()
+    {
+        if (! $this->usuarioEstaLogado())
             return;
 
         $this->usuarioDao = new UsuarioDAO();
         $this->usuarioService = new UsuarioService();
         $this->arquivoService = new ArquivoService();
 
-        $this->handleAction();    
+        $this->handleAction();
     }
 
-    protected function view() {
+    protected function view()
+    {
         $idUsuarioLogado = $this->getIdUsuarioLogado();
         $usuario = $this->usuarioDao->findById($idUsuarioLogado);
         $dados['usuario'] = $usuario;
 
-        $this->loadView("perfil/perfil.php", $dados);    
+        $this->loadView("perfil/perfil.php", $dados);
     }
 
-    protected function save() {
+    protected function save()
+    {
         $foto = $_FILES["foto"];
-        
+
         //Validar se o usuário mandou a foto de perfil
         $erros = $this->usuarioService->validarFotoPerfil($foto);
-        if(! $erros) {
+        if (! $erros) {
             //1- Salvar a foto em um arquivo
-            $this->arquivoService->salvarArquivo($foto);
-            echo "Arquivo salvo!";
-            
+            $arquivoFoto = $this->arquivoService->salvarArquivo($foto);
+
             //2- Atualizar o registro do usuário com o nome da foto
-            
+            $usuario = new Usuario();
+            $usuario->setFoto($arquivoFoto);
+            $usuario->setId($this->getIdUsuarioLogado());
+            $this->usuarioDao->updateFotoPerfil($usuario);
+
+            //3- Redirecionar para o PerfilController action view
+            header("location: " . BASEURL . "/controller/PerfilController.php?action=view");
+
             exit;
         }
 
@@ -51,9 +61,8 @@ class PerfilController extends Controller {
 
         $msgErro = implode("<br>", $erros);
 
-        $this->loadView("perfil/perfil.php", $dados, $msgErro); 
+        $this->loadView("perfil/perfil.php", $dados, $msgErro);
     }
-
 }
 
 new PerfilController();
