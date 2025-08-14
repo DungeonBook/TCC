@@ -16,16 +16,19 @@ class SalaService
         $erros = array();
 
         if (! $sala->getNomeSala())
-            array_push($erros, "O campo nome da sala é obrigatório.");
-
-        if (! $sala->getCriador())
-            array_push($erros, "O campo mestre de mesa é obrigatório.");
+            array_push($erros, "O campo [Nome da sala] é obrigatório.");
 
         if (! $sala->getQuantMinJogadores())
             array_push($erros, "O campo quantidade miníma de jogadores é obrigatório.");
 
         if (! $sala->getQuantMaxJogadores())
             array_push($erros, "O campo quantidade máxima de jogadores é obrigatório.");
+
+        //TODO - Verificar se quantidade mínima é maior que 5
+
+        //TODO - Verificar se quantidade máximo é menor que 10
+
+        //TODO - Verificar se quantidade mínima é menor ou igual a máxima
 
         if (! $sala->getData())
             array_push($erros, "O campo data da partida é obrigatório.");
@@ -39,14 +42,11 @@ class SalaService
         if (! $sala->getLocalizacao())
             array_push($erros, "O campo localização é obrigatório");
 
-        if (! $sala->getModalidade())
-            array_push($erros, "O campo modalidade é obrigatório");
-
         if (! $sala->getDescricao())
             array_push($erros, "O campo descrição é obrigatório");
-
-        // if (! $sala->getStatus())
-        //     array_push($erros, "O campo status é obrigatório");
+        
+        if (! $sala->getModalidade())
+            array_push($erros, "O campo modalidade é obrigatório");
 
         return $erros;
     }

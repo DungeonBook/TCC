@@ -26,22 +26,15 @@ require_once(__DIR__ . "/../include/menu.php");
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="txtCriadorId">Mestre de mesa:</label>
-                    <input class="form-control" type="text" id="txtCriadorId" name="criador_apelido"
-                        maxlength="50" placeholder="Informe o apelido do criador da sala"
-                        value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getCriador()->getApelido() : ''); ?>" />
-                </div>
-
-                <div class="mb-3">
                     <label class="form-label" for="txtQuantMinJogadores">Quantidade miníma de jogadores:</label>
-                    <input class="form-control" type="text" id="txtQuantMinJogadores" name="quant_min_jogadores"
+                    <input class="form-control" type="number" id="txtQuantMinJogadores" name="quant_min_jogadores"
                         maxlength="100" placeholder="Informe a quantidade miníma de jogadores:"
                         value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getQuantMinJogadores() : ''); ?>" />
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="txtQuantMaxJogadores">Quantidade máxima de jogadores:</label>
-                    <input class="form-control" type="text" id="txtQuantMaxJogadores" name="quant_max_jogadores"
+                    <input class="form-control" type="number" id="txtQuantMaxJogadores" name="quant_max_jogadores"
                         maxlength="100" placeholder="Informe a quantidade máxima de jogadores:"
                         value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getQuantMaxJogadores() : ''); ?>" />
                 </div>
@@ -76,9 +69,9 @@ require_once(__DIR__ . "/../include/menu.php");
 
                 <div class="mb-3">
                     <label class="form-label" for="txtDescricao">Descrição:</label>
-                    <input class="form-control" type="text" id="txtDescricao" name="descricao"
-                        maxlength="50" placeholder="Informe a descrição da sala"
-                        value="<?php echo (isset($dados['sala']) ? $dados['sala']->getDescricao() : ''); ?>" />
+                    <textarea name="descricao" id="txtDescricao" placeholder="Informe a descrição da sala"
+                        rows="5" class="form-control"
+                    ><?php echo (isset($dados['sala']) ? $dados['sala']->getDescricao() : ''); ?></textarea>
                 </div>
 
                 <div class="mb-3">
@@ -89,30 +82,14 @@ require_once(__DIR__ . "/../include/menu.php");
                         <?php foreach ($dados["modalidades"] as $modalidade): ?>
                             <option value="<?= htmlspecialchars($modalidade->getId()) ?>"
                                 <?php
-                                if (isset($dados["sala"]) && $dados["sala"]->getModalidadeId() == $modalidade->getId())
+                                if (isset($dados["sala"]) && $dados["sala"]->getModalidade() 
+                                        && $dados["sala"]->getModalidade()->getId() == $modalidade->getId())
                                     echo "selected";
                                 ?>>
                                 <?= htmlspecialchars($modalidade->getDescricao()) ?>
                             </option>
                         <?php endforeach; ?>
 
-                    </select>
-                </div>
-
-
-                <div class="mb-3">
-                    <label class="form-label" for="selStatus">Status:</label>
-                    <select class="form-select" name="papel" id="selStatus">
-                        <option value="">Selecione o Status</option>
-                        <?php foreach ($dados["status"] as $status): ?>
-                            <option value="<?= $status ?>"
-                                <?php
-                                if (isset($dados["sala"]) && $dados["sala"]->getStatus() == $status)
-                                    echo "selected";
-                                ?>>
-                                <?= $status ?>
-                            </option>
-                        <?php endforeach; ?>
                     </select>
                 </div>
 

@@ -6,7 +6,6 @@ require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../dao/ModalidadeDAO.php");
 require_once(__DIR__ . "/../service/SalaService.php");
 require_once(__DIR__ . "/../model/Sala.php");
-require_once(__DIR__ . "/../model/enum/SalaStatus.php");
 
 class SalaController extends Controller
 {
@@ -16,7 +15,7 @@ class SalaController extends Controller
     private ModalidadeDAO $modalidadeDAO;
 
 
-    private SalaService $SalaService;
+    private SalaService $salaService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct()
@@ -28,7 +27,7 @@ class SalaController extends Controller
         $this->usuarioDAO = new UsuarioDAO();
         $this->modalidadeDAO = new ModalidadeDAO();
 
-        $this->SalaService = new SalaService();
+        $this->salaService = new SalaService();
 
         $this->handleAction();
     }
@@ -39,35 +38,26 @@ class SalaController extends Controller
         //TODO Melhorar tal coisa
         $dados["salas"] = $this->salaDAO->listByUsuario($this->getIdUsuarioLogado());
 
-        print "<pre>";
-        print_r($dados);
-        print "</pre>";
-        die;
-
         $this->loadView("sala/list.php", $dados,  $msgErro, $msgSucesso);
     }
 
     protected function create()
     {
-
         $dados['id'] = 0;
-        $dados['status'] = SalaStatus::getAllAsArray();
         $dados['modalidades'] = $this->modalidadeDAO->list();
-
 
         $this->loadView("sala/form.php", $dados);
     }
 
      protected function edit()
     {
-        if (! $this->usuarioEstaLogado())
-            return;
-
         //Busca a sala na base pelo ID    
         $sala = $this->findSalaById();
         if ($sala) {
             $dados['id'] = $sala->getId();
             $dados["sala"] = $sala;
+
+            $dados['modalidades'] = $this->modalidadeDAO->list();
 
             $this->loadView("sala/form.php", $dados);
         } else
@@ -76,16 +66,11 @@ class SalaController extends Controller
 
     protected function save()
     {
-        if (! $this->usuarioEstaLogado())
-            return;
-
-
         //Capturar os dados do formulário
         $id = trim($_POST['id'] ?? '') ?: NULL;
 
-        $nome_sala = trim($_POST['nome_sala'] ?? '');
+        $nomeSala = trim($_POST['nome_sala'] ?? '');
 
-        $criador_apelido = trim($_POST['criador_apelido'] ?? '') ?: NULL;
         $quant_min_jogadores = trim($_POST['quant_min_jogadores'] ?? '') !== '' ? (int) $_POST['quant_min_jogadores'] : NULL;
         $quant_max_jogadores = trim($_POST['quant_max_jogadores'] ?? '') !== '' ? (int) $_POST['quant_max_jogadores'] : NULL;
         $data = trim($_POST['data'] ?? '') ?: NULL;
@@ -94,60 +79,58 @@ class SalaController extends Controller
 
         $hora_fim = trim($_POST['hora_fim'] ?? '') ?: NULL;
         $localizacao = trim($_POST['localizacao'] ?? '') ?: NULL;
-        $modalidade_id = trim($_POST['modalidade_id'] ?? '') !== '' ? (int) $_POST['modalidade_id'] : NULL;
         $descricao = trim($_POST['descricao'] ?? '') ?: NULL;
+        $modalidadeId = trim($_POST['modalidade_id'] ?? '') !== '' ? (int) $_POST['modalidade_id'] : NULL;
         $status = trim($_POST['status'] ?? '') ?: NULL;
 
 
         //Criar o objeto Sala
         $sala = new Sala();
         $sala->setId($id);
-        $sala->setNomeSala($nome_sala);
+        $sala->setNomeSala($nomeSala);
 
-        // Melhorar 
-        if (isset($criador_apelido)) {
-
-            $criador = $this->usuarioDAO->findByApelido($criador_apelido);
-
-            if (isset($criador)) {
-                $sala->setCriador($criador);
-            }
-        }
         $sala->setQuantMinJogadores($quant_min_jogadores);
         $sala->setQuantMaxJogadores($quant_max_jogadores);
         $sala->setData($data);
         $sala->setHoraInicio($hora_inicio);
         $sala->setHoraFim($hora_fim);
         $sala->setLocalizacao($localizacao);
-        $sala->setModalidade(new Modalidade());
         $sala->setDescricao($descricao);
-        $sala->setStatus($status);
+
+        if($modalidadeId) {
+            $sala->setModalidade(new Modalidade());
+            $sala->getModalidade()->setId($modalidadeId);
+        } else
+            $sala->setModalidade(null);
 
 
         //Validar os dados (camada service)
-        $erros = (array) $this->SalaService->validarDados($sala);
+        $erros = (array) $this->salaService->validarDados($sala);
 
         if (sizeof($erros) == 0) {
             //Inserir no Base de Dados
             try {
-                if ($sala->getId() == 0)
+                if ($sala->getId() == 0) {
+                    $sala->setCriador(new Usuario());
+                    $sala->getCriador()->setId($this->getIdUsuarioLogado());
+                    
                     $this->salaDAO->insert($sala);
-                else
+                } else
                     $this->salaDAO->update($sala);
 
                 header("location: " . BASEURL . "/controller/SalaController.php?action=list");
                 exit;
             } catch (PDOException $e) {
                 //Iserir erro no array
-                array_push($erros, "Erro ao gravar no banco de dados: " . $e->getMessage());
-                //array_push($erros, $e->getMessage());
+                array_push($erros, "Erro ao gravar no banco de dados!");
+                array_push($erros, $e->getMessage());
             }
         }
 
         //Mostrar os erros
         $dados['id'] = $sala->getId();
         $dados["sala"] = $sala;
-        $dados['status'] = SalaStatus::getAllAsArray();
+        $dados['modalidades'] = $this->modalidadeDAO->list();
 
         $msgErro = implode("<br>", $erros);
 
@@ -160,8 +143,7 @@ class SalaController extends Controller
             return null;
         }
 
-        $id = (int) $_GET['id'];
-        //return $this->salaDAO->findSalaById($id); // Buscar no banco
+        return $this->salaDAO->findSalaById($_GET['id']); // Buscar no banco
     }
 
     protected function delete()

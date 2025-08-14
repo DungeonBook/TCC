@@ -17,8 +17,6 @@ class Sala
     private ?string $localizacao;
     private ?string $descricao;
     private ?Modalidade $modalidade;
-    private ?int $identificador = 999; //valor para ter um valor inicial
-    private ?string $status;
 
 
     /**
@@ -117,6 +115,15 @@ class Sala
     public function getData(): ?string
     {
         return $this->data;
+    }
+
+    public function getDataFormatada(): ?string
+    {
+        if($this->data) {
+            $date = date_create($this->data);
+            return date_format($date, 'd/m/Y');
+        }
+        return "";
     }
 
     /**
@@ -220,42 +227,27 @@ class Sala
     }
 
     /**
-     * Get the value of identificador
-     */
-    public function getIdentificador(): ?int
-    {
-        return $this->identificador;
-    }
-
-    /**
-     * Set the value of identificador
-     */
-    public function setIdentificador(?int $identificador): self
-    {
-        $this->identificador = $identificador;
-
-        return $this;
-    }
-
-    /**
      * Get the value of status
      */
-    public function getStatus(): ?string
+    public function getStatus(): bool
     {
-        return $this->status;
+        if($this->data && $this->horaInicio) {
+            $horaJogo = date_create($this->data . " " . $this->horaInicio);
+            $horaAtual = date_create(date('Y-m-d H:i:s'));
+            return $horaAtual < $horaJogo;
+        }        
+        
+        return false;
     }
 
-    /**
-     * Set the value of status
-     */
-    public function setStatus(?string $status): self
-    {
-        $this->status = $status;
+    public function getStatusDescricao() : string {
+        if($this->getStatus())
+            return "Sim";
 
-        return $this;
+        return "Não";
     }
 
     public function __toString(): string{
-        return "{$this->id}, {$this->nomeSala}, {$this->criador}, {$this->quantMinJogadores}, {$this->quantMaxJogadores}, {$this->data}, {$this->horaInicio}, {$this->horaFim}, {$this->descricao}, {$this->modalidade}, {$this->status}"; 
+        return "{$this->id}, {$this->nomeSala}, {$this->criador}, {$this->quantMinJogadores}, {$this->quantMaxJogadores}, {$this->data}, {$this->horaInicio}, {$this->horaFim}, {$this->descricao}, {$this->modalidade}, {$this->getStatus()}"; 
     }
 }

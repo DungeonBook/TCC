@@ -37,6 +37,9 @@ class PerfilController extends Controller
     {
         $foto = $_FILES["foto"];
 
+        print_r($foto);
+        exit;
+
         //Validar se o usuário mandou a foto de perfil
         $erros = $this->usuarioService->validarFotoPerfil($foto);
         if (! $erros) {

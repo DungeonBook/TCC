@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
     `senha` VARCHAR(255) NOT NULL,
     `foto` VARCHAR(255) NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `email_unique` (`email` ASC)
+    UNIQUE INDEX `email_unique` (`email` ASC),
     UNIQUE INDEX `apelido_unique` (`apelido` ASC)
 ) ENGINE = InnoDB;
 
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `denuncias` (
 -- Table `modalidades`
 CREATE TABLE IF NOT EXISTS `modalidades` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `modalidade` VARCHAR(45) NOT NULL,
+    `descricao` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
@@ -45,8 +45,6 @@ CREATE TABLE IF NOT EXISTS `salas` (
     `localizacao` TEXT DEFAULT NULL,
     `descricao` TEXT DEFAULT NULL,
     `modalidade_id` INT NOT NULL,
-    `identificador` INT NOT NULL,
-    `status` ENUM('ativo', 'inativo') NOT NULL,
     PRIMARY KEY (`id`),
     CONSTRAINT `fk_salas_criador` FOREIGN KEY (`criador_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
     CONSTRAINT `fk_salas_modalidades` FOREIGN KEY (`modalidade_id`) REFERENCES `modalidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -64,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `salas_jogadores` (
     PRIMARY KEY (`id`),
     UNIQUE INDEX `usuario_sala_unique` (
         `usuario_id` ASC,
-        `sala_id` AS ),
+        `sala_id` ASC ),
 
     CONSTRAINT `fk_salas_jogadores_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
     CONSTRAINT `fk_salas_jogadores_sala` FOREIGN KEY (`sala_id`) REFERENCES `salas` (`id`) ON DELETE CASCADE
@@ -139,3 +137,9 @@ VALUES
         '2007-05-17',
         '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
     );
+
+
+INSERT INTO modalidades (descricao) 
+    VALUES ('Terror'),
+           ('Fantasia'),
+           ('Medieval');
