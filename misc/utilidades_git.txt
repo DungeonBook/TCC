@@ -1,0 +1,2 @@
+git config user.name "Eduarda Rocha Prestes"
+git config user.email "rpeduarda09@gmail.com"

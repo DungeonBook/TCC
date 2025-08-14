@@ -1,4 +1,4 @@
--- Table `usuarios`
+-- Table `usuarios` 
 CREATE TABLE IF NOT EXISTS `usuarios` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `papel` ENUM('jogador', 'administrador') NOT NULL,
@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
     `senha` VARCHAR(255) NOT NULL,
     `foto` VARCHAR(255) NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `email` (`email` ASC) 
+    UNIQUE INDEX `email_unique` (`email` ASC)
+    UNIQUE INDEX `apelido_unique` (`apelido` ASC)
 ) ENGINE = InnoDB;
 
 -- Table `denuncias`
@@ -18,62 +19,65 @@ CREATE TABLE IF NOT EXISTS `denuncias` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `usuario_id` INT NOT NULL,
     `texto` TEXT NOT NULL,
-    `data_hora` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-    `status` ENUM('pendente', 'resolvida') NULL DEFAULT 'pendente',
+    `data_hora` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `status` ENUM('pendente', 'resolvida') DEFAULT 'pendente',
     PRIMARY KEY (`id`),
-    CONSTRAINT `denuncias_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
+    CONSTRAINT `fk_denuncias_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 -- Table `modalidades`
 CREATE TABLE IF NOT EXISTS `modalidades` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `descricao` VARCHAR(45) NOT NULL,
+    `modalidade` VARCHAR(45) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
 -- Table `salas`
 CREATE TABLE IF NOT EXISTS `salas` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `nome_sala` VARCHAR NOT NULL,
+    `nome_sala` VARCHAR(100) NOT NULL,
     `criador_id` INT NOT NULL,
     `quant_min_jogadores` INT NOT NULL,
     `quant_max_jogadores` INT NOT NULL,
     `data` DATE NOT NULL,
     `hora_inicio` TIME NOT NULL,
     `hora_fim` TIME NOT NULL,
-    `descricao` TEXT NULL DEFAULT NULL,
-    `modalidades_id` INT NOT NULL,
+    `localizacao` TEXT DEFAULT NULL,
+    `descricao` TEXT DEFAULT NULL,
+    `modalidade_id` INT NOT NULL,
+    `identificador` INT NOT NULL,
+    `status` ENUM('ativo', 'inativo') NOT NULL,
     PRIMARY KEY (`id`),
-    CONSTRAINT `salas_ibfk_1` FOREIGN KEY (`criador_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-    CONSTRAINT `fk_salas_modalidades1` FOREIGN KEY (`modalidades_id`) REFERENCES `modalidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+    CONSTRAINT `fk_salas_criador` FOREIGN KEY (`criador_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `fk_salas_modalidades` FOREIGN KEY (`modalidade_id`) REFERENCES `modalidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 
 -- Table `salas_jogadores`
 CREATE TABLE IF NOT EXISTS `salas_jogadores` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `nome_sala_Jogadores` VARCHAR NOT NULL,
+    `nome_sala_Jogadores` VARCHAR(100) NOT NULL,
     `usuario_id` INT NOT NULL,
     `sala_id` INT NOT NULL,
-    `data_hora` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-    `avaliacao_nota` INT NULL DEFAULT NULL,
-    `avaliacao_comentario` TEXT NULL DEFAULT NULL,
+    `data_hora` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `avaliacao_nota` INT DEFAULT NULL,
+    `avaliacao_comentario` TEXT DEFAULT NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `usuario_id` (
+    UNIQUE INDEX `usuario_sala_unique` (
         `usuario_id` ASC,
-        `sala_id` ASC
-    ),
-    CONSTRAINT `salas_jogadores_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
-    CONSTRAINT `salas_jogadores_ibfk_2` FOREIGN KEY (`sala_id`) REFERENCES `salas` (`id`) ON DELETE CASCADE
+        `sala_id` AS ),
+
+    CONSTRAINT `fk_salas_jogadores_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+    CONSTRAINT `fk_salas_jogadores_sala` FOREIGN KEY (`sala_id`) REFERENCES `salas` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 -- Table `mensagens`
 CREATE TABLE IF NOT EXISTS `mensagens` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `salas_jogadores_id` INT NOT NULL,
-    `data_hora` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    `data_hora` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `texto` TEXT NOT NULL,
     PRIMARY KEY (`id`),
-    CONSTRAINT `mensagens_ibfk_1` FOREIGN KEY (`salas_jogadores_id`) REFERENCES `salas_jogadores` (`id`) ON DELETE CASCADE
+    CONSTRAINT `fk_mensagens_salas_jogadores` FOREIGN KEY (`salas_jogadores_id`) REFERENCES `salas_jogadores` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 -- Table `notificacoes`
@@ -81,10 +85,10 @@ CREATE TABLE IF NOT EXISTS `notificacoes` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `usuario_id` INT NOT NULL,
     `texto` TEXT NOT NULL,
-    `data` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-    `status` ENUM('nao_lida', 'lida') NULL DEFAULT 'nao_lida',
+    `data` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `status` ENUM('nao_lida', 'lida') DEFAULT 'nao_lida',
     PRIMARY KEY (`id`),
-    CONSTRAINT `notificacoes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
+    CONSTRAINT `fk_notificacoes_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 -- Dados iniciais do base de dados
@@ -98,7 +102,8 @@ INSERT INTO
         data_nascimento,
         senha
     )
-VALUES (
+VALUES
+    (
         'administrador',
         'Eduarda Prestes',
         'Duda',
@@ -134,4 +139,3 @@ VALUES (
         '2007-05-17',
         '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
     );
-/* Senha 123 */

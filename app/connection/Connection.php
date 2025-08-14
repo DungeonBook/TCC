@@ -1,8 +1,5 @@
 <?php
-#Nome do arquivo: Connection.php
-#Objetivo: classe para conectar ao banco de dados
-
-//require_once(__DIR__ . "/../util/config.php");
+require_once(__DIR__ . "/../util/config.php");
 
 class Connection {
 

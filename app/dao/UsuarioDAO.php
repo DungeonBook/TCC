@@ -43,6 +43,27 @@ class UsuarioDAO
             " - Erro: mais de um usuário encontrado.");
     }
 
+        //Método para buscar um usuário por seu apelido
+    public function findByApelido(string $apelido)
+    {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM usuarios u WHERE u.apelido = ?";
+        $stm = $conn->prepare($sql);
+        $stm->execute([$apelido]);
+        $result = $stm->fetchAll();
+
+        $usuarios = $this->mapUsuarios($result);
+
+        if (count($usuarios) == 1)
+            return $usuarios[0];
+        elseif (count($usuarios) == 0)
+            return null;
+
+        die("UsuarioDAO.findByApelido()" .
+            " - Erro: mais de um usuário encontrado.");
+    }
+
     //Método para buscar um usuário por seu email e senha
     public function findByEmailSenha(string $email, string $senha)
     {
@@ -72,7 +93,6 @@ class UsuarioDAO
     //Método para inserir um Usuario
     public function insert(Usuario $usuario)
     {
-        //TODO - mudar os parametros
         $conn = Connection::getConn();
 
         $sql = "INSERT INTO usuarios (papel, nome, apelido, email, telefone, data_nascimento, senha)" .

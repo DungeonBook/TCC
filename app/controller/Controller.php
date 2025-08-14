@@ -7,8 +7,10 @@ class Controller {
 
     //Método que efetua a chamada do ação conforme parâmetro GET recebido pela requisição
     protected function handleAction() {
+        
         //Captura a ação do parâmetro GET
         $action = NULL;
+
         if(isset($_GET['action']))
             $action = $_GET['action'];
         
@@ -17,6 +19,7 @@ class Controller {
     }
 
     protected function callAction($methodName) {
+        
         //Verifica se o método da action recebido por parâmetro existe na classe
         //Se sim, chama-o
         if($methodName && method_exists($this, $methodName))

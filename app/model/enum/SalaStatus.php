@@ -1,7 +1,4 @@
 <?php
-#Nome do arquivo: UsuarioPapel.php
-#Objetivo: classe Enum para os papeis de permissões do model de Usuario
-
 class SalaStatus
 {
 

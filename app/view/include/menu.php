@@ -41,7 +41,7 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
                 <div class="dropdown-menu">
                     <a class="dropdown-item"
                         href="<?= BASEURL . '/controller/SalaController.php?action=create' ?>">Criar Sala</a>
-                    <a class="dropdown-item" href="#">Listar Salas</a>
+                    <a class="dropdown-item" href="<?= BASEURL . '/controller/SalaController.php?action=list' ?>">Listar Salas</a>
                 </div>
             </li>
 

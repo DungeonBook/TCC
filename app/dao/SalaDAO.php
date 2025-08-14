@@ -2,6 +2,10 @@
 
 include_once(__DIR__ . "/../connection/Connection.php");
 include_once(__DIR__ . "/../model/Sala.php");
+include_once(__DIR__ . "/../model/Usuario.php");
+include_once(__DIR__ . "/../model/Modalidade.php");
+include_once(__DIR__ . "/../dao/UsuarioDAO.php");
+
 
 class SalaDAO
 {
@@ -14,7 +18,7 @@ class SalaDAO
         $sql = "SELECT * FROM salas s ORDER BY s.descricao";
         $stm = $conn->prepare($sql);
         $stm->execute();
-        $result = $stm->fetchAll();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
         return $this->mapSalas($result);
     }
@@ -23,45 +27,39 @@ class SalaDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM salas s ORDER BY s.descricao";
+        $sql = "SELECT * FROM salas s WHERE s.criador_id = :id ORDER BY s.descricao";
         $stm = $conn->prepare($sql);
+        $stm->bindValue("id", $idUsuario);
+
         $stm->execute();
-        $result = $stm->fetchAll();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
         return $this->mapSalas($result);
-
-            if (count($sala) == 1)
-            return $sala[0];
-        elseif (count($sala) == 0)
-            return null;
-
-        die("SalaDAO.findById()" .
-            " - Erro: mais de uma sala encontrada.");
     }
 
-     //Método para buscar um usuário por seu email e senha
+    //Identificador = senha para salas de partida privada
     public function findByIdentificador(string $identificador)
     {
-        $conn = Connection::getConn();
+        // $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM salas s";
-        $stm = $conn->prepare($sql);
-        $stm->execute([$identificador]);
-        $result = $stm->fetchAll();
+        // $sql = "SELECT * FROM salas s";
+        // $stm = $conn->prepare($sql);
+        // $stm->execute([$identificador]);
+        // $result = $stm->fetchAll();
 
-        $sala = $this->mapSalas($result);
+        // $sala = $this->mapSalas($result);
 
-        if (count($sala) == 1) {
-            //Tratamento para senha criptografada
-            if (password_verify($identificador[0]->getIdentificador()))
-                return $sala[0];
-            else
-                return null;
-        } elseif (count($sala) == 0)
-            return null;
+        // if (count($sala) == 1) {
+        //     //Tratamento para senha criptografada
+        //     if (password_verify($identificador[0]->getIdentificador()))
+        //         return $sala[0];
+        //     else
+        //         return null;
+        // } elseif (count($sala) == 0)
+        //     return null;
 
-        die("SalaDAO.findByIdentificador()" .
-            " - Erro: mais de uma sala encontrada.");
+        // die("SalaDAO.findByIdentificador()" .
+        //     " - Erro: mais de uma sala encontrada.");
     }
 
     public function insert(Sala $sala)
@@ -69,18 +67,27 @@ class SalaDAO
         //TODO - mudar os parametros
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO sala (quantMinJogadores, quantMaxJogadores, horariosDisponiveis, indentificador, modalidade, descricao)" .
-            " VALUES (:quantMinJogadores, :quantMaxJogadores, :horariosDisponiveis, :indentificador, :modalidade, :descricao)";
+        $sql = "INSERT INTO `salas` (`nome_sala`, `criador_id`, `quant_min_jogadores`, `quant_max_jogadores`, `data`, `hora_inicio`, `hora_fim`, `localizacao`, `descricao`, `modalidade_id`, `identificador`, `status`) VALUES (:nomeSala, :criadorId, :quantMinJogadores, :quantMaxJogadores, :dataInicio, :horaInicio, :horaFim, :descricao, :modalidadeId, :identificador, :statusSala)";
 
         $identificador = password_hash($sala->getIdentificador(), PASSWORD_DEFAULT);
 
         $stm = $conn->prepare($sql);
+        $stm->bindValue("nomeSala", $sala->getNomeSala());
+        $stm->bindValue("criadorId", $sala->getCriador()->getId());
         $stm->bindValue("quantMinJogadores", $sala->getQuantMinJogadores());
         $stm->bindValue("quantMaxJogadores", $sala->getQuantMaxJogadores());
-        $stm->bindValue("horariosDisponiveis", $sala->getHorariosDisponiveis());
-        $stm->bindValue("indentificador", $sala->getIndentificador());
-        $stm->bindValue("modalidade", $sal->getModalidade());
+        $stm->bindValue("data", $sala->getData());
+        $stm->bindValue("horaInicio", $sala->getHoraInicio());
+        $stm->bindValue("horaFim", $sala->getHoraFim());
+        $stm->bindValue("localizacao", $sala->getLocalizacao());
         $stm->bindValue("descricao", $sala->getDescricao());
+
+        $stm->bindValue("modalidadeId", 1);
+
+        $stm->bindValue("identificador", $sala->getIdentificador());
+
+        $stm->bindValue("statusSala", "ativo");
+
         $stm->execute();
     }
 
@@ -89,17 +96,22 @@ class SalaDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "UPDATE sala SET quantMinJogadores = :quantMinJogadores, quantMaxJogadores = :quantMaxJogadores, horariosDisponiveis = :horariosDisponiveis," .
-            " indentificador = :indentificador, modalidade = :modalidade, descricao = :descricao, WHERE id = :id";
+        $sql = "UPDATE sala SET nomeSala = :nomeSala, criadorId = :criadorId, quantMinJogadores = :quantMinJogadores, quantMaxJogadores, data, horaInicio, horaFim, localizacao, descricao, modalidadeId, identificador, status)" .
+            " VALUES (:nomeSala, :criadorId, :quantMinJogadores, :quantMaxJogadores, :data, :horaInicio, :horaFim, :localizacao, :descricao, :modalidadeId, :identificador, :status)";
 
         $stm = $conn->prepare($sql);
+        $stm->bindValue("nomeSala", $sala->getNomeSala());
+        $stm->bindValue("criadorId", $sala->getCriador()->getId());
         $stm->bindValue("quantMinJogadores", $sala->getQuantMinJogadores());
         $stm->bindValue("quantMaxJogadores", $sala->getQuantMaxJogadores());
-        $stm->bindValue("horariosDisponiveis", $sala->getHorariosDisponiveis());
-        $stm->bindValue("indentificador", password_hash($sala->getIndentificador(), PASSWORD_DEFAULT));
-        $stm->bindValue("modalidade", $sala->getModalidade());
+        $stm->bindValue("data", $sala->getData());
+        $stm->bindValue("horaInicio", $sala->getHoraInicio());
+        $stm->bindValue("horaFim", $sala->getHoraFim());
+        $stm->bindValue("localizacao", $sala->getLocalizacao());
         $stm->bindValue("descricao", $sala->getDescricao());
-        $stm->bindValue("id", $sala->getId());
+        $stm->bindValue("modalidadeId", 1);
+        $stm->bindValue("identificador", $sala->getIdentificador());
+        $stm->bindValue("status", $sala->getStatus());
         $stm->execute();
     }
 
@@ -115,22 +127,36 @@ class SalaDAO
         $stm->execute();
     }
 
-    private function mapSalas($result)
+    private function mapSalas($arrayDeSalas)
     {
-        $sala = array();
-        foreach ($result as $reg) {
+
+        $userDAO = new UsuarioDAO();
+
+        $salas = array();
+        foreach ($arrayDeSalas as $salaArray) {
+
             $sala = new Sala();
-            $sala->setId($reg['id']);
-            $sala->setQuantMinJogadores($reg['quant_min_jogadores']);
-            $sala->setQuantMaxJogadores($reg['quant_max_jogadores']);
-            $sala->setHorariosDisponiveis($reg['horarios_disponiveis']);
-            $sala->setIndentificador($reg[null]);
-            $sala->setModalidade($reg['modalidade']);
-            $sala->setDescricao($reg['descricao']);
-            $sala->setStatus($reg['status']);
-            array_push($usuarios, $sala);
+            $sala->setId($salaArray['id']);
+            $sala->setNomeSala($salaArray['nome_sala']);
+            $sala->setQuantMinJogadores($salaArray['quant_min_jogadores']);
+            $sala->setQuantMaxJogadores($salaArray['quant_max_jogadores']);
+            $sala->setData($salaArray['data']);
+            $sala->setHoraInicio($salaArray['hora_inicio']);
+            $sala->setHoraFim($salaArray['hora_fim']);
+            $sala->setLocalizacao($salaArray['localizacao']);
+            $sala->setDescricao($salaArray['descricao']);
+            $sala->setIdentificador($salaArray['identificador']);
+
+            $sala->setStatus($salaArray['status']);
+
+            $sala->setModalidade(new Modalidade());
+
+            $criador = $userDAO->findById($salaArray['criador_id']);
+            $sala->setCriador($criador);
+
+            array_push($salas, $sala);
         }
 
-        return $sala;
+        return $salas;
     }
 }

@@ -7,14 +7,19 @@ class Sala
 {
 
     private ?int $id;
-    private ?Usuario $usuario;
     private ?string $nomeSala;
+    private ?Usuario $criador = null;
+    private ?int $quantMinJogadores;
     private ?int $quantMaxJogadores;
-    private ?string $horariosDisponiveis;
-    private ?string $indentificador;
-    private ?Modalidade $modalidade;
+    private ?string $data;
+    private ?string $horaInicio;
+    private ?string $horaFim;
+    private ?string $localizacao;
     private ?string $descricao;
-    private ?int $status;
+    private ?Modalidade $modalidade;
+    private ?int $identificador = 999; //valor para ter um valor inicial
+    private ?string $status;
+
 
     /**
      * Get the value of id
@@ -30,24 +35,6 @@ class Sala
     public function setId(?int $id): self
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of usuario
-     */
-    public function getUsuario(): ?Usuario
-    {
-        return $this->usuario;
-    }
-
-    /**
-     * Set the value of usuario
-     */
-    public function setUsuario(?Usuario $usuario): self
-    {
-        $this->usuario = $usuario;
 
         return $this;
     }
@@ -71,6 +58,42 @@ class Sala
     }
 
     /**
+     * Get the value of criador
+     */
+    public function getCriador(): ?Usuario
+    {
+        return $this->criador;
+    }
+
+    /**
+     * Set the value of criador
+     */
+    public function setCriador(?Usuario $criador): self
+    {
+        $this->criador = $criador;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of quantMinJogadores
+     */
+    public function getQuantMinJogadores(): ?int
+    {
+        return $this->quantMinJogadores;
+    }
+
+    /**
+     * Set the value of quantMinJogadores
+     */
+    public function setQuantMinJogadores(?int $quantMinJogadores): self
+    {
+        $this->quantMinJogadores = $quantMinJogadores;
+
+        return $this;
+    }
+
+    /**
      * Get the value of quantMaxJogadores
      */
     public function getQuantMaxJogadores(): ?int
@@ -89,55 +112,73 @@ class Sala
     }
 
     /**
-     * Get the value of horariosDisponiveis
+     * Get the value of data
      */
-    public function getHorariosDisponiveis(): ?string
+    public function getData(): ?string
     {
-        return $this->horariosDisponiveis;
+        return $this->data;
     }
 
     /**
-     * Set the value of horariosDisponiveis
+     * Set the value of data
      */
-    public function setHorariosDisponiveis(?string $horariosDisponiveis): self
+    public function setData(?string $data): self
     {
-        $this->horariosDisponiveis = $horariosDisponiveis;
+        $this->data = $data;
 
         return $this;
     }
 
     /**
-     * Get the value of indentificador
+     * Get the value of horaInicio
      */
-    public function getIndentificador(): ?string
+    public function getHoraInicio(): ?string
     {
-        return $this->indentificador;
+        return $this->horaInicio;
     }
 
     /**
-     * Set the value of indentificador
+     * Set the value of horaInicio
      */
-    public function setIndentificador(?string $indentificador): self
+    public function setHoraInicio(?string $horaInicio): self
     {
-        $this->indentificador = $indentificador;
+        $this->horaInicio = $horaInicio;
 
         return $this;
     }
 
     /**
-     * Get the value of modalidade
+     * Get the value of horaFim
      */
-    public function getModalidade(): ?Modalidade
+    public function getHoraFim(): ?string
     {
-        return $this->modalidade;
+        return $this->horaFim;
     }
 
     /**
-     * Set the value of modalidade
+     * Set the value of horaFim
      */
-    public function setModalidade(?Modalidade $modalidade): self
+    public function setHoraFim(?string $horaFim): self
     {
-        $this->modalidade = $modalidade;
+        $this->horaFim = $horaFim;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of localizacao
+     */
+    public function getLocalizacao(): ?string
+    {
+        return $this->localizacao;
+    }
+
+    /**
+     * Set the value of localizacao
+     */
+    public function setLocalizacao(?string $localizacao): self
+    {
+        $this->localizacao = $localizacao;
 
         return $this;
     }
@@ -161,9 +202,45 @@ class Sala
     }
 
     /**
+     * Get the value of modalidade
+     */
+    public function getModalidade(): ?Modalidade
+    {
+        return $this->modalidade;
+    }
+
+    /**
+     * Set the value of modalidade
+     */
+    public function setModalidade(?Modalidade $modalidade): self
+    {
+        $this->modalidade = $modalidade;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of identificador
+     */
+    public function getIdentificador(): ?int
+    {
+        return $this->identificador;
+    }
+
+    /**
+     * Set the value of identificador
+     */
+    public function setIdentificador(?int $identificador): self
+    {
+        $this->identificador = $identificador;
+
+        return $this;
+    }
+
+    /**
      * Get the value of status
      */
-    public function getStatus(): ?int
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -171,10 +248,14 @@ class Sala
     /**
      * Set the value of status
      */
-    public function setStatus(?int $status): self
+    public function setStatus(?string $status): self
     {
         $this->status = $status;
 
         return $this;
+    }
+
+    public function __toString(): string{
+        return "{$this->id}, {$this->nomeSala}, {$this->criador}, {$this->quantMinJogadores}, {$this->quantMaxJogadores}, {$this->data}, {$this->horaInicio}, {$this->horaFim}, {$this->descricao}, {$this->modalidade}, {$this->status}"; 
     }
 }

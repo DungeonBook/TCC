@@ -10,35 +10,44 @@ class SalaService
      * @return Sala
      * @throws Exception se algum dado estiver inválido
      */
-    public function criarSala(array $dados): Sala
+    /* Método para validar os dados do usuário que vem do formulário */
+    public function validarDados(Sala $sala): array | null
     {
-        $nome = trim($dados['nome'] ?? '');
-        $descricao = trim($dados['descricao'] ?? '');
+        $erros = array();
 
-        if (empty($nome)) {
-            throw new Exception("O nome da sala é obrigatório.");
-        }
+        if (! $sala->getNomeSala())
+            array_push($erros, "O campo nome da sala é obrigatório.");
 
-        // Cria o objeto Sala preenchendo os dados
-        $sala = new Sala();
-        $sala->setNome($nome);
-        $sala->setDescricao($descricao);
+        if (! $sala->getCriador())
+            array_push($erros, "O campo mestre de mesa é obrigatório.");
 
-        // Aqui você pode incluir regras de negócio adicionais
-        // Ex: Limitar o tamanho do nome ou impedir palavras proibidas
+        if (! $sala->getQuantMinJogadores())
+            array_push($erros, "O campo quantidade miníma de jogadores é obrigatório.");
 
-        return $sala;
-    }
+        if (! $sala->getQuantMaxJogadores())
+            array_push($erros, "O campo quantidade máxima de jogadores é obrigatório.");
 
-    /**
-     * Exemplo de validação para remoção de sala
-     * (opcional - depende da sua regra de negócio)
-     */
-    public function validarRemocao(Sala $sala)
-    {
-        // Exemplo: impedir exclusão se sala for "Principal"
-        if (strtolower($sala->getNome()) === 'principal') {
-            throw new Exception("A sala Principal não pode ser removida.");
-        }
+        if (! $sala->getData())
+            array_push($erros, "O campo data da partida é obrigatório.");
+
+        if (! $sala->getHoraInicio())
+            array_push($erros, "O campo hora de início da partida é obrigatório.");
+
+        if (! $sala->getHoraFim())
+            array_push($erros, "O campo hora de término da partida é obrigatório");
+
+        if (! $sala->getLocalizacao())
+            array_push($erros, "O campo localização é obrigatório");
+
+        if (! $sala->getModalidade())
+            array_push($erros, "O campo modalidade é obrigatório");
+
+        if (! $sala->getDescricao())
+            array_push($erros, "O campo descrição é obrigatório");
+
+        // if (! $sala->getStatus())
+        //     array_push($erros, "O campo status é obrigatório");
+
+        return $erros;
     }
 }

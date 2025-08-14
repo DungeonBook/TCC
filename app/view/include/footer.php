@@ -1,4 +1,5 @@
 <!-- Footer -->
+ <link rel="stylesheet" href="login.css">
 <footer class="text-center text-lg-start bg-light text-muted" style="margin-top: 10px;">
     <!-- Copyright -->
     <div class="text-center p-4">
