@@ -242,12 +242,12 @@ class Sala
 
     public function getStatusDescricao() : string {
         if($this->getStatus())
-            return "Sim";
+            return "Ativa";
 
-        return "Não";
+        return "Inativa";
     }
 
     public function __toString(): string{
-        return "{$this->id}, {$this->nomeSala}, {$this->criador}, {$this->quantMinJogadores}, {$this->quantMaxJogadores}, {$this->data}, {$this->horaInicio}, {$this->horaFim}, {$this->descricao}, {$this->modalidade}, {$this->getStatus()}"; 
+        return "{$this->id}, {$this->nomeSala}, {$this->criador}, {$this->quantMinJogadores}, {$this->quantMaxJogadores}, {$this->data}, {$this->horaInicio}, {$this->horaFim}, {$this->localizacao}, {$this->descricao}, {$this->modalidade}, {$this->getStatus()}"; 
     }
 }

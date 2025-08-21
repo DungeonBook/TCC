@@ -6,6 +6,8 @@ require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../dao/ModalidadeDAO.php");
 require_once(__DIR__ . "/../service/SalaService.php");
 require_once(__DIR__ . "/../model/Sala.php");
+require_once(__DIR__ . "/../model/Modalidade.php");
+
 
 class SalaController extends Controller
 {
@@ -13,8 +15,6 @@ class SalaController extends Controller
     private SalaDAO $salaDAO;
     private UsuarioDAO $usuarioDAO;
     private ModalidadeDAO $modalidadeDAO;
-
-
     private SalaService $salaService;
 
     //Método construtor do controller - será executado a cada requisição a está classe
@@ -49,7 +49,7 @@ class SalaController extends Controller
         $this->loadView("sala/form.php", $dados);
     }
 
-     protected function edit()
+    protected function edit()
     {
         //Busca a sala na base pelo ID    
         $sala = $this->findSalaById();
@@ -97,7 +97,7 @@ class SalaController extends Controller
         $sala->setLocalizacao($localizacao);
         $sala->setDescricao($descricao);
 
-        if($modalidadeId) {
+        if ($modalidadeId) {
             $sala->setModalidade(new Modalidade());
             $sala->getModalidade()->setId($modalidadeId);
         } else
@@ -113,7 +113,7 @@ class SalaController extends Controller
                 if ($sala->getId() == 0) {
                     $sala->setCriador(new Usuario());
                     $sala->getCriador()->setId($this->getIdUsuarioLogado());
-                    
+
                     $this->salaDAO->insert($sala);
                 } else
                     $this->salaDAO->update($sala);

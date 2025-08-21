@@ -1,10 +1,8 @@
 <?php
-#Nome do arquivo: login/login.php
-#Objetivo: interface para logar no sistema
 
 require_once(__DIR__ . "/../include/header.php");
 ?>
-<!-- link rel="stylesheet" href="<?= BASEURL ?>/view/css/login.css" -->
+<!--link rel="stylesheet" href="<?= BASEURL ?>/view/css/login.css"-->
 
 <div class="container">
     <div class="row" style="margin-top: 20px;">
