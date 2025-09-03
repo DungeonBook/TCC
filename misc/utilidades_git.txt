@@ -1,2 +1,6 @@
-git config user.name "Eduarda Rocha Prestes"
+git config user.name "Eduarda Rocha Prestes" // caso a permissão não de certo
 git config user.email "rpeduarda09@gmail.com"
+
+git add . //caso o commit não de certo
+git commit -m "feat: atualizacoes e correcoes de erro"
+git push origin main
