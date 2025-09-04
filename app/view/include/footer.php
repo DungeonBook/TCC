@@ -1,5 +1,7 @@
 <!-- Footer -->
  <link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="salas.css">
+
 <footer>
     <div>
         © 2025 Copyright:

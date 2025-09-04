@@ -1,6 +1,5 @@
 body {
-    background: url("../img/Masmorra.jpg") no-repeat center center fixed;
-    background-size: cover;
+    background-color: #971414;
     font-family: 'Caudex', serif;
     color: #f8e6c1;
     margin: 0;
@@ -103,3 +102,14 @@ h1 {
     color: #f8e6c1;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* preto medieval */
+    color: #e0cda8;
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'Caudex', serif;
+}

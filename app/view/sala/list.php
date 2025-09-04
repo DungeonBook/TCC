@@ -1,6 +1,6 @@
-
-<?php 
+<?php
 require_once(__DIR__ . "/../include/header.php");
+require_once(__DIR__ . "/../include/menu.php");
 ?>
 <!-- Fonte medieval + CSS -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
@@ -13,11 +13,11 @@ require_once(__DIR__ . "/../include/header.php");
         <?php if (!empty($salas)): ?>
             <?php foreach ($salas as $sala): ?>
                 <div class="card-sala">
-                    <img src="<?= BASEURL ?>/view/img/dice-d20-playing-dnd-dungeon-600nw-2235210241.webp" alt="Sala RPG">
-                    <h3><?= htmlspecialchars($sala['nome']) ?></h3>
-                    <p><strong>Tema:</strong> <?= htmlspecialchars($sala['tema']) ?></p>
-                    <p><strong>Data:</strong> <?= htmlspecialchars($sala['data']) ?> às <?= htmlspecialchars($sala['horario']) ?></p>
-                    <a href="./SalaController.php?action=detalhar&id=<?= $sala['id'] ?>" class="btn-detalhes">Ver Detalhes</a>
+                    <img src="<?= BASEURL ?>/view/img/Background.jpg" alt="Sala RPG">
+                    <h3><?= htmlspecialchars($sala->getNomeSala()) ?></h3>
+                    <p><strong>Tema:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
+                    <p><strong>Data:</strong> <?= htmlspecialchars($sala->getDataFormatada()) ?> às <?= htmlspecialchars($sala->getHoraInicio()) ?></p>
+                    <a href="./SalaController.php?action=detalhar&id=<?= $sala->getId() ?>" class="btn-detalhes">Ver Detalhes</a>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>

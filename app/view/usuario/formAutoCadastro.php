@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once(__DIR__ . "/../include/header.php");
 
 ?>
@@ -11,9 +11,9 @@ require_once(__DIR__ . "/../include/header.php");
 
     <form id="frmCadastro" action="./UsuarioController.php?action=salvarAutoCadastro" method="POST">
         <div class="mb-3">
-            <input type="text" name="nome" id="txtNome" maxlength="100"
-                placeholder="Nome completo" 
-                value="<?php echo isset($dados['nome']) ? $dados['nome'] : '' ?>" required />
+            <input type="text" name="apelido" id="txtApelido" maxlength="50"
+                placeholder="Apelido"
+                value="<?php echo isset($dados["apelido"]) ? $dados["apelido"] : "" ?>" required />
         </div>
 
         <div class="mb-3">
@@ -29,13 +29,18 @@ require_once(__DIR__ . "/../include/header.php");
         </div>
 
         <div class="mb-3">
-            <input type="date" name="dataNascimento" id="txtDataNascimento"
-                value="<?php echo isset($dados['dataNascimento']) ? $dados['dataNascimento'] : '' ?>" required />
+            <input type="date" name="data_nascimento" id="txtDataNascimento"
+                value="<?php echo isset($dados["dataNascimento"]) ? $dados["dataNascimento"] : "" ?>" required />
         </div>
 
         <div class="mb-3">
             <input type="password" name="senha" id="txtSenha" maxlength="50"
                 placeholder="Senha" required />
+        </div>
+
+        <div class="mb-3">
+            <input type="password" name="conf_senha" id="txtConfSenha" maxlength="50"
+                placeholder="Confirme a Senha" required />
         </div>
 
         <button type="submit">Entrar</button>

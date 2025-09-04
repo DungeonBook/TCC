@@ -11,43 +11,49 @@ class SalaService
      * @throws Exception se algum dado estiver inválido
      */
     /* Método para validar os dados do usuário que vem do formulário */
-    public function validarDados(Sala $sala): array | null
-    {
-        $erros = array();
+public function validarDados(Sala $sala): array | null
+{
+    $erros = array();
 
-        if (! $sala->getNomeSala())
-            array_push($erros, "O campo [Nome da sala] é obrigatório.");
+    if (! $sala->getNomeSala())
+        array_push($erros, "O campo [Nome da sala] é obrigatório.");
 
-        if (! $sala->getQuantMinJogadores())
-            array_push($erros, "O campo quantidade miníma de jogadores é obrigatório.");
+    if (! $sala->getQuantMinJogadores())
+        array_push($erros, "O campo [quantidade mínima de jogadores] é obrigatório.");
 
-        if (! $sala->getQuantMaxJogadores())
-            array_push($erros, "O campo quantidade máxima de jogadores é obrigatório.");
+    if (! $sala->getQuantMaxJogadores())
+        array_push($erros, "O campo [quantidade máxima de jogadores] é obrigatório.");
 
-        //TODO - Verificar se quantidade mínima é maior que 5
+    // Validações adicionadas:
+    if ($sala->getQuantMinJogadores() !== null && $sala->getQuantMinJogadores() <= 4)
+        array_push($erros, "A quantidade mínima de jogadores deve ser maior que 4.");
 
-        //TODO - Verificar se quantidade máximo é menor que 10
+    if ($sala->getQuantMaxJogadores() !== null && $sala->getQuantMaxJogadores() >= 10)
+        array_push($erros, "A quantidade máxima de jogadores deve ser menor que 10.");
 
-        //TODO - Verificar se quantidade mínima é menor ou igual a máxima
+    if ($sala->getQuantMinJogadores() !== null && $sala->getQuantMaxJogadores() !== null && 
+        $sala->getQuantMinJogadores() > $sala->getQuantMaxJogadores())
+        array_push($erros, "A quantidade mínima de jogadores não pode ser maior que a quantidade máxima.");
 
-        if (! $sala->getData())
-            array_push($erros, "O campo data da partida é obrigatório.");
+    if (! $sala->getData())
+        array_push($erros, "O campo [data da partida] é obrigatório.");
 
-        if (! $sala->getHoraInicio())
-            array_push($erros, "O campo hora de início da partida é obrigatório.");
+    if (! $sala->getHoraInicio())
+        array_push($erros, "O campo [hora de início da partida] é obrigatório.");
 
-        if (! $sala->getHoraFim())
-            array_push($erros, "O campo hora de término da partida é obrigatório");
+    if (! $sala->getHoraFim())
+        array_push($erros, "O campo [hora de término da partida] é obrigatório");
 
-        if (! $sala->getLocalizacao())
-            array_push($erros, "O campo localização é obrigatório");
+    if (! $sala->getLocalizacao())
+        array_push($erros, "O campo [localização] é obrigatório");
 
-        if (! $sala->getDescricao())
-            array_push($erros, "O campo descrição é obrigatório");
-        
-        if (! $sala->getModalidade())
-            array_push($erros, "O campo modalidade é obrigatório");
+    if (! $sala->getDescricao())
+        array_push($erros, "O campo [descrição] é obrigatório");
+    
+    if (! $sala->getModalidade() || ! $sala->getModalidade()->getId())
+        array_push($erros, "O campo [modalidade] é obrigatório");
 
-        return $erros;
+    return $erros;
+
     }
-}
+}    

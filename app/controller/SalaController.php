@@ -36,7 +36,7 @@ class SalaController extends Controller
     {
 
         //TODO Melhorar tal coisa
-        $dados["salas"] = $this->salaDAO->listByUsuario($this->getIdUsuarioLogado());
+        $dados["salas"] = $this->salaDAO->list();
 
         $this->loadView("sala/list.php", $dados,  $msgErro, $msgSucesso);
     }
@@ -68,27 +68,21 @@ class SalaController extends Controller
     {
         //Capturar os dados do formulário
         $id = trim($_POST['id'] ?? '') ?: NULL;
-
-        $nomeSala = trim($_POST['nome_sala'] ?? '');
-
-        $quant_min_jogadores = trim($_POST['quant_min_jogadores'] ?? '') !== '' ? (int) $_POST['quant_min_jogadores'] : NULL;
-        $quant_max_jogadores = trim($_POST['quant_max_jogadores'] ?? '') !== '' ? (int) $_POST['quant_max_jogadores'] : NULL;
+        $nomeSala = trim($_POST['nomeSala'] ?? '');
+        $quant_min_jogadores = trim($_POST['quantMinJogadores'] ?? '') !== '' ? (int) $_POST['quantMinJogadores'] : NULL;
+        $quant_max_jogadores = trim($_POST['quantMaxJogadores'] ?? '') !== '' ? (int) $_POST['quantMaxJogadores'] : NULL;
         $data = trim($_POST['data'] ?? '') ?: NULL;
-
-        $hora_inicio = trim($_POST['hora_inicio'] ?? '');
-
-        $hora_fim = trim($_POST['hora_fim'] ?? '') ?: NULL;
+        $hora_inicio = trim($_POST['horaInicio'] ?? '');
+        $hora_fim = trim($_POST['horaFim'] ?? '') ?: NULL;
         $localizacao = trim($_POST['localizacao'] ?? '') ?: NULL;
         $descricao = trim($_POST['descricao'] ?? '') ?: NULL;
-        $modalidadeId = trim($_POST['modalidade_id'] ?? '') !== '' ? (int) $_POST['modalidade_id'] : NULL;
+        $modalidadeId = trim($_POST['modalidadeId'] ?? '') !== '' ? (int) $_POST['modalidadeId'] : NULL;
         $status = trim($_POST['status'] ?? '') ?: NULL;
-
 
         //Criar o objeto Sala
         $sala = new Sala();
         $sala->setId($id);
         $sala->setNomeSala($nomeSala);
-
         $sala->setQuantMinJogadores($quant_min_jogadores);
         $sala->setQuantMaxJogadores($quant_max_jogadores);
         $sala->setData($data);
@@ -170,7 +164,8 @@ class SalaController extends Controller
     //return $sala;
 
 
-public function detalhar() {
+    public function detalhar()
+    {
         if (isset($_GET['id'])) {
             $id = intval($_GET['id']);
             $salaDAO = new SalaDAO();

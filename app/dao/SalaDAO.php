@@ -6,17 +6,14 @@ include_once(__DIR__ . "/../model/Usuario.php");
 include_once(__DIR__ . "/../model/Modalidade.php");
 include_once(__DIR__ . "/../dao/UsuarioDAO.php");
 
-
 class SalaDAO
 {
-
     //Método para listar os usuários a partir da base de dados
     public function list()
     {
         $conn = Connection::getConn();
 
-        $sql = "SELECT * FROM salas s ORDER BY s.descricao";
-        $stm = $conn->prepare($sql);
+        $sql = "SELECT s.*, m.descricao modalidade_descricao FROM salas s JOIN modalidades m ON (m.id = s.modalidade_id) ORDER BY s.descricao";        $stm = $conn->prepare($sql);
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
@@ -45,7 +42,7 @@ class SalaDAO
         $conn = Connection::getConn();
 
         $sql = "SELECT s.*, m.descricao modalidade_descricao FROM salas s
-                    JOIN modalidades m ON (m.id = s.modalidade_id)
+                JOIN modalidades m ON (m.id = s.modalidade_id)
                 WHERE s.id = :id ORDER BY s.data DESC";
         $stm = $conn->prepare($sql);
         $stm->bindValue("id", $idSala);

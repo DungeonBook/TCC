@@ -1,6 +1,5 @@
 body {
-    background: url("../img/Masmorra.jpg") no-repeat center center fixed;
-    background-size: cover;
+    background-color: #971414;
     font-family: 'Caudex', serif;
     color: #e0cda8; /* tom mais suave para contraste */
     display: flex;

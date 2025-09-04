@@ -32,16 +32,16 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
             </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                    data-bs-toggle="dropdown">
+                <a class="nav-link dropdown-toggle" href="#"
+                    id="navbarDropdownSalas"
+                    data-bs-toggle="dropdown" aria-expanded="false">
                     Salas
                 </a>
-
-                <div class="dropdown-menu">
-                    <a class="dropdown-item"
-                        href="<?= BASEURL . '/controller/SalaController.php?action=create' ?>">Criar Sala</a>
-                    <a class="dropdown-item" href="<?= BASEURL . '/controller/SalaController.php?action=list' ?>">Listar Salas</a>
-                </div>
+                <ul class="dropdown-menu" arialabelledby="navbarDropdownSalas">
+                    <li><a class="dropdown-item"
+                            href="<?= BASEURL .
+                                        '/controller/SalaController.php?action=create' ?>">Criar Sala</a></li>
+                </ul>
             </li>
 
         </ul>
