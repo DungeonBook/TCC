@@ -1,7 +1,7 @@
 body {
-    background: url("../img/Background.png") no-repeat center center fixed;
+    background: url("../img/Masmorra.jpg") no-repeat center center fixed;
     background-size: cover;
-    font-family: 'Fondamento', serif;
+    font-family: 'Caudex', serif;
     color: #e0cda8; /* tom mais suave para contraste */
     display: flex;
     justify-content: center;
@@ -24,7 +24,7 @@ body {
 
 /* Título com estilo medieval */
 h1 {
-    font-family: 'Fondamento', cursive;
+    font-family: 'Caudex', cursive;
     font-size: 2.2em;
     color: #aa0000; /* vermelho profundo */
     margin-bottom: 20px;
@@ -109,5 +109,5 @@ footer {
     color: #e0cda8;
     text-align: center;
     padding: 10px 0;
-    font-family: 'Fondamento', serif;
+    font-family: 'Caudex', serif;
 }

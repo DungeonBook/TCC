@@ -38,7 +38,7 @@ require_once(__DIR__ . "/../include/header.php");
                 placeholder="Senha" required />
         </div>
 
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Entrar</button>
     </form>
 
     <a href="./LoginController.php?action=login">Já possui conta? Faça login</a>

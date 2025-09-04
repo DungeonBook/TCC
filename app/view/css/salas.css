@@ -1,0 +1,105 @@
+body {
+    background: url("../img/Masmorra.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Caudex', serif;
+    color: #f8e6c1;
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Caudex', cursive;
+    color: #d4af37;
+    text-shadow: 2px 2px 5px #000;
+    margin-bottom: 30px;
+}
+
+/* Grid de cards */
+.grid-salas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Card da sala */
+.card-sala {
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid #b58b4b;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.card-sala img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card-sala h3 {
+    font-family: 'Caudex', serif;
+    color: #d4af37;
+    margin: 10px 0;
+}
+
+.card-sala p {
+    color: #f8e6c1;
+    font-size: 0.9em;
+}
+
+.card-sala:hover {
+    transform: scale(1.05);
+}
+
+/* Botão */
+.btn-detalhes {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: linear-gradient(90deg, #d42d2d, #a61b1b);
+    border: 2px solid #ffcc66;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-detalhes:hover {
+    background: linear-gradient(90deg, #ff6600, #cc0000);
+    box-shadow: 0 0 10px #ff9933;
+}
+/* Detalhe da sala */
+.card-sala-detalhe {
+    background: rgba(0, 0, 0, 0.8);
+    border: 3px solid #d4af37;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: left;
+    max-width: 700px;
+    margin: 40px auto;
+    box-shadow: 0 0 20px #000;
+}
+
+.card-sala-detalhe h1 {
+    font-family: 'Uncial Antiqua', cursive;
+    font-size: 2.2em;
+    color: #ffcc66;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card-sala-detalhe p {
+    font-size: 1.1em;
+    margin: 10px 0;
+    color: #f8e6c1;
+}
+

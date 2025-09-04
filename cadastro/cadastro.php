@@ -5,7 +5,7 @@ require_once(__DIR__ . "/../include/menu.php");
 ?>
 
 <h3 class="text-center">
-    <?php if ($dados['id'] == 0) echo "conecte-se";
+    <?php if ($dados['id'] == 0) echo "Entrar";
     ?>
 </h3>
 

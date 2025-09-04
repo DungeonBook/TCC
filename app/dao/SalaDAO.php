@@ -55,11 +55,22 @@ class SalaDAO
 
         $salas = $this->mapSalas($result);
 
-        if(count($salas) > 0) {
+        if (count($salas) > 0) {
             return $salas[0];
         }
 
         return NULL;
+
+        try {
+            $sql = "SELECT * FROM salas WHERE id = :id LIMIT 1";
+            $stmt = $this->$conn->prepare($sql);
+            $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Erro ao buscar sala: " . $e->getMessage();
+            return null;
+        }
     }
 
     public function insert(Sala $sala)
@@ -139,7 +150,6 @@ class SalaDAO
             $sala->setHoraFim($salaArray['hora_fim']);
             $sala->setLocalizacao($salaArray['localizacao']);
             $sala->setDescricao($salaArray['descricao']);
-
             $sala->setModalidade(new Modalidade());
             $sala->getModalidade()->setId($salaArray['modalidade_id']);
             $sala->getModalidade()->setDescricao($salaArray['modalidade_descricao']);

@@ -43,7 +43,7 @@ class UsuarioDAO
             " - Erro: mais de um usuário encontrado.");
     }
 
-        //Método para buscar um usuário por seu apelido
+    //Método para buscar um usuário por seu apelido
     public function findByApelido(string $apelido)
     {
         $conn = Connection::getConn();
@@ -95,8 +95,8 @@ class UsuarioDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "INSERT INTO usuarios (papel, nome, apelido, email, telefone, data_nascimento, senha)" .
-            " VALUES (:papel, :nome, :apelido, :email, :telefone, :data_nascimento, :senha)";
+        $sql = "INSERT INTO usuarios (papel, nome, apelido, email, telefone, data_nascimento, senha, foto)" .
+            " VALUES (:papel, :nome, :apelido, :email, :telefone, :data_nascimento, :senha, : foto)";
 
         $senhaCripto = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
 
@@ -108,6 +108,7 @@ class UsuarioDAO
         $stm->bindValue("telefone", $usuario->getTelefone());
         $stm->bindValue("data_nascimento", $usuario->getDataNascimento());
         $stm->bindValue("senha", $senhaCripto);
+        $stm->bindValue("foto", $usuario->getFoto());
         $stm->execute();
     }
 
@@ -118,7 +119,7 @@ class UsuarioDAO
 
         $sql = "UPDATE usuarios SET nome = :nome, apelido = :apelido, email = :email," .
             " telefone = :telefone, data_nascimento = :data_nascimento," .
-            " senha = :senha, papel = :papel" .
+            " senha = :senha, foto = :foto, papel = :papel" .
             " WHERE id = :id";
 
         $stm = $conn->prepare($sql);
@@ -128,6 +129,7 @@ class UsuarioDAO
         $stm->bindValue("telefone", $usuario->getTelefone());
         $stm->bindValue("data_nascimento", $usuario->getDataNascimento());
         $stm->bindValue("senha", password_hash($usuario->getSenha(), PASSWORD_DEFAULT));
+        $stm->bindValue("foto", $usuario->getFoto());
         $stm->bindValue("papel", $usuario->getPapel());
         $stm->bindValue("id", $usuario->getId());
         $stm->execute();

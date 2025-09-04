@@ -168,20 +168,29 @@ class SalaController extends Controller
     // Ex: Limitar o tamanho do nome ou impedir palavras proibidas
 
     //return $sala;
-}
 
-/**
- * Exemplo de validação para remoção de sala
- * (opcional - depende da sua regra de negócio)
- */
-//public function validarRemocao(Sala $sala)
-{
-    // Exemplo: impedir exclusão se sala for "Principal"
-    //if (strtolower($sala->getNomeSala()) === 'principal') {
-    //throw new Exception("A sala Principal não pode ser removida.");
-}
-//}
 
+public function detalhar() {
+        if (isset($_GET['id'])) {
+            $id = intval($_GET['id']);
+            $salaDAO = new SalaDAO();
+            $sala = $salaDAO->findSalaById($id);
+
+            if ($sala) {
+                include(__DIR__ . "/../view/sala/detalhe.php");
+            } else {
+                // Sala não encontrada → redireciona para lista com mensagem
+                $_SESSION['msg'] = "⚠️ Sala não encontrada.";
+                header("Location: ./SalaController.php?action=listar");
+                exit;
+            }
+        } else {
+            // Se não tiver ID → volta para lista
+            header("Location: ./SalaController.php?action=listar");
+            exit;
+        }
+    }
+}
 
 #Criar objeto da classe para assim executar o construtor
 new SalaController();
