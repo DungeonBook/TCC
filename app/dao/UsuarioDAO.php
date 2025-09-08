@@ -96,7 +96,7 @@ class UsuarioDAO
         $conn = Connection::getConn();
 
         $sql = "INSERT INTO usuarios (papel, nome, apelido, email, telefone, data_nascimento, senha, foto)" .
-            " VALUES (:papel, :nome, :apelido, :email, :telefone, :data_nascimento, :senha, : foto)";
+            " VALUES (:papel, :nome, :apelido, :email, :telefone, :data_nascimento, :senha, :foto)";
 
         $senhaCripto = password_hash($usuario->getSenha(), PASSWORD_DEFAULT);
 

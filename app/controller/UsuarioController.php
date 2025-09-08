@@ -150,7 +150,7 @@ class UsuarioController extends Controller
     {
 
         //Capturar os dados do formulário
-        $id = $_POST['id'];
+        //$id = $_POST['id'];
         $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;
         $apelido = trim($_POST['apelido']) != "" ? trim($_POST['apelido']) : NULL;
         $email = trim($_POST['email']) != "" ? trim($_POST['email']) : NULL;
@@ -161,7 +161,7 @@ class UsuarioController extends Controller
 
         //Criar o objeto Usuario
         $usuario = new Usuario();
-        $usuario->setId($id);
+        //$usuario->setId($id);
         $usuario->setNome($nome);
         $usuario->setApelido($apelido);
         $usuario->setEmail($email);
@@ -181,9 +181,10 @@ class UsuarioController extends Controller
 
                 header("location: " . BASEURL . "/controller/LoginController.php?action=login");
                 exit;
-            } catch (PDOException $e) {
+            } catch (PDOException $exception) {
+                
                 //Iserir erro no array
-                array_push($erros, "Erro ao gravar no banco de dados!");
+                array_push($erros, "Erro ao gravar no banco de dados:; " . $exception);
                 //array_push($erros, $e->getMessage());
             }
         }

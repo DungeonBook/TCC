@@ -9,7 +9,14 @@ require_once(__DIR__ . "/../include/header.php");
 <div class="container">
     <h1>Cadastro</h1>
 
-    <form id="frmCadastro" action="./UsuarioController.php?action=salvarAutoCadastro" method="POST">
+    <form id="frmCadastro" action="./UsuarioController.php?action=saveAutoCadastro" method="POST">
+
+        <div class="mb-3">
+            <input type="text" name="nome" id="txtNome" maxlength="50"
+                placeholder="Nome"
+                value="<?php echo isset($dados["nome"]) ? $dados["nome"] : "" ?>" required />
+        </div>
+
         <div class="mb-3">
             <input type="text" name="apelido" id="txtApelido" maxlength="50"
                 placeholder="Apelido"
