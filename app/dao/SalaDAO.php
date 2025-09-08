@@ -13,7 +13,8 @@ class SalaDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "SELECT s.*, m.descricao modalidade_descricao FROM salas s JOIN modalidades m ON (m.id = s.modalidade_id) ORDER BY s.descricao";        $stm = $conn->prepare($sql);
+        $sql = "SELECT s.*, m.descricao modalidade_descricao FROM salas s JOIN modalidades m ON (m.id = s.modalidade_id) ORDER BY s.descricao";        
+        $stm = $conn->prepare($sql);
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
@@ -72,7 +73,6 @@ class SalaDAO
 
     public function insert(Sala $sala)
     {
-        //TODO - mudar os parametros
         $conn = Connection::getConn();
 
         $sql = "INSERT INTO `salas` (`nome_sala`, `criador_id`, `quant_min_jogadores`, `quant_max_jogadores`, `data`, `hora_inicio`, `hora_fim`, `localizacao`, `descricao`, `modalidade_id`) 
@@ -135,6 +135,7 @@ class SalaDAO
         $userDAO = new UsuarioDAO();
 
         $salas = array();
+        
         foreach ($arrayDeSalas as $salaArray) {
 
             $sala = new Sala();

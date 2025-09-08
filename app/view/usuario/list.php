@@ -11,7 +11,7 @@ require_once(__DIR__ . "/../include/menu.php");
 <div class="container">
     <div class="row">
         <div class="col-3">
-            <a class="btn btn-success" 
+            <a class="btn btn-success"
                 href="<?= BASEURL ?>/controller/UsuarioController.php?action=create">
                 Inserir</a>
         </div>
@@ -35,20 +35,20 @@ require_once(__DIR__ . "/../include/menu.php");
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($dados['lista'] as $usu): ?>
+                    <?php foreach ($dados['lista'] as $usu): ?>
                         <tr>
                             <td><?php echo $usu->getId(); ?></td>
                             <td><?= $usu->getNome(); ?></td>
                             <td><?= $usu->getEmail(); ?></td>
                             <td><?= $usu->getPapel(); ?></td>
-                            <td><a class="btn btn-primary" 
-                                href="<?= BASEURL ?>/controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">
-                                Alterar</a> 
+                            <td><a class="btn btn-primary"
+                                    href="<?= BASEURL ?>/controller/UsuarioController.php?action=edit&id=<?= $usu->getId() ?>">
+                                    Alterar</a>
                             </td>
-                            <td><a class="btn btn-danger" 
-                                onclick="return confirm('Confirma a exclusão do usuário?');"
-                                href="<?= BASEURL ?>/controller/UsuarioController.php?action=delete&id=<?= $usu->getId() ?>">
-                                Excluir</a> 
+                            <td><a class="btn btn-danger"
+                                    onclick="return confirm('Confirma a exclusão do usuário?');"
+                                    href="<?= BASEURL ?>/controller/UsuarioController.php?action=delete&id=<?= $usu->getId() ?>">
+                                    Excluir</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -58,6 +58,6 @@ require_once(__DIR__ . "/../include/menu.php");
     </div>
 </div>
 
-<?php  
+<?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>

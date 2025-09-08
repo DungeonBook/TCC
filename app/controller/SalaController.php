@@ -35,10 +35,9 @@ class SalaController extends Controller
     protected function list(string $msgErro = "", string $msgSucesso = "")
     {
 
-        //TODO Melhorar tal coisa
         $dados["salas"] = $this->salaDAO->list();
 
-        $this->loadView("sala/list.php", $dados,  $msgErro, $msgSucesso);
+        $this->loadView("sala/sala-list.php", $dados,  $msgErro, $msgSucesso);
     }
 
     protected function create()
@@ -46,7 +45,7 @@ class SalaController extends Controller
         $dados['id'] = 0;
         $dados['modalidades'] = $this->modalidadeDAO->list();
 
-        $this->loadView("sala/form.php", $dados);
+        $this->loadView("sala/sala-cadastro.php", $dados);
     }
 
     protected function edit()
@@ -59,7 +58,7 @@ class SalaController extends Controller
 
             $dados['modalidades'] = $this->modalidadeDAO->list();
 
-            $this->loadView("sala/form.php", $dados);
+            $this->loadView("sala/sala-cadastro.php", $dados);
         } else
             $this->list("Sala não encontrada!");
     }
@@ -77,7 +76,6 @@ class SalaController extends Controller
         $localizacao = trim($_POST['localizacao'] ?? '') ?: NULL;
         $descricao = trim($_POST['descricao'] ?? '') ?: NULL;
         $modalidadeId = trim($_POST['modalidadeId'] ?? '') !== '' ? (int) $_POST['modalidadeId'] : NULL;
-        $status = trim($_POST['status'] ?? '') ?: NULL;
 
         //Criar o objeto Sala
         $sala = new Sala();
@@ -128,7 +126,7 @@ class SalaController extends Controller
 
         $msgErro = implode("<br>", $erros);
 
-        $this->loadView("sala/form.php", $dados, $msgErro);
+        $this->loadView("sala/sala-cadastro.php", $dados, $msgErro);
     }
 
     private function findSalaById()
@@ -145,37 +143,46 @@ class SalaController extends Controller
         if (! $this->usuarioEstaLogado())
             return;
 
-        //Busca o usuário na base pelo ID    
+        // Busca o usuário logado (exemplo com sessão)
+        $usuarioLogado = $_SESSION['usuario'];
+        $idUsuarioLogado = $usuarioLogado['id'];
+
+        // Busca a sala pelo ID
         $sala = $this->findSalaById();
 
         if ($sala) {
-            //Excluir
+            // Verifica se a sala pertence ao usuário logado
+            if ($sala->getCriador() != $idUsuarioLogado) {
+                // Não permite excluir se não for dono da sala
+                $this->list("erro", "Você não tem permissão para excluir esta sala.");
+                return;
+            }
+
+            // Excluir
             $this->salaDAO->deleteById($sala->getId());
 
             header("location: " . BASEURL . "/controller/SalaController.php?action=list");
             exit;
         } else {
-            $this->list("Sala não encontrado!");
+            $this->list("erro", "Sala não encontrada!");
         }
     }
-    // Aqui você pode incluir regras de negócio adicionais
-    // Ex: Limitar o tamanho do nome ou impedir palavras proibidas
-
-    //return $sala;
-
 
     public function detalhar()
     {
         if (isset($_GET['id'])) {
+
             $id = intval($_GET['id']);
             $salaDAO = new SalaDAO();
-            $sala = $salaDAO->findSalaById($id);
+            $dados['sala'] = $salaDAO->findSalaById($id);
+            $dados['idUsuarioLogado'] = $this->getIdUsuarioLogado();
 
-            if ($sala) {
-                include(__DIR__ . "/../view/sala/detalhe.php");
+            if ($dados['sala']) {
+
+                $this->loadView("sala/sala-detalhes.php", $dados);
             } else {
                 // Sala não encontrada → redireciona para lista com mensagem
-                $_SESSION['msg'] = "⚠️ Sala não encontrada.";
+                $_SESSION['msg'] = "Sala não encontrada.";
                 header("Location: ./SalaController.php?action=listar");
                 exit;
             }

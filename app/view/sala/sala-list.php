@@ -9,9 +9,15 @@ require_once(__DIR__ . "/../include/menu.php");
 <div class="container">
     <h1>Salas Disponíveis</h1>
 
+    <?php if (isset($msgSucesso) && $msgSucesso != null) : ?>
+        <div class="alert alert-success" role="alert">
+            <?= $msgSucesso ?>
+        </div>
+    <?php endif; ?>
+
     <div class="grid-salas">
-        <?php if (!empty($salas)): ?>
-            <?php foreach ($salas as $sala): ?>
+        <?php if (!empty($dados['salas'])): ?>
+            <?php foreach ($dados['salas'] as $sala): ?>
                 <div class="card-sala">
                     <img src="<?= BASEURL ?>/view/img/Background.jpg" alt="Sala RPG">
                     <h3><?= htmlspecialchars($sala->getNomeSala()) ?></h3>
@@ -21,11 +27,13 @@ require_once(__DIR__ . "/../include/menu.php");
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>Nenhuma sala disponível no momento.</p>
+            <p style="text-align: center;">Nenhuma sala disponível no momento.</p>
         <?php endif; ?>
     </div>
 </div>
 
+
 <?php
 require_once(__DIR__ . "/../include/footer.php");
+
 ?>

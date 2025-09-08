@@ -19,27 +19,27 @@ require_once(__DIR__ . "/../include/menu.php");
                 <div class="mb-3">
                     <label class="form-label" for="txtNomeSala">Nome da sala:</label>
 
-                    <input class="form-control" type="text" id="txtNomeSala" name="nome_sala"
+                    <input class="form-control" type="text" id="txtNomeSala" name="nomeSala"
                         maxlength="100" placeholder="Informe o nome da sua sala:"
                         value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getNomeSala() : ''); ?>" />
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="txtQuantMinJogadores">Quantidade miníma de jogadores:</label>
-                    <input class="form-control" type="number" id="txtQuantMinJogadores" name="quant_min_jogadores"
+                    <input class="form-control" type="number" id="txtQuantMinJogadores" name="quantMinJogadores"
                         maxlength="100" placeholder="Informe a quantidade miníma de jogadores:"
                         value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getQuantMinJogadores() : ''); ?>" />
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="txtQuantMaxJogadores">Quantidade máxima de jogadores:</label>
-                    <input class="form-control" type="number" id="txtQuantMaxJogadores" name="quant_max_jogadores"
+                    <input class="form-control" type="number" id="txtQuantMaxJogadores" name="quantMaxJogadores"
                         maxlength="100" placeholder="Informe a quantidade máxima de jogadores:"
                         value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getQuantMaxJogadores() : ''); ?>" />
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="txtData">Data:</label>
+                    <label class="form-label" for="txtData">Data da partida:</label>
                     <input class="form-control" type="date" id="txtData" name="data"
                         maxlength="50" placeholder="Informe a Data da partida:"
                         value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getData() : ''); ?>" />
@@ -47,14 +47,14 @@ require_once(__DIR__ . "/../include/menu.php");
 
                 <div class="mb-3">
                     <label class="form-label" for="txtHoraInicio">Horário de início da partida:</label>
-                    <input class="form-control" type="time" id="txtHoraInicio" name="hora_inicio"
+                    <input class="form-control" type="time" id="txtHoraInicio" name="horaInicio"
                         maxlength="50" placeholder="Informe o horário de início da partida"
                         value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getHoraInicio() : ''); ?>" />
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="txtHoraFim">Horário de fim da partida:</label>
-                    <input class="form-control" type="time" id="txtHoraFim" name="hora_fim"
+                    <input class="form-control" type="time" id="txtHoraFim" name="horaFim"
                         maxlength="50" placeholder="Informe o horário de fim da partida"
                         value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getHoraFim() : ''); ?>" />
                 </div>
@@ -75,7 +75,7 @@ require_once(__DIR__ . "/../include/menu.php");
 
                 <div class="mb-3">
                     <label class="form-label" for="selModalidadeId">Modalidade:</label>
-                    <select class="form-select" name="modalidade_id" id="selModalidadeId">
+                    <select class="form-select" name="modalidadeId" id="selModalidadeId">
                         <option value="">Selecione a modalidade</option>
 
                         <?php foreach ($dados["modalidades"] as $modalidade): ?>

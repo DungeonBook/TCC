@@ -19,31 +19,18 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
                 <a class="nav-link" href="<?= HOME_PAGE ?>">Home</a>
             </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                    data-bs-toggle="dropdown">
-                    Cadastros
+                 <li class="nav-item">
+                <a class="nav-link" href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">
+                    Usuários
                 </a>
-
-                <div class="dropdown-menu">
-                    <a class="dropdown-item"
-                        href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">Usuários</a>
-                </div>
             </li>
 
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#"
-                    id="navbarDropdownSalas"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Salas
+            <!-- Salas (agora link simples) -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASEURL . '/controller/SalaController.php?action=create' ?>">
+                    Nova Sala
                 </a>
-                <ul class="dropdown-menu" arialabelledby="navbarDropdownSalas">
-                    <li><a class="dropdown-item"
-                            href="<?= BASEURL .
-                                        '/controller/SalaController.php?action=create' ?>">Criar Sala</a></li>
-                </ul>
             </li>
-
         </ul>
 
         <ul class="navbar-nav ms-auto mr-3">

@@ -25,11 +25,11 @@ public function validarDados(Sala $sala): array | null
         array_push($erros, "O campo [quantidade máxima de jogadores] é obrigatório.");
 
     // Validações adicionadas:
-    if ($sala->getQuantMinJogadores() !== null && $sala->getQuantMinJogadores() <= 4)
-        array_push($erros, "A quantidade mínima de jogadores deve ser maior que 4.");
+    if ($sala->getQuantMinJogadores() !== null && $sala->getQuantMinJogadores() < 4)
+        array_push($erros, "A quantidade mínima de jogadores deve ser maior que 3.");
 
-    if ($sala->getQuantMaxJogadores() !== null && $sala->getQuantMaxJogadores() >= 10)
-        array_push($erros, "A quantidade máxima de jogadores deve ser menor que 10.");
+    if ($sala->getQuantMaxJogadores() !== null && $sala->getQuantMaxJogadores() > 10)
+        array_push($erros, "A quantidade máxima de jogadores é 10.");
 
     if ($sala->getQuantMinJogadores() !== null && $sala->getQuantMaxJogadores() !== null && 
         $sala->getQuantMinJogadores() > $sala->getQuantMaxJogadores())

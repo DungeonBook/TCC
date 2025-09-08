@@ -33,10 +33,6 @@ class Controller {
     }
 
     protected function loadView(string $path, array $dados, string $msgErro = "", string $msgSucesso = "") {
-        
-        //Verificar os dados que estão sendo recebidos na função
-        //echo "<pre>" . print_r($dados, true) . "</pre>";
-        //exit;
 
         $caminho = __DIR__ . "/../view/" . $path;
         //echo $caminho;

@@ -1,15 +1,23 @@
 body {
     background-color: #971414;
     font-family: 'Caudex', serif;
-    color: #f8e6c1;
+    color: #d4af37; /* tom mais suave para contraste */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 50px auto;
-    padding: 20px;
+    background: rgba(40, 10, 10, 0.85); /* vinho escuro */
+    border: 3px solid #800000; /* bordô */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8); /* sombra mais forte */
+    width: 340px;
     text-align: center;
+    backdrop-filter: blur(6px);
 }
 
 h1 {
@@ -29,7 +37,7 @@ h1 {
 /* Card da sala */
 .card-sala {
     background: rgba(0, 0, 0, 0.75);
-    border: 2px solid #b58b4b;
+    border: 2px solid #d4af37;
     border-radius: 15px;
     padding: 15px;
     text-align: center;
@@ -50,7 +58,7 @@ h1 {
 }
 
 .card-sala p {
-    color: #f8e6c1;
+    color: #d4af37;
     font-size: 0.9em;
 }
 
@@ -59,23 +67,28 @@ h1 {
 }
 
 /* Botão */
-.btn-detalhes {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 12px;
-    background: linear-gradient(90deg, #d42d2d, #a61b1b);
-    border: 2px solid #ffcc66;
-    border-radius: 8px;
-    color: white;
-    text-decoration: none;
+button {
+    background: linear-gradient(135deg, #800000, #550000, #aa0000);
+    border: 2px solid #b85c3a;
+    padding: 14px;
+    border-radius: 12px;
+    width: 100%;
+    font-size: 1.1em;
+    color: #f8e6c1;
+    cursor: pointer;
     font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 0 15px #aa0000, inset 0 0 10px #550000;
     transition: all 0.3s ease;
 }
 
-.btn-detalhes:hover {
-    background: linear-gradient(90deg, #ff6600, #cc0000);
-    box-shadow: 0 0 10px #ff9933;
+button:hover {
+    background: linear-gradient(135deg, #aa0000, #800000, #ff3333);
+    box-shadow: 0 0 25px #ff6600, inset 0 0 12px #aa0000;
+    transform: scale(1.05);
 }
+
 /* Detalhe da sala */
 .card-sala-detalhe {
     background: rgba(0, 0, 0, 0.8);
@@ -91,7 +104,7 @@ h1 {
 .card-sala-detalhe h1 {
     font-family: 'Uncial Antiqua', cursive;
     font-size: 2.2em;
-    color: #ffcc66;
+    color: #d4af37;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -99,7 +112,22 @@ h1 {
 .card-sala-detalhe p {
     font-size: 1.1em;
     margin: 10px 0;
-    color: #f8e6c1;
+    color: #d4af37;
+}
+
+/* Links estilo pergaminho */
+a {
+    display: block;
+    margin-top: 15px;
+    color: #aa0000; /* vermelho profundo */
+    font-family: 'Cinzel', serif;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #d4af37; /* dourado medieval */
+    text-decoration: underline;
 }
 
 footer {
@@ -108,7 +136,7 @@ footer {
     left: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.85); /* preto medieval */
-    color: #e0cda8;
+    color: #d4af37;
     text-align: center;
     padding: 10px 0;
     font-family: 'Caudex', serif;

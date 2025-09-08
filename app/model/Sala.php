@@ -208,7 +208,7 @@ class Sala
         return $this;
     }
 
-    /**
+    /**5
      * Get the value of modalidade
      */
     public function getModalidade(): ?Modalidade

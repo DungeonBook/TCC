@@ -39,7 +39,7 @@ class UsuarioController extends Controller
         $dados['id'] = 0;
         $dados['papeis'] = UsuarioPapel::getAllAsArray();
 
-        $this->loadView("usuario/form.php", $dados);
+        $this->loadView("usuario/usu-form.php", $dados);
     }
 
     protected function edit()
@@ -56,7 +56,7 @@ class UsuarioController extends Controller
 
             $dados['papeis'] = UsuarioPapel::getAllAsArray();
 
-            $this->loadView("usuario/form.php", $dados);
+            $this->loadView("usuario/usu-form.php", $dados);
         } else
             $this->list("Usuário não encontrado!");
     }
@@ -116,7 +116,7 @@ class UsuarioController extends Controller
 
         $msgErro = implode("<br>", $erros);
 
-        $this->loadView("usuario/form.php", $dados, $msgErro);
+        $this->loadView("usuario/usu-form.php", $dados, $msgErro);
     }
 
     protected function delete()
@@ -143,7 +143,7 @@ class UsuarioController extends Controller
     {
         $dados['id'] = 0;
 
-        $this->loadView("usuario/formAutoCadastro.php", $dados);
+        $this->loadView("usuario/usu-autocadastro.php", $dados);
     }
 
     protected function saveAutoCadastro()
@@ -194,7 +194,7 @@ class UsuarioController extends Controller
 
         $msgErro = implode("<br>", $erros);
 
-        $this->loadView("usuario/formAutoCadastro.php", $dados, $msgErro);
+        $this->loadView("usuario/usu-autocadastro.php", $dados, $msgErro);
     }
 
 

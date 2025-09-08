@@ -1,0 +1,48 @@
+<?php
+require_once(__DIR__ . "/../include/header.php");
+?>
+<!-- Fonte medieval + CSS -->
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/salas.css">
+
+<div class="container">
+
+    <?php
+
+    $sala = $dados['sala'];
+    $idUsuarioLogado = $dados['idUsuarioLogado'];
+
+    if (!empty($sala)): ?>
+        <div class="card-sala-detalhe">
+
+            <h1><?= htmlspecialchars($sala->getNomeSala()) ?></h1>
+
+            <?php if ($idUsuarioLogado == $sala->getCriador()->getId()): ?>
+                <div style="text-align: center;">
+                    <a href="./SalaController.php?action=edit&id=<?= $sala->getId() ?>">Editar</a> |
+                    <a href="./SalaController.php?action=delete&id=<?= $sala->getId() ?>" onclick="return confirm('Tem certeza que deseja excluir esta sala?')">Excluir</a>
+                </div>
+            <?php endif; ?>
+
+            <p><strong>Mestre de mesa:</strong> <?= htmlspecialchars($sala->getCriador()->getApelido()) ?></p>
+
+            <p><strong>Quantidade miníma de jogadores::</strong> <?= htmlspecialchars($sala->getQuantMinJogadores()) ?></p>
+            <p><strong>Quantidade máxima de jogadores::</strong> <?= htmlspecialchars($sala->getQuantMaxJogadores()) ?></p>
+            <p><strong>Data da partida:</strong> <?= htmlspecialchars($sala->getData()) ?></p>
+            <p><strong>Horário de início da partida:</strong> <?= htmlspecialchars($sala->getHoraInicio()) ?></p>
+            <p><strong>Horário de fim da partida:</strong> <?= htmlspecialchars($sala->getHoraFim()) ?></p>
+            <p><strong>Localização:</strong> <?= htmlspecialchars($sala->getLocalizacao()) ?></p>
+            <p><strong>Descrição:</strong> <?= htmlspecialchars($sala->getDescricao()) ?></p>
+            <p><strong>Modalidade:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
+
+            <a href="./SalaController.php?action=list" class="btn-detalhes">Voltar às salas</a>
+        </div>
+    <?php else: ?>
+        <p>Sala não encontrada.</p>
+        <a href="./SalaController.php?action=list" class="btn-detalhes">Voltar</a>
+    <?php endif; ?>
+</div>
+
+<?php
+require_once(__DIR__ . "/../include/footer.php");
+?>
