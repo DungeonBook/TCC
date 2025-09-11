@@ -132,6 +132,7 @@ class Sala
     public function setData(?string $data): self
     {
         $this->data = $data;
+        $data = date_create(date('D-m-Y'));
 
         return $this;
     }
@@ -233,7 +234,7 @@ class Sala
     {
         if($this->data && $this->horaInicio) {
             $horaJogo = date_create($this->data . " " . $this->horaInicio);
-            $horaAtual = date_create(date('Y-m-d H:i:s'));
+            $horaAtual = date_create(date('D-m-y H:i:s'));
             return $horaAtual < $horaJogo;
         }        
         

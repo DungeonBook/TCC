@@ -143,30 +143,20 @@ class SalaController extends Controller
         if (! $this->usuarioEstaLogado())
             return;
 
-        // Busca o usuário logado (exemplo com sessão)
-        $usuarioLogado = $_SESSION['usuario'];
-        $idUsuarioLogado = $usuarioLogado['id'];
-
-        // Busca a sala pelo ID
+        //Busca o usuário na base pelo ID    
         $sala = $this->findSalaById();
 
         if ($sala) {
-            // Verifica se a sala pertence ao usuário logado
-            if ($sala->getCriador() != $idUsuarioLogado) {
-                // Não permite excluir se não for dono da sala
-                $this->list("erro", "Você não tem permissão para excluir esta sala.");
-                return;
-            }
-
-            // Excluir
+            //Excluir
             $this->salaDAO->deleteById($sala->getId());
 
             header("location: " . BASEURL . "/controller/SalaController.php?action=list");
             exit;
         } else {
-            $this->list("erro", "Sala não encontrada!");
+            $this->list("Sala não encontrado!");
         }
     }
+
 
     public function detalhar()
     {
