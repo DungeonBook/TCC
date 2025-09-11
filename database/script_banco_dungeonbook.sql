@@ -14,17 +14,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
     UNIQUE INDEX `apelido_unique` (`apelido` ASC)
 ) ENGINE = InnoDB;
 
--- Table `denuncias`
-CREATE TABLE IF NOT EXISTS `denuncias` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `usuario_id` INT NOT NULL,
-    `texto` TEXT NOT NULL,
-    `data_hora` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `status` ENUM('pendente', 'resolvida') DEFAULT 'pendente',
-    PRIMARY KEY (`id`),
-    CONSTRAINT `fk_denuncias_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
-) ENGINE = InnoDB;
-
 -- Table `modalidades`
 CREATE TABLE IF NOT EXISTS `modalidades` (
     `id` INT NOT NULL AUTO_INCREMENT,
@@ -76,17 +65,6 @@ CREATE TABLE IF NOT EXISTS `mensagens` (
     `texto` TEXT NOT NULL,
     PRIMARY KEY (`id`),
     CONSTRAINT `fk_mensagens_salas_jogadores` FOREIGN KEY (`salas_jogadores_id`) REFERENCES `salas_jogadores` (`id`) ON DELETE CASCADE
-) ENGINE = InnoDB;
-
--- Table `notificacoes`
-CREATE TABLE IF NOT EXISTS `notificacoes` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `usuario_id` INT NOT NULL,
-    `texto` TEXT NOT NULL,
-    `data` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `status` ENUM('nao_lida', 'lida') DEFAULT 'nao_lida',
-    PRIMARY KEY (`id`),
-    CONSTRAINT `fk_notificacoes_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 -- Dados iniciais do base de dados
@@ -141,5 +119,15 @@ VALUES
 
 INSERT INTO modalidades (descricao) 
     VALUES ('Terror'),
-           ('Fantasia'),
-           ('Medieval');
+        ('Suspense'),
+        ('Fantasia'),
+        ('Sobrenatural'),
+        ('Aventura'),
+        ('Mistério'),
+        ('Romance'),
+        ('Medieval'),
+        ('Comédia'),
+        ('Mitologia'),
+        ('Dark Fantasy'),
+        ('Steampunk'),
+        ('Cyberpunk');

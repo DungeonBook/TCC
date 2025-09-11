@@ -183,12 +183,12 @@ class SalaController extends Controller
             } else {
                 // Sala não encontrada → redireciona para lista com mensagem
                 $_SESSION['msg'] = "Sala não encontrada.";
-                header("Location: ./SalaController.php?action=listar");
+                header("Location: ./SalaController.php?action=list");
                 exit;
             }
         } else {
             // Se não tiver ID → volta para lista
-            header("Location: ./SalaController.php?action=listar");
+            header("Location: ./SalaController.php?action=list");
             exit;
         }
     }
