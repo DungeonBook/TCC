@@ -1,6 +1,1 @@
 Neste diretório, a aplicação irá armazenar os arquivos que foram carregados a partir das interfaces do sistema.
-
-
-//Comando que deve ser rodado caso dê problema de permissão na pasta arquivos
-ls -la
-chmod -R o+w arquivos 

@@ -19,7 +19,7 @@ require_once(__DIR__ . "/../include/menu.php");
         <?php if (!empty($dados['salas'])): ?>
             <?php foreach ($dados['salas'] as $sala): ?>
                 <div class="card-sala">
-                    <img src="<?= BASEURL ?>/view/img/detalhe.jpeg" alt="Sala RPG">
+                    <img src="<?= BASEURL ?>/view/img/detalhe-remove.png" alt="Sala RPG">
                     <h3><?= htmlspecialchars($sala->getNomeSala()) ?></h3>
                     <p><strong>Tema:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
                     <p><strong>Data:</strong> <?= htmlspecialchars($sala->getDataFormatada()) ?> às <?= htmlspecialchars($sala->getHoraInicio()) ?></p>

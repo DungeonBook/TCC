@@ -1,7 +1,7 @@
 body {
     background-color: #800000;
     font-family: 'Caudex', serif;
-    color: #d4af37; /* tom mais suave para contraste */
+    color: #d4af37; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,39 +9,36 @@ body {
     margin: 0;
 }
 
-/* Container pergaminho */
 .container {
-    background: rgba(40, 10, 10, 0.85); /* vinho escuro */
-    border: 3px solid #800000; /* bordô */
+    background: rgba(40, 10, 10, 0.85); 
+    border: 3px solid #800000; 
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.8); /* sombra mais forte */
+    box-shadow: 0 0 25px rgba(0,0,0,0.8); 
     width: 340px;
     text-align: center;
     backdrop-filter: blur(6px);
 }
 
-/* Título com estilo medieval */
 h1 {
     font-family: 'Caudex', cursive;
     font-size: 2.2em;
-    color: #aa0000; /* vermelho profundo */
+    color: #aa0000;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px #000;
     letter-spacing: 3px;
 }
 
-/* Estilo dos inputs */
 input[type="text"], 
 input[type="password"], 
 input[type="email"], 
 input[type="date"] {
+   background-color: #2b0f0f; 
+    border: 2px solid #5c2a21;
+    border-radius: 10px;
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 2px solid #5c2a21; /* marrom escuro */
-    border-radius: 10px;
-    background-color: #2b0f0f; /* vinho muito escuro */
     color: #d4af37;
     font-size: 1em;
     outline: none;
@@ -52,16 +49,14 @@ input[type="text"]:focus,
 input[type="password"]:focus, 
 input[type="email"]:focus,
 input[type="date"]:focus {
-    border-color: #aa0000; /* vermelho vivo no foco */
+    border-color: #aa0000;
 }
 
-/* Ícone do calendário */
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
     cursor: pointer;
 }
 
-/* Botão estilo brasas ou metal antigo */
 button {
     background: linear-gradient(135deg, #800000, #550000, #aa0000);
     border: 2px solid #b85c3a;
@@ -84,18 +79,17 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* Links estilo pergaminho */
 a {
     display: block;
     margin-top: 15px;
-    color: #aa0000; /* vermelho profundo */
+    color: #aa0000;
     font-family: 'Cinzel', serif;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #d4af37; /* dourado medieval */
+    color: #d4af37;
     text-decoration: underline;
 }
 
@@ -104,7 +98,7 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.85); /* preto medieval */
+    background-color: rgba(0, 0, 0, 0.85);
     color: #d4af37;
     text-align: center;
     padding: 10px 0;
