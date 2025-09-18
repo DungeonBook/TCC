@@ -1,12 +1,11 @@
 <?php
-#Nome do arquivo: view/include/menu.php
-#Objetivo: menu da aplicação para ser incluído em outras páginas
-
 $nome = "(Sessão expirada)";
 if (isset($_SESSION[SESSAO_USUARIO_NOME]))
     $nome = $_SESSION[SESSAO_USUARIO_NOME];
 
 ?>
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/menu.css">
+
 <nav class="navbar navbar-expand-md bg-light px-3 mb-3">
     <button class="navbar-toggler" type="button"
         data-bs-toggle="collapse" data-bs-target="#navSite">
@@ -25,7 +24,6 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
                 </a>
             </li>
 
-            <!-- Salas (agora link simples) -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= BASEURL . '/controller/SalaController.php?action=create' ?>">
                     Nova Sala

@@ -31,7 +31,7 @@ require_once(__DIR__ . "/../include/header.php");
 
         <div class="mb-3">
             <input type="text" name="telefone" id="txtTelefone" maxlength="15"
-                placeholder="Telefone"
+                placeholder="Celular"
                 value="<?php echo isset($dados['telefone']) ? $dados['telefone'] : '' ?>" required />
         </div>
 

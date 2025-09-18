@@ -13,7 +13,7 @@ class SalaDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "SELECT s.*, m.descricao modalidade_descricao FROM salas s JOIN modalidades m ON (m.id = s.modalidade_id) ORDER BY s.descricao";        
+        $sql = "SELECT s.*, m.descricao modalidade_descricao FROM salas s JOIN modalidades m ON (m.id = s.modalidade_id) ORDER BY s.descricao";
         $stm = $conn->prepare($sql);
         $stm->execute();
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -135,7 +135,7 @@ class SalaDAO
         $userDAO = new UsuarioDAO();
 
         $salas = array();
-        
+
         foreach ($arrayDeSalas as $salaArray) {
 
             $sala = new Sala();

@@ -2,6 +2,7 @@
 
 include_once(__DIR__ . "/Modalidade.php");
 include_once(__DIR__ . "/Usuario.php");
+include_once(__DIR__ . "/salaJogadores.php");
 
 class Sala
 {

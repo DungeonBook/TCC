@@ -45,26 +45,26 @@ CREATE TABLE IF NOT EXISTS `salas_jogadores` (
     `nome_sala_Jogadores` VARCHAR(100) NOT NULL,
     `usuario_id` INT NOT NULL,
     `sala_id` INT NOT NULL,
-    `data_hora` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `avaliacao_nota` INT DEFAULT NULL,
-    `avaliacao_comentario` TEXT DEFAULT NULL,
+    `data` DATE NOT NULL,
+    `hora_inicio` TIME NOT NULL,
+    `hora_fim` TIME NOT NULL,
     PRIMARY KEY (`id`),
-    UNIQUE INDEX `usuario_sala_unique` (
-        `usuario_id` ASC,
-        `sala_id` ASC ),
+    UNIQUE INDEX `usuario_sala_unique`(
+                 `usuario_id` ASC,
+                 `sala_id` ASC ),
 
     CONSTRAINT `fk_salas_jogadores_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
     CONSTRAINT `fk_salas_jogadores_sala` FOREIGN KEY (`sala_id`) REFERENCES `salas` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
--- Table `mensagens`
-CREATE TABLE IF NOT EXISTS `mensagens` (
+-- Table `chat`
+CREATE TABLE IF NOT EXISTS `chat` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `salas_jogadores_id` INT NOT NULL,
     `data_hora` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `texto` TEXT NOT NULL,
+    `mensagem` TEXT NOT NULL,
     PRIMARY KEY (`id`),
-    CONSTRAINT `fk_mensagens_salas_jogadores` FOREIGN KEY (`salas_jogadores_id`) REFERENCES `salas_jogadores` (`id`) ON DELETE CASCADE
+    CONSTRAINT `fk_chat_salas_jogadores` FOREIGN KEY (`salas_jogadores_id`) REFERENCES `salas_jogadores` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
 -- Dados iniciais do base de dados
@@ -118,7 +118,7 @@ VALUES
 
 
 INSERT INTO modalidades (descricao) 
-    VALUES ('Terror'),
+VALUES  ('Terror'),
         ('Suspense'),
         ('Fantasia'),
         ('Sobrenatural'),

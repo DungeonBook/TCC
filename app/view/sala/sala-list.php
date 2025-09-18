@@ -2,7 +2,7 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 ?>
-<!-- Fonte medieval + CSS -->
+
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/salas.css">
 
@@ -27,7 +27,7 @@ require_once(__DIR__ . "/../include/menu.php");
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p style="text-align: center;">Nenhuma sala disponível no momento.</p>
+            <p>Nenhuma sala disponível.</p>
         <?php endif; ?>
     </div>
 </div>

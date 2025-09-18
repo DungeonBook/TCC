@@ -1,9 +1,7 @@
 <?php
 
 include_once(__DIR__ . "/../connection/Connection.php");
-
 include_once(__DIR__ . "/../model/Modalidade.php");
-
 
 class ModalidadeDAO
 {

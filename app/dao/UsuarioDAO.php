@@ -1,6 +1,4 @@
 <?php
-#Nome do arquivo: UsuarioDAO.php
-#Objetivo: classe DAO para o model de Usuario
 
 include_once(__DIR__ . "/../connection/Connection.php");
 include_once(__DIR__ . "/../model/Usuario.php");
