@@ -1,0 +1,104 @@
+body {
+    background-color: #550000;
+    font-family: 'Caudex', serif;
+    color: #d4af37;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(40, 10, 10, 0.9);
+    border: 3px solid #800000;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    max-width: 900px;
+    margin: 50px auto;
+    backdrop-filter: blur(6px);
+}
+
+h1 {
+    font-family: 'Caudex', cursive;
+    font-size: 2.4em;
+    color: #aa0000;
+    margin-bottom: 25px;
+    text-align: center;
+    text-shadow: 2px 2px 6px #000;
+    letter-spacing: 3px;
+}
+
+table {
+    width: 100%;
+    border-collapse:unset;
+    margin-bottom: 0px;
+}
+
+thead {
+    background-color: #550000;
+}
+
+thead th {
+    color: #f8e6c1;
+    font-size: 1.1em;
+    padding: 8px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+tbody tr {
+    background-color: rgba(20, 5, 5, 0.8);
+    transition: background 0.3s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(50, 15, 15, 0.8);
+}
+
+tbody tr:hover {
+    background-color: #550000;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 2px;
+    color: #d4af37;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+button, .btn {
+    background: linear-gradient(135deg, #800000, #550000, #aa0000);
+    border: 2px solid #b85c3a;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.9em;
+    color: #f8e6c1;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px #aa0000, inset 0 0 6px #550000;
+    transition: all 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background: linear-gradient(135deg, #aa0000, #800000, #ff3333);
+    box-shadow: 0 0 20px #ff6600, inset 0 0 10px #aa0000;
+    transform: scale(1.05);
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #d4af37;
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'Caudex', serif;
+}
