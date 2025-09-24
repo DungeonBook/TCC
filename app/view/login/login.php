@@ -1,12 +1,13 @@
 <?php
 require_once(__DIR__ . "/../include/header.php");
 ?>
-<!-- Fonte medieval + CSS personalizado -->
+
+<!-- link de CSS do login -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/login.css">
 
 <div class="container">
-    
+
     <h1>Login</h1>
 
     <!-- Formulário de login -->

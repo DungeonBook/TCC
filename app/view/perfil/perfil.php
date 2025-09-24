@@ -6,6 +6,11 @@ require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 ?>
 
+<!-- link de CSS do perfil -->
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/perfil.css">
+
+
 <h3 class="text-center">
     Perfil
 </h3>
@@ -30,32 +35,32 @@ require_once(__DIR__ . "/../include/menu.php");
 
         <div class="col-12 mb-2">
             <div class="fw-bold">Foto:</div>
-            <?php if($dados['usuario']->getFoto()): ?>
+            <?php if ($dados['usuario']->getFoto()): ?>
                 <img src="<?= BASEURL_ARQUIVOS . '/' . $dados['usuario']->getFoto() ?>"
                     height="300">
             <?php endif; ?>
         </div>
 
     </div>
-    
+
     <div class="row mt-5">
-        
+
         <div class="col-6">
-            <form id="frmUsuario" method="POST" 
+            <form id="frmUsuario" method="POST"
                 action="<?= BASEURL ?>/controller/PerfilController.php?action=save"
-                enctype="multipart/form-data" >
+                enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="txtFoto">Foto de perfil: </label>
-                    <input class="form-control" type="file" 
+                    <input class="form-control" type="file"
                         id="txtFoto" name="foto" />
                 </div>
 
                 <input type="hidden" name="fotoAnterior" value="<?= $dados['usuario']->getFoto() ?>">
-                
+
                 <div class="mt-3">
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </div>
-            </form>            
+            </form>
         </div>
 
         <div class="col-6">
@@ -65,12 +70,12 @@ require_once(__DIR__ . "/../include/menu.php");
 
     <div class="row" style="margin-top: 30px;">
         <div class="col-12">
-        <a class="btn btn-secondary" 
+            <a class="btn btn-secondary"
                 href="<?= BASEURL ?>/controller/UsuarioController.php?action=list">Voltar</a>
         </div>
     </div>
 </div>
 
-<?php  
+<?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>

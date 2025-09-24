@@ -3,6 +3,10 @@ require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 ?>
 
+<!-- link de CSS da criação/ edição de salas -->
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/sala-cadastro.css">
+
 <h3 class="text-center">
     <?php if ($dados['id'] == 0) echo "Inserir";
     else echo "Alterar"; ?>
