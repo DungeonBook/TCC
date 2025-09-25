@@ -8,19 +8,19 @@ require_once(__DIR__ . "/../include/menu.php");
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/salas.css">
 
 <div class="container">
-    <h1>Salas Disponíveis</h1>
-
+    
     <?php if (isset($msgSucesso) && $msgSucesso != null) : ?>
         <div class="alert alert-success" role="alert">
             <?= $msgSucesso ?>
         </div>
     <?php endif; ?>
-
+        
+    <h1>Salas Disponíveis</h1>
     <div class="grid-salas">
-        <?php if (!empty($dados['salas'])): ?>
-            <?php foreach ($dados['salas'] as $sala): ?>
+        <?php if (!empty($dados['salasDisp'])): ?>
+            <?php foreach ($dados['salasDisp'] as $sala): ?>
                 <div class="card-sala">
-                    <img src="<?= BASEURL ?>/view/img/detalhe-remove.png" alt="Sala RPG">
+                    <img src="<?= BASEURL ?>/view/img/<?= $sala->getImagemModalidade() ?>" alt="Sala RPG">
                     <h3><?= htmlspecialchars($sala->getNomeSala()) ?></h3>
                     <p><strong>Tema:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
                     <p><strong>Data:</strong> <?= htmlspecialchars($sala->getDataFormatada()) ?> às <?= htmlspecialchars($sala->getHoraInicio()) ?></p>
@@ -31,6 +31,27 @@ require_once(__DIR__ . "/../include/menu.php");
             <p>Nenhuma sala disponível.</p>
         <?php endif; ?>
     </div>
+
+
+    <h1>Minhas salas</h1>
+    <div class="grid-salas">
+        <?php if (!empty($dados['minhasSalas'])): ?>
+            <?php foreach ($dados['minhasSalas'] as $sala): ?>
+                <div class="card-sala">
+                    <img src="<?= BASEURL ?>/view/img/<?= $sala->getImagemModalidade() ?>" alt="Sala RPG">
+                    <h3><?= htmlspecialchars($sala->getNomeSala()) ?></h3>
+                    <p><strong>Tema:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
+                    <p><strong>Data:</strong> <?= htmlspecialchars($sala->getDataFormatada()) ?> às <?= htmlspecialchars($sala->getHoraInicio()) ?></p>
+                    <a href="./SalaController.php?action=detalhar&id=<?= $sala->getId() ?>" class="btn-detalhes">Ver Detalhes</a>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>Nenhuma sala disponível.</p>
+        <?php endif; ?>
+    </div>
+
+    <h1>Meus jogos</h1>
+
 </div>
 
 

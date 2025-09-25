@@ -102,17 +102,7 @@ button:hover,
     color: #f8e6c1;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    color: #d4af37;
-    text-align: center;
-    padding: 10px 0;
-    font-family: 'Caudex', serif;
-}
+
 
 /* Responsividade */
 @media (max-width: 768px) {

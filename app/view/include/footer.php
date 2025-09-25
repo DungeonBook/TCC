@@ -1,6 +1,5 @@
 <!-- Footer -->
-<link rel="stylesheet" href="login.css">
-<link rel="stylesheet" href="salas.css">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/footer.css">
 
 <footer>
     <div>

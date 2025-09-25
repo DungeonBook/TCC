@@ -21,10 +21,15 @@ class ArquivoService {
         $nomeArquivoSalvar = $nomeUnico . "." . $arquivoExtensao;
 
         //Salva a foto no diretorio de arquivos
-        if(move_uploaded_file($arquivo["tmp_name"], 
-                            PATH_ARQUIVOS. "/" . $nomeArquivoSalvar)) { 
-            //Se salvou, retorna o nome do arquivo
-            return $nomeArquivoSalvar;
+        try {
+            if(move_uploaded_file($arquivo["tmp_name"], 
+                                PATH_ARQUIVOS. "/" . $nomeArquivoSalvar)) { 
+                //Se salvou, retorna o nome do arquivo
+                return $nomeArquivoSalvar;
+            }
+        } catch(Exception $e) {
+            echo $e->getMessage();
+            exit;
         }
 
         return null; //Não salvou, então retorna nulo

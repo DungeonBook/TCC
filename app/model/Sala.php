@@ -252,4 +252,13 @@ class Sala
     public function __toString(): string{
         return "{$this->id}, {$this->nomeSala}, {$this->criador}, {$this->quantMinJogadores}, {$this->quantMaxJogadores}, {$this->data}, {$this->horaInicio}, {$this->horaFim}, {$this->localizacao}, {$this->descricao}, {$this->modalidade}, {$this->getStatus()}"; 
     }
+
+    public function getImagemModalidade() {
+        if($this->modalidade != null) {
+            if($this->modalidade->getDescricao() == 'Terror')
+                return "modalidade_terror.png";
+        }
+//TODO - uma imagem para cada descrição
+        return "";
+    }
 }

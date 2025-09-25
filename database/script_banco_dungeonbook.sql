@@ -42,12 +42,8 @@ CREATE TABLE IF NOT EXISTS `salas` (
 -- Table `salas_jogadores`
 CREATE TABLE IF NOT EXISTS `salas_jogadores` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `nome_sala_Jogadores` VARCHAR(100) NOT NULL,
     `usuario_id` INT NOT NULL,
     `sala_id` INT NOT NULL,
-    `data` DATE NOT NULL,
-    `hora_inicio` TIME NOT NULL,
-    `hora_fim` TIME NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE INDEX `usuario_sala_unique`(
                  `usuario_id` ASC,

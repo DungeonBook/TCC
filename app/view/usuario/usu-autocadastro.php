@@ -13,25 +13,25 @@ require_once(__DIR__ . "/../include/header.php");
             <div class="form-group">
                 <label for="txtNome">Nome:</label>
                 <input type="text" name="nome" id="txtNome" maxlength="50" placeholder="Nome"
-                       value="<?php echo isset($dados['nome']) ? htmlspecialchars($dados['nome']) : ''; ?>" required />
+                       value="<?php echo isset($dados['nome']) ? htmlspecialchars($dados['nome']) : ''; ?>"  />
             </div>
 
             <div class="form-group">
                 <label for="txtApelido">Apelido:</label>
                 <input type="text" name="apelido" id="txtApelido" maxlength="50" placeholder="Apelido"
-                       value="<?php echo isset($dados['apelido']) ? htmlspecialchars($dados['apelido']) : ''; ?>" required />
+                       value="<?php echo isset($dados['apelido']) ? htmlspecialchars($dados['apelido']) : ''; ?>"  />
             </div>
 
             <div class="form-group">
                 <label for="txtEmail">E-mail:</label>
                 <input type="email" name="email" id="txtEmail" maxlength="50" placeholder="E-mail"
-                       value="<?php echo isset($dados['email']) ? htmlspecialchars($dados['email']) : ''; ?>" required />
+                       value="<?php echo isset($dados['email']) ? htmlspecialchars($dados['email']) : ''; ?>"  />
             </div>
 
             <div class="form-group">
                 <label for="txtTelefone">Celular:</label>
                 <input type="text" name="telefone" id="txtTelefone" maxlength="15" placeholder="Celular"
-                       value="<?php echo isset($dados['telefone']) ? htmlspecialchars($dados['telefone']) : ''; ?>" required />
+                       value="<?php echo isset($dados['telefone']) ? htmlspecialchars($dados['telefone']) : ''; ?>"  />
             </div>
 
             <div class="form-group">
@@ -40,17 +40,17 @@ require_once(__DIR__ . "/../include/header.php");
                        value="<?php
                            echo isset($dados['data_nascimento']) ? htmlspecialchars($dados['data_nascimento'])
                                 : (isset($dados['dataNascimento']) ? htmlspecialchars($dados['dataNascimento']) : '');
-                       ?>" required />
+                       ?>"  />
             </div>
 
             <div class="form-group">
                 <label for="txtSenha">Senha:</label>
-                <input type="password" name="senha" id="txtSenha" maxlength="50" placeholder="Senha" required />
+                <input type="password" name="senha" id="txtSenha" maxlength="50" placeholder="Senha"  />
             </div>
 
             <div class="form-group" >
                 <label for="txtConfSenha">Confirme a Senha:</label>
-                <input type="password" name="conf_senha" id="txtConfSenha" maxlength="50" placeholder="Confirme a Senha" required />
+                <input type="password" name="conf_senha" id="txtConfSenha" maxlength="50" placeholder="Confirme a Senha"  />
             </div>
         </div>
 

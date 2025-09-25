@@ -15,13 +15,13 @@ require_once(__DIR__ . "/../include/header.php");
         <div class="mb-3">
             <input type="text" name="email" id="txtLogin" maxlength="50"
                 placeholder="E-mail ou Usuário"
-                value="<?php echo isset($dados['email']) ? $dados['email'] : '' ?>" required />
+                value="<?php echo isset($dados['email']) ? $dados['email'] : '' ?>"  />
         </div>
 
         <div class="mb-3">
             <input type="password" name="senha" id="txtSenha" maxlength="50"
                 placeholder="Senha"
-                value="<?php echo isset($dados['senha']) ? $dados['senha'] : '' ?>" required />
+                value="<?php echo isset($dados['senha']) ? $dados['senha'] : '' ?>"  />
         </div>
 
         <button type="submit">Entrar</button>
