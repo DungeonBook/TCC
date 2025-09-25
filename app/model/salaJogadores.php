@@ -1,6 +1,6 @@
 <?php
 
-include_once(__DIR__ . "/Modalidade.php");
+include_once(__DIR__ . "/Chat.php");
 include_once(__DIR__ . "/Usuario.php");
 include_once(__DIR__ . "/Sala.php");
 
@@ -14,6 +14,9 @@ class salaJogadores
     private ?string $data;
     private ?string $horaInicio;
     private ?string $horaFim;
+    private ?Chat $chat;
 
+
+    //TODO - getter e setters
     
 }

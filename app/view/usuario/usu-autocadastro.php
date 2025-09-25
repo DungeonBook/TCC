@@ -1,63 +1,68 @@
 <?php
 require_once(__DIR__ . "/../include/header.php");
-
 ?>
 <!-- link de CSS do autocadastro -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= BASEURL ?>/view/css/login.css">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/usu-autocadastro.css">
 
 <div class="container">
-    <h1>Cadastro</h1>
+    <h3>Cadastro</h3>
 
     <form id="frmCadastro" action="./UsuarioController.php?action=saveAutoCadastro" method="POST">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="txtNome">Nome:</label>
+                <input type="text" name="nome" id="txtNome" maxlength="50" placeholder="Nome"
+                       value="<?php echo isset($dados['nome']) ? htmlspecialchars($dados['nome']) : ''; ?>" required />
+            </div>
 
-        <div class="mb-3">
-            <input type="text" name="nome" id="txtNome" maxlength="50"
-                placeholder="Nome"
-                value="<?php echo isset($dados["nome"]) ? $dados["nome"] : "" ?>" required />
+            <div class="form-group">
+                <label for="txtApelido">Apelido:</label>
+                <input type="text" name="apelido" id="txtApelido" maxlength="50" placeholder="Apelido"
+                       value="<?php echo isset($dados['apelido']) ? htmlspecialchars($dados['apelido']) : ''; ?>" required />
+            </div>
+
+            <div class="form-group">
+                <label for="txtEmail">E-mail:</label>
+                <input type="email" name="email" id="txtEmail" maxlength="50" placeholder="E-mail"
+                       value="<?php echo isset($dados['email']) ? htmlspecialchars($dados['email']) : ''; ?>" required />
+            </div>
+
+            <div class="form-group">
+                <label for="txtTelefone">Celular:</label>
+                <input type="text" name="telefone" id="txtTelefone" maxlength="15" placeholder="Celular"
+                       value="<?php echo isset($dados['telefone']) ? htmlspecialchars($dados['telefone']) : ''; ?>" required />
+            </div>
+
+            <div class="form-group">
+                <label for="txtDataNascimento">Data de Nascimento:</label>
+                <input type="date" name="data_nascimento" id="txtDataNascimento"
+                       value="<?php
+                           echo isset($dados['data_nascimento']) ? htmlspecialchars($dados['data_nascimento'])
+                                : (isset($dados['dataNascimento']) ? htmlspecialchars($dados['dataNascimento']) : '');
+                       ?>" required />
+            </div>
+
+            <div class="form-group">
+                <label for="txtSenha">Senha:</label>
+                <input type="password" name="senha" id="txtSenha" maxlength="50" placeholder="Senha" required />
+            </div>
+
+            <div class="form-group" >
+                <label for="txtConfSenha">Confirme a Senha:</label>
+                <input type="password" name="conf_senha" id="txtConfSenha" maxlength="50" placeholder="Confirme a Senha" required />
+            </div>
         </div>
 
-        <div class="mb-3">
-            <input type="text" name="apelido" id="txtApelido" maxlength="50"
-                placeholder="Apelido"
-                value="<?php echo isset($dados["apelido"]) ? $dados["apelido"] : "" ?>" required />
+        <div class="actions" style="margin-top: 24px;">
+            <button type="submit" class="btn">Cadastrar</button>
+            <a href="./LoginController.php?action=login" style="align-self:center; margin-left:12px;">Já possui conta? Faça login</a>
         </div>
-
-        <div class="mb-3">
-            <input type="email" name="email" id="txtEmail" maxlength="50"
-                placeholder="E-mail"
-                value="<?php echo isset($dados['email']) ? $dados['email'] : '' ?>" required />
-        </div>
-
-        <div class="mb-3">
-            <input type="text" name="telefone" id="txtTelefone" maxlength="15"
-                placeholder="Celular"
-                value="<?php echo isset($dados['telefone']) ? $dados['telefone'] : '' ?>" required />
-        </div>
-
-        <div class="mb-3">
-            <input type="date" name="data_nascimento" id="txtDataNascimento"
-                value="<?php echo isset($dados["dataNascimento"]) ? $dados["dataNascimento"] : "" ?>" required />
-        </div>
-
-        <div class="mb-3">
-            <input type="password" name="senha" id="txtSenha" maxlength="50"
-                placeholder="Senha" required />
-        </div>
-
-        <div class="mb-3">
-            <input type="password" name="conf_senha" id="txtConfSenha" maxlength="50"
-                placeholder="Confirme a Senha" required />
-        </div>
-
-        <button type="submit">Entrar</button>
     </form>
-
-    <a href="./LoginController.php?action=login">Já possui conta? Faça login</a>
 
     <!-- Mensagens do sistema -->
     <div style="margin-top:20px;">
-        <?php include_once(__DIR__ . "/../include/msg.php") ?>
+        <?php include_once(__DIR__ . "/../include/msg.php"); ?>
     </div>
 </div>
 

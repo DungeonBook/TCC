@@ -23,7 +23,7 @@ body {
 h1 {
     font-family: 'Caudex', cursive;
     font-size: 2.2em;
-    color: #aa0000;
+    color: #800000;
     margin-bottom: 20px;
     text-shadow: 2px 2px 5px #000;
     letter-spacing: 3px;
@@ -82,7 +82,7 @@ button:hover {
 a {
     display: block;
     margin-top: 15px;
-    color: #aa0000;
+    color: #800000;
     font-family: 'Cinzel', serif;
     text-decoration: none;
     transition: color 0.3s ease;
