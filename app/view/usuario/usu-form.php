@@ -86,6 +86,7 @@ require_once(__DIR__ . "/../include/menu.php");
             <button type="submit" class="btn">Salvar</button>
             <a class="btn" href="<?= BASEURL ?>/controller/UsuarioController.php?action=list">Voltar</a>
         </div>
+        
     </form>
 </div>
 

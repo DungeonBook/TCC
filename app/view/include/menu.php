@@ -12,15 +12,28 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
         <span class="navbar-toggler-icon"></span>
     </button>
 
+
     <div class="collapse navbar-collapse" id="navSite">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="<?= HOME_PAGE ?>">Home</a>
-            </li>
-
-                 <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="<?= BASEURL . '/controller/UsuarioController.php?action=list' ?>">
                     Usuários
+                </a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="<?= HOME_PAGE ?>">Salas Disponíveis</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASEURL . '/view/sala/minhas-salas.php' ?>">
+                    Minhas Salas
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASEURL . '/view/sala/meus-jogos.php' ?>">
+                    Meus Jogos
                 </a>
             </li>
 

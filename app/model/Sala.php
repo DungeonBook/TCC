@@ -2,7 +2,7 @@
 
 include_once(__DIR__ . "/Modalidade.php");
 include_once(__DIR__ . "/Usuario.php");
-include_once(__DIR__ . "/salaJogadores.php");
+require_once(__DIR__ . "/../model/SalaJogadores.php");
 
 class Sala
 {
@@ -256,9 +256,30 @@ class Sala
     public function getImagemModalidade() {
         if($this->modalidade != null) {
             if($this->modalidade->getDescricao() == 'Terror')
-                return "modalidade_terror.png";
+                return "Terror.jpeg";
+            if($this->modalidade->getDescricao() == 'Suspense')
+                return "Suspense.jpeg";
+            if($this->modalidade->getDescricao() == 'Fantasia')
+                return "Fantasia.jpeg";
+            if($this->modalidade->getDescricao() == 'Sobrenatural')
+                return "Sobrenatural.jpeg";
+            if($this->modalidade->getDescricao() == 'Aventura')
+                return "Aventura.jpeg";
+            if($this->modalidade->getDescricao() == 'Mistério')
+                return "Mistério.jpeg";
+            if($this->modalidade->getDescricao() == 'Romance')
+                return "Romance.jpeg";
+            if($this->modalidade->getDescricao() == 'Medieval')
+                return "Medieval.png";
+            if($this->modalidade->getDescricao() == 'Mitologia')
+                return "Mitologia.jpeg";
+            if($this->modalidade->getDescricao() == 'DarkFantasy')
+                return "DarkFantasy.jpeg";
+            if($this->modalidade->getDescricao() == 'Steampunk')
+                return "Steampunk.jpeg";
+            if($this->modalidade->getDescricao() == 'Cyberpunk')
+                return "Cyberpunk.jpeg";
         }
-//TODO - uma imagem para cada descrição
         return "";
     }
 }

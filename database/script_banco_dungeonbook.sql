@@ -113,17 +113,20 @@ VALUES
     );
 
 
-INSERT INTO modalidades (descricao) 
-VALUES  ('Terror'),
-        ('Suspense'),
-        ('Fantasia'),
-        ('Sobrenatural'),
-        ('Aventura'),
-        ('Mistério'),
-        ('Romance'),
-        ('Medieval'),
-        ('Comédia'),
-        ('Mitologia'),
-        ('Dark Fantasy'),
-        ('Steampunk'),
-        ('Cyberpunk');
+INSERT INTO modalidades (descricao)
+VALUES ('Fantasia'),
+	('Medieval'),
+	('Aventura'),
+	('Mitologia'),
+	('Dark Fantasy'),
+	('Romance'),
+	('Mistério'),
+	('Suspense'),
+	('Sobrenatural'),
+	('Terror'),
+	('Steampunk'),
+	('Cyberpunk');
+
+
+        
+        
