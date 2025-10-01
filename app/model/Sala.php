@@ -266,14 +266,14 @@ class Sala
             if($this->modalidade->getDescricao() == 'Aventura')
                 return "Aventura.jpeg";
             if($this->modalidade->getDescricao() == 'Mistério')
-                return "Mistério.jpeg";
+                return "/../view/img/Mistério.jpeg";
             if($this->modalidade->getDescricao() == 'Romance')
                 return "Romance.jpeg";
             if($this->modalidade->getDescricao() == 'Medieval')
                 return "Medieval.png";
             if($this->modalidade->getDescricao() == 'Mitologia')
                 return "Mitologia.jpeg";
-            if($this->modalidade->getDescricao() == 'DarkFantasy')
+            if($this->modalidade->getDescricao() == 'Dark Fantasy')
                 return "DarkFantasy.jpeg";
             if($this->modalidade->getDescricao() == 'Steampunk')
                 return "Steampunk.jpeg";

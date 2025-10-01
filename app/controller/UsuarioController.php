@@ -46,6 +46,7 @@ class UsuarioController extends Controller
     {
         if (! $this->usuarioEstaLogado())
             return;
+        
 
         //Busca o usuário na base pelo ID    
         $usuario = $this->findUsuarioById();

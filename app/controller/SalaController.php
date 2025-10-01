@@ -36,11 +36,28 @@ class SalaController extends Controller
     {
 
         $dados["salasDisp"] = $this->salaDAO->listAtivas();
+ 
+        $this->loadView("sala/sala-list.php", $dados,  $msgErro, $msgSucesso);
+
+    }
+
+
+     protected function listMinhasSalas(string $msgErro = "", string $msgSucesso = "")
+    {
+
         $dados["minhasSalas"] = $this->salaDAO->listByUsuario($this->getIdUsuarioLogado());
+ 
+        $this->loadView("sala/minhas-salas.php", $dados,  $msgErro, $msgSucesso);
+    }
+    
+
+     protected function listMeusJogos(string $msgErro = "", string $msgSucesso = "")
+    {
+
         $dados["meusJogos"] = array(); //TODO - Trazer as salas que o usuário já se cadastrou
 
+        $this->loadView("sala/meus-jogos.php", $dados,  $msgErro, $msgSucesso);
 
-        $this->loadView("sala/sala-list.php", $dados,  $msgErro, $msgSucesso);
     }
 
     protected function create()

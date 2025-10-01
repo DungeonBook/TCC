@@ -148,6 +148,7 @@ class Usuario
      */
     public function getSenha(): ?string
     {
+        
         return $this->senha;
     }
 

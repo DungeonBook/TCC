@@ -25,6 +25,13 @@ h1 {
     letter-spacing: 3px;
 }
 
+p {
+    font-family: 'Caudex', cursive;
+    color: #d4af37;
+    text-shadow: 2px 2px 6px #000;
+    text-align: center;
+}
+
 .grid-salas {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
