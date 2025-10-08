@@ -29,26 +29,27 @@ require_once(__DIR__ . "/../include/header.php");
             <p><strong>Modalidade:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
             <p><strong>Status:</strong> <?= htmlspecialchars($sala->getStatusDescricao()) ?></p>
 
-            <?php if ($idUsuarioLogado == $sala->getCriador()->getId()): ?>
-                <div class="acoes-sala">
-                    <a href="./SalaController.php?action=edit&id=<?= $sala->getId() ?>" class="btn-acao">Editar</a>
-                    <a href="./SalaController.php?action=delete&id=<?= $sala->getId() ?>" class="btn-acao btn-excluir" onclick="return confirm('Tem certeza que deseja excluir esta sala?')">Excluir</a>
-                </div>
+            <div class="actions">
+                <a href="./SalaController.php?action=edit&id=<?= $sala->getId() ?>" class="btn">Editar</a>
+                <a href="./SalaController.php?action=delete&id=<?= $sala->getId() ?>" class="btn"
+                   onclick="return confirm('Tem certeza que deseja excluir esta sala?');">Excluir</a>
+            </div>
+
+            <div class="actions">
+                <?php if ($sala->getStatus() == true): ?>
+                    <a href="./SalaJogadoresController.php?action=inserir&idSala=<?= $sala->getId() ?>"
+                       class="btn"
+                       onclick="return confirm('Deseja participar da sala?');">Participar</a>
+                <?php endif; ?>
+
+            </div>
+
+            <div class="actions">
+                 <a href="./SalaController.php?action=list" class="btn-detalhes">Voltar</a>
+            </div>
+
             <?php endif; ?>
 
-            <?php if ($sala->getStatus() == true): ?>
-                <a href="./SalaJogadoresController.php?action=inserir&idSala=<?= $sala->getId() ?>" class="btn-detalhes"
-                    onclick="return confirm('Deseja participar da sala?');">Participar</a>
-            <?php endif; ?>
-
-            <a href="./SalaController.php?action=list" class="btn-detalhes">Voltar às salas</a>
-        </div>
-    <?php else: ?>
-        <p>Sala não encontrada.</p>
-        <a href="./SalaController.php?action=list" class="btn-detalhes">Voltar</a>
-    <?php endif; ?>
-</div>
-
-<?php
-require_once(__DIR__ . "/../include/footer.php");
-?>
+            <?php
+            require_once(__DIR__ . "/../include/footer.php");
+            ?>

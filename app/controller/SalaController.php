@@ -17,7 +17,6 @@ class SalaController extends Controller
     private ModalidadeDAO $modalidadeDAO;
     private SalaService $salaService;
 
-    //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct()
     {
         if (! $this->usuarioEstaLogado())
@@ -70,7 +69,6 @@ class SalaController extends Controller
 
     protected function edit()
     {
-        //Busca a sala na base pelo ID    
         $sala = $this->findSalaById();
         if ($sala) {
             $dados['id'] = $sala->getId();
@@ -85,7 +83,6 @@ class SalaController extends Controller
 
     protected function save()
     {
-        //Capturar os dados do formulário
         $id = trim($_POST['id'] ?? '') ?: NULL;
         $nomeSala = trim($_POST['nomeSala'] ?? '');
         $quant_min_jogadores = trim($_POST['quantMinJogadores'] ?? '') !== '' ? (int) $_POST['quantMinJogadores'] : NULL;
@@ -97,7 +94,6 @@ class SalaController extends Controller
         $descricao = trim($_POST['descricao'] ?? '') ?: NULL;
         $modalidadeId = trim($_POST['modalidadeId'] ?? '') !== '' ? (int) $_POST['modalidadeId'] : NULL;
 
-        //Criar o objeto Sala
         $sala = new Sala();
         $sala->setId($id);
         $sala->setNomeSala($nomeSala);
@@ -116,11 +112,9 @@ class SalaController extends Controller
             $sala->setModalidade(null);
 
 
-        //Validar os dados (camada service)
         $erros = (array) $this->salaService->validarDados($sala);
 
         if (sizeof($erros) == 0) {
-            //Inserir no Base de Dados
             try {
                 if ($sala->getId() == 0) {
                     $sala->setCriador(new Usuario());
@@ -133,13 +127,11 @@ class SalaController extends Controller
                 header("location: " . BASEURL . "/controller/SalaController.php?action=list");
                 exit;
             } catch (PDOException $e) {
-                //Iserir erro no array
                 array_push($erros, "Erro ao gravar no banco de dados!");
                 array_push($erros, $e->getMessage());
             }
         }
 
-        //Mostrar os erros
         $dados['id'] = $sala->getId();
         $dados["sala"] = $sala;
         $dados['modalidades'] = $this->modalidadeDAO->list();
@@ -163,11 +155,9 @@ class SalaController extends Controller
         if (! $this->usuarioEstaLogado())
             return;
 
-        //Busca o usuário na base pelo ID    
         $sala = $this->findSalaById();
 
         if ($sala) {
-            //Excluir
             $this->salaDAO->deleteById($sala->getId());
 
             header("location: " . BASEURL . "/controller/SalaController.php?action=list");
@@ -191,18 +181,15 @@ class SalaController extends Controller
 
                 $this->loadView("sala/sala-detalhes.php", $dados);
             } else {
-                // Sala não encontrada → redireciona para lista com mensagem
                 $_SESSION['msg'] = "Sala não encontrada.";
                 header("Location: ./SalaController.php?action=list");
                 exit;
             }
         } else {
-            // Se não tiver ID → volta para lista
             header("Location: ./SalaController.php?action=list");
             exit;
         }
     }
 }
 
-#Criar objeto da classe para assim executar o construtor
 new SalaController();

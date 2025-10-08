@@ -266,7 +266,7 @@ class Sala
             if($this->modalidade->getDescricao() == 'Aventura')
                 return "Aventura.jpeg";
             if($this->modalidade->getDescricao() == 'Mistério')
-                return "/../view/img/Mistério.jpeg";
+                return "Mistério.jpeg";
             if($this->modalidade->getDescricao() == 'Romance')
                 return "Romance.jpeg";
             if($this->modalidade->getDescricao() == 'Medieval')

@@ -10,7 +10,7 @@ require_once(__DIR__ . "/../include/menu.php");
 <div class="container">
 
     <h3>
-        <?php if ($dados['id'] == 0) echo "Inserir Sala";
+        <?php if ($dados['id'] == 0);
         else echo "Alterar Sala"; ?>
     </h3>
 

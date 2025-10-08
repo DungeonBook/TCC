@@ -6,7 +6,6 @@ include_once(__DIR__ . "/../model/Usuario.php");
 class UsuarioDAO
 {
 
-    //Método para listar os usuários a partir da base de dados
     public function list()
     {
         $conn = Connection::getConn();
@@ -19,7 +18,6 @@ class UsuarioDAO
         return $this->mapUsuarios($result);
     }
 
-    //Método para buscar um usuário por seu ID
     public function findById(int $id)
     {
         $conn = Connection::getConn();
@@ -41,7 +39,6 @@ class UsuarioDAO
             " - Erro: mais de um usuário encontrado.");
     }
 
-    //Método para buscar um usuário por seu apelido
     public function findByApelido(string $apelido)
     {
         $conn = Connection::getConn();
@@ -62,7 +59,6 @@ class UsuarioDAO
             " - Erro: mais de um usuário encontrado.");
     }
 
-    //Método para buscar um usuário por seu email e senha
     public function findByEmailSenha(string $email, string $senha)
     {
         $conn = Connection::getConn();
@@ -76,7 +72,6 @@ class UsuarioDAO
         $usuarios = $this->mapUsuarios($result);
 
         if (count($usuarios) == 1) {
-            //Tratamento para senha criptografada
             if (password_verify($senha, $usuarios[0]->getSenha()))
                 return $usuarios[0];
             else
@@ -88,7 +83,6 @@ class UsuarioDAO
             " - Erro: mais de um usuário encontrado.");
     }
 
-    //Método para inserir um Usuario
     public function insert(Usuario $usuario)
     {
         $conn = Connection::getConn();
@@ -110,7 +104,6 @@ class UsuarioDAO
         $stm->execute();
     }
 
-    //Método para atualizar um Usuario
     public function update(Usuario $usuario)
     {
         $conn = Connection::getConn();
@@ -133,7 +126,6 @@ class UsuarioDAO
         $stm->execute();
     }
 
-    //Método para excluir um Usuario pelo seu ID
     public function deleteById(int $id)
     {
         $conn = Connection::getConn();
@@ -145,7 +137,6 @@ class UsuarioDAO
         $stm->execute();
     }
 
-    //Método para alterar a foto de perfil de um usuário
     public function updateFotoPerfil(Usuario $usuario)
     {
         $conn = Connection::getConn();
@@ -156,7 +147,6 @@ class UsuarioDAO
         $stm->execute(array($usuario->getFoto(), $usuario->getId()));
     }
 
-    //Método para retornar a quantidade de usuários salvos na base
     public function quantidadeUsuarios()
     {
         $conn = Connection::getConn();
@@ -170,7 +160,6 @@ class UsuarioDAO
         return $result[0]["qtd_usuarios"];
     }
 
-    //Método para converter um registro da base de dados em um objeto Usuario
     private function mapUsuarios($result)
     {
         $usuarios = array();

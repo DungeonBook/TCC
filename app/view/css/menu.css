@@ -1,1 +1,93 @@
-TODO - adcionar css de menu
+body {
+    margin: 0;
+    font-family: 'Caudex', serif;
+    background-color: #2b0000;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3a0000;
+    padding: 12px 30px;
+    border-bottom: 3px solid #800000;
+    color: #d4af37;
+    font-family: 'MedievalSharp', cursive;
+}
+
+.menu-logo .titulo {
+    font-size: 1.8em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #d4af37;
+}
+
+.menu-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    gap: 25px;
+}
+
+.menu-links li a {
+    text-decoration: none;
+    color: #d4af37;
+    font-size: 1.1em;
+    transition: 0.3s;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.menu-links li a:hover {
+    background-color: #5e0000;
+    color: #fff2a8;
+}
+
+.menu-perfil {
+    position: relative;
+}
+
+.perfil-btn {
+    background: none;
+    border: none;
+    color: #d4af37;
+    font-size: 1.1em;
+    cursor: pointer;
+    font-family: 'Caudex', serif;
+}
+
+.perfil-btn:hover {
+    color: #fff2a8;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #3a0000;
+    border: 2px solid #800000;
+    border-radius: 8px;
+    min-width: 150px;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.dropdown-content a {
+    display: block;
+    color: #d4af37;
+    text-decoration: none;
+    padding: 10px 14px;
+    font-size: 0.95em;
+}
+
+.dropdown-content a:hover {
+    background-color: #5e0000;
+    color: #fff2a8;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

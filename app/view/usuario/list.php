@@ -8,13 +8,12 @@ require_once(__DIR__ . "/../include/menu.php");
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/list.css">
 
 <div class="container">
-    <h1>Usuários</h1>
 
     <div class="row">
         <div class="col-3">
             <a class="btn"
                href="<?= BASEURL ?>/controller/UsuarioController.php?action=create">
-               Inserir</a>
+               Novo usuário</a>
         </div>
 
         <div class="col-9">

@@ -9,8 +9,8 @@ require_once(__DIR__ . "/../include/menu.php");
 <div class="container">
 
     <h3>
-        <?php if ($dados['id'] == 0) echo "Inserir";
-        else echo "Alterar"; ?> Usuário
+        <?php if ($dados['id'] == 0) echo "";
+        else echo "Alterar"; ?>
     </h3>
 
     <form id="frmUsuario" method="POST"

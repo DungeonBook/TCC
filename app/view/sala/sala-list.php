@@ -15,7 +15,6 @@ require_once(__DIR__ . "/../include/menu.php");
         </div>
     <?php endif; ?>
         
-    <h1>Salas Disponíveis</h1>
     <div class="grid-salas">
         <?php if (!empty($dados['salasDisp'])): ?>
             <?php foreach ($dados['salasDisp'] as $sala): ?>

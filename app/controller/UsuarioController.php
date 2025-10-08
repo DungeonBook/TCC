@@ -12,7 +12,6 @@ class UsuarioController extends Controller
     private UsuarioDAO $usuarioDao;
     private UsuarioService $usuarioService;
 
-    //Método construtor do controller - será executado a cada requisição a está classe
     public function __construct()
     {
         $this->usuarioDao = new UsuarioDAO();
@@ -48,7 +47,6 @@ class UsuarioController extends Controller
             return;
         
 
-        //Busca o usuário na base pelo ID    
         $usuario = $this->findUsuarioById();
         if ($usuario) {
             $dados['id'] = $usuario->getId();
@@ -67,7 +65,6 @@ class UsuarioController extends Controller
         if (! $this->usuarioEstaLogado())
             return;
 
-        //Capturar os dados do formulário
         $id = $_POST['id'];
         $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;
         $apelido = trim($_POST['apelido']) != "" ? trim($_POST['apelido']) : NULL;
@@ -78,7 +75,6 @@ class UsuarioController extends Controller
         $confSenha = trim($_POST['conf_senha']) != "" ? trim($_POST['conf_senha']) : NULL;
         $papel = $_POST['papel'];
 
-        //Criar o objeto Usuario
         $usuario = new Usuario();
         $usuario->setId($id);
         $usuario->setNome($nome);
@@ -90,10 +86,8 @@ class UsuarioController extends Controller
         $usuario->setFoto(null);
         $usuario->setPapel($papel);
 
-        //Validar os dados (camada service)
         $erros = $this->usuarioService->validarDados($usuario, $confSenha);
         if (! $erros) {
-            //Inserir no Base de Dados
             try {
                 if ($usuario->getId() == 0)
                     $this->usuarioDao->insert($usuario);
@@ -103,13 +97,10 @@ class UsuarioController extends Controller
                 header("location: " . BASEURL . "/controller/UsuarioController.php?action=list");
                 exit;
             } catch (PDOException $e) {
-                //Iserir erro no array
                 array_push($erros, "Erro ao gravar no banco de dados!");
-                //array_push($erros, $e->getMessage());
             }
         }
 
-        //Mostrar os erros
         $dados['id'] = $usuario->getId();
         $dados['papeis'] = UsuarioPapel::getAllAsArray();
         $dados["usuario"] = $usuario;
@@ -126,11 +117,9 @@ class UsuarioController extends Controller
             return;
 
 
-        //Busca o usuário na base pelo ID    
         $usuario = $this->findUsuarioById();
 
         if ($usuario) {
-            //Excluir
             $this->usuarioDao->deleteById($usuario->getId());
 
             header("location: " . BASEURL . "/controller/UsuarioController.php?action=list");
@@ -150,8 +139,6 @@ class UsuarioController extends Controller
     protected function saveAutoCadastro()
     {
 
-        //Capturar os dados do formulário
-        //$id = $_POST['id'];
         $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;
         $apelido = trim($_POST['apelido']) != "" ? trim($_POST['apelido']) : NULL;
         $email = trim($_POST['email']) != "" ? trim($_POST['email']) : NULL;
@@ -160,9 +147,7 @@ class UsuarioController extends Controller
         $senha = trim($_POST['senha']) != "" ? trim($_POST['senha']) : NULL;
         $confSenha = trim($_POST['conf_senha']) != "" ? trim($_POST['conf_senha']) : NULL;
 
-        //Criar o objeto Usuario
         $usuario = new Usuario();
-        //$usuario->setId($id);
         $usuario->setNome($nome);
         $usuario->setApelido($apelido);
         $usuario->setEmail($email);
@@ -172,11 +157,8 @@ class UsuarioController extends Controller
         $usuario->setFoto(null);
         $usuario->setPapel(UsuarioPapel::JOGADOR);
 
-
-        //Validar os dados (camada service)
         $erros = $this->usuarioService->validarAutoCadastro($usuario, $confSenha);
         if (! $erros) {
-            //Inserir no Base de Dados
             try {
                 $this->usuarioDao->insert($usuario);
 
@@ -184,9 +166,7 @@ class UsuarioController extends Controller
                 exit;
             } catch (PDOException $exception) {
                 
-                //Iserir erro no array
                 array_push($erros, "Erro ao gravar no banco de dados:; " . $exception);
-                //array_push($erros, $e->getMessage());
             }
         }
 
@@ -205,11 +185,8 @@ class UsuarioController extends Controller
         if (isset($_GET["id"]))
             $id = $_GET["id"];
 
-        //Busca o usuário na base pelo ID    
         return $this->usuarioDao->findById($id);
     }
 }
 
-
-#Criar objeto da classe para assim executar o construtor
 new UsuarioController();
