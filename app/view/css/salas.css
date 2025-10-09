@@ -1,6 +1,6 @@
 body {
     background-color: #550000;
-    font-family: 'Caudex', serif;
+    font-family: 'Caudex', cursive;
     color: #d4af37;
     margin: 0;
     padding: 20px;
@@ -57,7 +57,7 @@ p {
 }
 
 .card-sala h3 {
-    font-family: 'Caudex', serif;
+    font-family: 'Caudex', cursive;
     color: #d4af37;
     text-shadow: 1px 1px 4px #000;
     margin: 10px 0;
@@ -77,7 +77,8 @@ p {
 
 .btn-detalhes,
 .btn-acao,
-.btn-excluir {
+.btn-excluir,
+.btn {
     background: linear-gradient(135deg, #800000, #550000, #aa0000);
     border: 2px solid #b85c3a;
     padding: 10px 16px;
@@ -88,7 +89,7 @@ p {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 0 15px #aa0000, inset 0 0 10px #550000;
+    box-shadow: 0 0 12px #aa0000, inset 0 0 8px #550000;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
@@ -96,22 +97,27 @@ p {
 
 .btn-detalhes:hover,
 .btn-acao:hover,
-.btn-excluir:hover {
-    background: linear-gradient(135deg, #aa0000, #800000, #ff3333);
-    box-shadow: 0 0 25px #ff6600, inset 0 0 12px #aa0000;
-    transform: scale(1.05);
-    color: #f8e6c1;
+.btn-excluir:hover,
+.btn:hover {
+    background: linear-gradient(135deg, #990000, #660000, #bb2222);
+    box-shadow: 0 0 8px #d4af37, 0 0 15px #880000, inset 0 0 6px #660000;
+    border: 2px solid #fff2a8;
+    transform: scale(1.03);
+    color: #fff2a8;
 }
+
 
 .card-sala-detalhe {
     background: rgba(20, 5, 5, 0.9);
-    border: 2px solid #d4af37;
+    border: 2px solid #550000;
     border-radius: 15px;
     padding: 25px;
     max-width: 600px;
     margin: 40px auto;
     box-shadow: 0 0 20px rgba(170, 0, 0, 0.7);
+
 }
+
 .acoes-sala {
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -141,28 +147,30 @@ a:hover {
     gap: 25px;
 }
 
-.actions + .actions {
+.actions+.actions {
     margin-top: 20px;
 }
 
 .btn {
     background: linear-gradient(135deg, #800000, #550000, #aa0000);
     border: 2px solid #b85c3a;
-    padding: 12px 22px;
+    padding: 10px 16px;
     border-radius: 10px;
-    font-size: 1.1em;
+    font-size: 1em;
     color: #f8e6c1;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    box-shadow: 0 0 15px #aa0000, inset 0 0 8px #550000;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px #aa0000, inset 0 0 10px #550000;
     transition: all 0.3s ease;
     text-decoration: none;
+    display: inline-block;
 }
 
 .btn:hover {
     background: linear-gradient(135deg, #aa0000, #800000, #ff3333);
     box-shadow: 0 0 25px #ff6600, inset 0 0 12px #aa0000;
     transform: scale(1.05);
+    color: #f8e6c1;
 }

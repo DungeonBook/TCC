@@ -1,1 +1,99 @@
-//TODO adicionar css de perfil
+body {
+    background-color: #550000;
+    font-family: 'Caudex', cursive;
+    color: #d4af37;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    background: rgba(40, 10, 10, 0.9);
+    border: 3px solid #800000;
+    border-radius: 15px;
+    padding: 30px;
+    position: relative;
+}
+
+h3.text-center {
+    text-align: center;
+    font-family: 'Caudex', cursive;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #f0d07c;
+    text-shadow: 2px 2px 4px #330000;
+}
+
+.container .col-12 img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    border: 3px solid #d4af37;
+    box-shadow: 0 0 10px #000;
+}
+
+.container .row .col-12 span {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 1.1rem;
+}
+
+.container .row .fw-bold {
+    color: #f0d07c;
+    font-size: 1.15rem;
+}
+
+#frmUsuario .form-label {
+    color: #f0d07c;
+    font-weight: bold;
+}
+
+#frmUsuario .form-control {
+    border-radius: 8px;
+    border: 1px solid #d4af37;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+#frmUsuario .btn-success {
+    background-color: #a0522d;
+    border-color: #d4af37;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#frmUsuario .btn-success:hover {
+    background-color: #d4af37;
+    color: #550000;
+    border-color: #a0522d;
+}
+
+.btn-secondary {
+    background-color: #550000;
+    color: #d4af37;
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    padding: 8px 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #d4af37;
+    color: #550000;
+}
+
+@media (max-width: 768px) {
+    .container .col-12 img {
+        position: static;
+        display: block;
+        margin: 0 auto 20px auto;
+    }
+}

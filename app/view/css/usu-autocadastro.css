@@ -1,6 +1,6 @@
 body {
     background-color: #550000;
-    font-family: 'Caudex', serif;
+    font-family: 'Caudex', cursive;
     color: #d4af37;
     margin: 0;
     padding: 20px;
@@ -89,7 +89,7 @@ button,
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
-    box-shadow: 0 0 15px #aa0000, inset 0 0 10px #550000;
+    box-shadow: 0 0 12px #aa0000, inset 0 0 8px #550000;
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
@@ -97,10 +97,11 @@ button,
 
 button:hover,
 .btn:hover {
-    background: linear-gradient(135deg, #aa0000, #800000, #ff3333);
-    box-shadow: 0 0 25px #ff6600, inset 0 0 12px #aa0000;
-    transform: scale(1.05);
-    color: #f8e6c1;
+    background: linear-gradient(135deg, #990000, #660000, #bb2222);
+    box-shadow: 0 0 8px #d4af37, 0 0 15px #880000, inset 0 0 6px #660000;
+    border: 2px solid #fff2a8;
+    transform: scale(1.03);
+    color: #fff2a8;
 }
 
 h3 {
@@ -120,17 +121,18 @@ button[type="submit"] {
 
 .container a {
     display: inline-block;
-    margin-top: 15px;
-    font-size: 1em;
-    font-weight: bold;
-    color: #800000;
+    margin-top: 10px;
+    color: #d4af37;
+    font-family: 'Cinzel', serif;
     text-decoration: none;
-    transition: color 0.3s ease;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
 }
 
 .container a:hover {
-    color: #d4af37;
+    color: #fff2a8;
     text-decoration: underline;
+    text-shadow: 0 0 6px #fff2a8;
 }
 
 @media (max-width: 768px) {

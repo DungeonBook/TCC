@@ -3,23 +3,27 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: rgba(40, 0, 0, 0.9);
+    border-top: 3px solid #800000;
     color: #d4af37;
     text-align: center;
-    padding: 10px 0;
-    font-family: 'Caudex', serif;
+    padding: 15px 0 10px 0;
+    font-family: 'Caudex', cursive;
+    box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.5);
 }
 
 footer a {
-    display: block;
-    margin-top: 15px;
-    color: #aa0000;
+    display: inline-block;
+    margin-top: 10px;
+    color: #d4af37;
     font-family: 'Cinzel', serif;
     text-decoration: none;
-    transition: color 0.3s ease;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
 }
 
 footer a:hover {
-    color: #d4af37;
+    color: #fff2a8;
     text-decoration: underline;
+    text-shadow: 0 0 6px #fff2a8;
 }

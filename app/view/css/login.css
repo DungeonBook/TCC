@@ -1,7 +1,7 @@
 body {
     background-color: #550000;
-    font-family: 'Caudex', serif;
-    color: #d4af37; 
+    font-family: 'Caudex', cursive;
+    color: #d4af37;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,11 +10,11 @@ body {
 }
 
 .container {
-    background: rgba(40, 10, 10, 0.85); 
-    border: 3px solid #800000; 
+    background: rgba(40, 10, 10, 0.85);
+    border: 3px solid #800000;
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.8); 
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
     width: 340px;
     text-align: center;
     backdrop-filter: blur(6px);
@@ -29,11 +29,11 @@ h1 {
     letter-spacing: 3px;
 }
 
-input[type="text"], 
-input[type="password"], 
-input[type="email"], 
+input[type="text"],
+input[type="password"],
+input[type="email"],
 input[type="date"] {
-   background-color: #2b0f0f; 
+    background-color: #2b0f0f;
     border: 2px solid #5c2a21;
     border-radius: 10px;
     width: 100%;
@@ -45,16 +45,8 @@ input[type="date"] {
     transition: border 0.3s ease;
 }
 
-input[type="text"]:focus, 
-input[type="password"]:focus, 
-input[type="email"]:focus,
-input[type="date"]:focus {
+input:focus {
     border-color: #aa0000;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
 }
 
 button {
@@ -69,27 +61,29 @@ button {
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
-    box-shadow: 0 0 15px #aa0000, inset 0 0 10px #550000;
+    box-shadow: 0 0 12px #aa0000, inset 0 0 8px #550000;
     transition: all 0.3s ease;
 }
 
 button:hover {
-    background: linear-gradient(135deg, #aa0000, #800000, #ff3333);
-    box-shadow: 0 0 25px #ff6600, inset 0 0 12px #aa0000;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #990000, #660000, #bb2222);
+    box-shadow: 0 0 8px #d4af37, 0 0 15px #880000, inset 0 0 6px #660000;
+    border: 2px solid #fff2a8;
+    transform: scale(1.03);
+    color: #fff2a8;
 }
 
 a {
-    display: block;
-    margin-top: 15px;
-    color: #800000;
+    display: inline-block;
+    margin-top: 10px;
+    color: #d4af37;
     font-family: 'Cinzel', serif;
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 a:hover {
-    color: #d4af37;
+    color: #fff2a8;
+    text-shadow: 0 0 6px #fff2a8;
     text-decoration: underline;
 }
-
