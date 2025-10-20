@@ -10,11 +10,12 @@ require_once(__DIR__ . "/../include/menu.php");
 
     <h3>
         <?php if ($dados['id'] == 0) echo "";
-        else echo "Editar Usuário"; ?>
+        else echo "Editar Perfil"; ?>
     </h3>
 
     <form id="frmUsuario" method="POST"
-        action="<?= BASEURL ?>/controller/UsuarioController.php?action=save">
+        action="<?= BASEURL ?>/controller/PerfilController.php?action=saveEditPerfil"
+        enctype="multipart/form-data">
 
         <div class="form-grid">
 
@@ -67,29 +68,23 @@ require_once(__DIR__ . "/../include/menu.php");
             </div>
 
             <div class="form-group">
-                <label for="selPapel">Papel:</label>
-                <select name="papel" id="selPapel">
-                    <option value="">Selecione o papel</option>
-                    <?php foreach ($dados["papeis"] as $papel): ?>
-                        <option value="<?= $papel ?>"
-                            <?= (isset($dados["usuario"]) && $dados["usuario"]->getPapel() == $papel) ? "selected" : "" ?>>
-                            <?= $papel ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
+                <label for="fileFoto">Foto:</label>
+                <input type="file" id="fileFoto" name="foto" accept="image/*"
+                    placeholder="selecione uma foto" />
+
+                <input type="hidden" name="foto_atual" 
+                    value="<?= isset($dados["usuario"]) ? $dados["usuario"]->getFoto() : '' ?>">
             </div>
         </div>
 
-        <input type="hidden" id="hddId" name="id" value="<?= $dados['id']; ?>" />
-
         <div class="actions">
             <button type="submit" class="btn">Salvar</button>
-            <a class="btn" href="<?= BASEURL ?>/controller/UsuarioController.php?action=list">Voltar</a>
+            <a class="btn" href="<?= BASEURL ?>/controller/PerfilController.php?action=view">Voltar</a>
         </div>
         
     </form>
 
-    <!-- Mensagens do sistema -->
+     <!-- Mensagens do sistema -->
     <div style="margin-top:20px;">
         <?php include_once(__DIR__ . "/../include/msg.php"); ?>
     </div>

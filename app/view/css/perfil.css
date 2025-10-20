@@ -1,99 +1,125 @@
 body {
-    background-color: #550000;
+    background: radial-gradient(circle at center, #550000 0%, #550000 100%);
     font-family: 'Caudex', cursive;
-    color: #d4af37;
+    color: #550000;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 900px;
-    margin: 50px auto;
-    background: rgba(40, 10, 10, 0.9);
-    border: 3px solid #800000;
-    border-radius: 15px;
-    padding: 30px;
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 40px;
+    background: linear-gradient(180deg, #3b0a00 0%, #2a0000 100%);
+    border: 2px solid #800000;
+    border-radius: 20px;
+    box-shadow: 800000;
     position: relative;
 }
 
-h3.text-center {
-    text-align: center;
-    font-family: 'Caudex', cursive;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: #f0d07c;
-    text-shadow: 2px 2px 4px #330000;
+.foto-perfil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
 }
 
-.container .col-12 img {
+.foto-perfil img {
     border-radius: 50%;
     width: 150px;
     height: 150px;
     object-fit: cover;
-    position: absolute;
-    top: -30px;
-    right: -30px;
-    border: 3px solid #d4af37;
-    box-shadow: 0 0 10px #000;
+    border: 3px solid #800000;
+    box-shadow: 0 0 15px rgba(170, 0, 0, 0.6);
+    background-color: #550000;
 }
 
-.container .row .col-12 span {
-    display: inline-block;
-    margin-left: 10px;
-    font-size: 1.1rem;
+.dados-usuario {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(170, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
 }
 
-.container .row .fw-bold {
-    color: #f0d07c;
-    font-size: 1.15rem;
+.dados-usuario p {
+    font-size: 1.05rem;
+    margin: 10px 0;
+    color: #ffe8b5;
 }
 
-#frmUsuario .form-label {
-    color: #f0d07c;
+.dados-usuario strong {
+    color: #ffd700;
+}
+
+.botoes-perfil {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #800000, #550000, #aa0000);
+    border: 2px solid #b85c3a;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 1em;
+    color: #f8e6c1;
+    cursor: pointer;
     font-weight: bold;
-}
-
-#frmUsuario .form-control {
-    border-radius: 8px;
-    border: 1px solid #d4af37;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
-}
-
-#frmUsuario .btn-success {
-    background-color: #a0522d;
-    border-color: #d4af37;
-    font-weight: bold;
-    padding: 10px 25px;
-    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 12px #aa0000, inset 0 0 8px #550000;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
-#frmUsuario .btn-success:hover {
-    background-color: #d4af37;
-    color: #550000;
-    border-color: #a0522d;
+.btn-success:hover {
+    background: linear-gradient(135deg, #990000, #660000, #bb2222);
+    box-shadow: 0 0 8px #d4af37, 0 0 15px #880000, inset 0 0 6px #660000;
+    border: 2px solid #fff2a8;
+    transform: scale(1.03);
+    color: #fff2a8;
 }
 
 .btn-secondary {
-    background-color: #550000;
-    color: #d4af37;
-    border: 2px solid #d4af37;
-    border-radius: 8px;
-    padding: 8px 20px;
-    text-decoration: none;
+    background: linear-gradient(135deg, #800000, #550000, #aa0000);
+    border: 2px solid #b85c3a;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 1em;
+    color: #f8e6c1;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 12px #aa0000, inset 0 0 8px #550000;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn-secondary:hover {
-    background-color: #d4af37;
-    color: #550000;
+    background: linear-gradient(135deg, #990000, #660000, #bb2222);
+    box-shadow: 0 0 8px #d4af37, 0 0 15px #880000, inset 0 0 6px #660000;
+    border: 2px solid #fff2a8;
+    transform: scale(1.03);
+    color: #fff2a8;
 }
 
+.msg-retorno {
+    margin-top: 20px;
+    text-align: center;
+}
 @media (max-width: 768px) {
-    .container .col-12 img {
-        position: static;
-        display: block;
-        margin: 0 auto 20px auto;
+    .container {
+        padding: 25px;
+        margin: 50px 15px;
+    }
+
+    h3.text-center {
+        font-size: 1.8rem;
     }
 }

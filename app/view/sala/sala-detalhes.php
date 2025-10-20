@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/../include/header.php");
+require_once(__DIR__ . "/../include/menu.php");
 ?>
 
 <!-- link de CSS do detalhamento de salas -->
@@ -11,7 +12,7 @@ require_once(__DIR__ . "/../include/header.php");
     <?php
 
     $sala = $dados['sala'];
-    $idUsuarioLogado = $dados['idUsuarioLogado'];
+    $isCriador = $dados['usuarioLogadoisCriador'];
 
     if (!empty($sala)): ?>
         <div class="card-sala-detalhe">
@@ -30,26 +31,29 @@ require_once(__DIR__ . "/../include/header.php");
             <p><strong>Status:</strong> <?= htmlspecialchars($sala->getStatusDescricao()) ?></p>
 
             <div class="actions">
-                <a href="./SalaController.php?action=edit&id=<?= $sala->getId() ?>" class="btn">Editar</a>
-                <a href="./SalaController.php?action=delete&id=<?= $sala->getId() ?>" class="btn"
-                   onclick="return confirm('Tem certeza que deseja excluir esta sala?');">Excluir</a>
+                <?php if ($isCriador): ?>
+                    <a href="./SalaController.php?action=edit&id=<?= $sala->getId() ?>" class="btn">Editar</a>
+                    <a href="./SalaController.php?action=delete&id=<?= $sala->getId() ?>" class="btn"
+                        onclick="return confirm('Tem certeza que deseja excluir esta sala?');">Excluir</a>
+                <?php endif; ?>
             </div>
 
             <div class="actions">
                 <?php if ($sala->getStatus() == true): ?>
-                    <a href="./SalaJogadoresController.php?action=inserir&idSala=<?= $sala->getId() ?>"
-                       class="btn"
-                       onclick="return confirm('Deseja participar da sala?');">Participar</a>
+                    <a href="./SalaJogadoresController.php?action=participar&idSala=<?= $sala->getId() ?>"
+                        class="btn"
+                        onclick="return confirm('Deseja participar da sala?');">Participar</a>
                 <?php endif; ?>
-
             </div>
 
             <div class="actions">
-                 <a href="./SalaController.php?action=list" class="btn-detalhes">Voltar</a>
+                <a href="./SalaController.php?action=list" class="btn-detalhes">Voltar</a>
             </div>
+        </div>
 
-            <?php endif; ?>
+    <?php endif; ?>
+</div>
 
-            <?php
-            require_once(__DIR__ . "/../include/footer.php");
-            ?>
+<?php
+require_once(__DIR__ . "/../include/footer.php");
+?>

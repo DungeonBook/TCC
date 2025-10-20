@@ -174,8 +174,11 @@ class SalaController extends Controller
 
             $id = intval($_GET['id']);
             $salaDAO = new SalaDAO();
-            $dados['sala'] = $salaDAO->findSalaById($id);
-            $dados['idUsuarioLogado'] = $this->getIdUsuarioLogado();
+            $sala = $salaDAO->findSalaById($id);
+            $dados['sala'] = $sala;
+            
+            $dados['usuarioLogadoisCriador'] = 
+                $this->getIdUsuarioLogado() == $sala->getCriador()->getId();
 
             if ($dados['sala']) {
 

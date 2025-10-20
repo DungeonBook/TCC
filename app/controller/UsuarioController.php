@@ -48,6 +48,10 @@ class UsuarioController extends Controller
         
 
         $usuario = $this->findUsuarioById();
+
+        //print_r($usuario->getPapel());
+        //die;
+
         if ($usuario) {
             $dados['id'] = $usuario->getId();
             $usuario->setSenha("");
@@ -56,14 +60,16 @@ class UsuarioController extends Controller
             $dados['papeis'] = UsuarioPapel::getAllAsArray();
 
             $this->loadView("usuario/usu-form.php", $dados);
+
         } else
             $this->list("Usuário não encontrado!");
     }
 
     protected function save()
     {
+
         if (! $this->usuarioEstaLogado())
-            return;
+            return;        
 
         $id = $_POST['id'];
         $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;
@@ -73,6 +79,7 @@ class UsuarioController extends Controller
         $data_nascimento = trim($_POST['data_nascimento']) != "" ? trim($_POST['data_nascimento']) : NULL;
         $senha = trim($_POST['senha']) != "" ? trim($_POST['senha']) : NULL;
         $confSenha = trim($_POST['conf_senha']) != "" ? trim($_POST['conf_senha']) : NULL;
+        
         $papel = $_POST['papel'];
 
         $usuario = new Usuario();
@@ -110,6 +117,8 @@ class UsuarioController extends Controller
 
         $this->loadView("usuario/usu-form.php", $dados, $msgErro);
     }
+
+    
 
     protected function delete()
     {

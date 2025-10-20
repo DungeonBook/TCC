@@ -59,6 +59,26 @@ class UsuarioDAO
             " - Erro: mais de um usuário encontrado.");
     }
 
+    public function findByEmail(string $email)
+    {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT * FROM usuarios u WHERE u.email = ?";
+        $stm = $conn->prepare($sql);
+        $stm->execute([$email]);
+        $result = $stm->fetchAll();
+
+        $usuarios = $this->mapUsuarios($result);
+
+        if (count($usuarios) == 1)
+            return $usuarios[0];
+        elseif (count($usuarios) == 0)
+            return null;
+
+        die("UsuarioDAO.findByApelido()" .
+            " - Erro: mais de um usuário encontrado.");
+    }
+
     public function findByEmailSenha(string $email, string $senha)
     {
         $conn = Connection::getConn();
@@ -122,6 +142,27 @@ class UsuarioDAO
         $stm->bindValue("senha", password_hash($usuario->getSenha(), PASSWORD_DEFAULT));
         $stm->bindValue("foto", $usuario->getFoto());
         $stm->bindValue("papel", $usuario->getPapel());
+        $stm->bindValue("id", $usuario->getId());
+        $stm->execute();
+    }
+
+    public function updatePerfil(Usuario $usuario)
+    {
+        $conn = Connection::getConn();
+
+        $sql = "UPDATE usuarios SET nome = :nome, apelido = :apelido, email = :email," .
+            " telefone = :telefone, data_nascimento = :data_nascimento," .
+            " senha = :senha, foto = :foto" .
+            " WHERE id = :id";
+
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("nome", $usuario->getNome());
+        $stm->bindValue("apelido", $usuario->getApelido());
+        $stm->bindValue("email", $usuario->getEmail());
+        $stm->bindValue("telefone", $usuario->getTelefone());
+        $stm->bindValue("data_nascimento", $usuario->getDataNascimento());
+        $stm->bindValue("senha", password_hash($usuario->getSenha(), PASSWORD_DEFAULT));
+        $stm->bindValue("foto", $usuario->getFoto());
         $stm->bindValue("id", $usuario->getId());
         $stm->execute();
     }

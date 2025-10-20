@@ -103,5 +103,5 @@ body {
 .menu-links li a,
 .menu-logo .titulo,
 .menu-perfil .perfil-btn {
-    font-family: 'Caudex', cursive !important;
+    font-family: 'Caudex', cursive;
 }

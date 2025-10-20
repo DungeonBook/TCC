@@ -11,7 +11,7 @@ require_once(__DIR__ . "/../include/menu.php");
 
     <h3>
         <?php if ($dados['id'] == 0);
-        else echo "Alterar Sala"; ?>
+        else echo "Editar Sala"; ?>
     </h3>
 
     <form id="frmSala" method="POST"

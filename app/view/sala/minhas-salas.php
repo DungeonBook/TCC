@@ -22,6 +22,7 @@ require_once(__DIR__ . "/../include/menu.php");
                     <h3><?= htmlspecialchars($sala->getNomeSala()) ?></h3>
                     <p><strong>Tema:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
                     <p><strong>Data:</strong> <?= htmlspecialchars($sala->getDataFormatada()) ?> às <?= htmlspecialchars($sala->getHoraInicio()) ?></p>
+                    <p><strong>Ativo:</strong> <?= htmlspecialchars($sala->getStatusDescricao()) ?></p>
                     <a href="./SalaController.php?action=detalhar&id=<?= $sala->getId() ?>" class="btn-detalhes">Ver Detalhes</a>
                 </div>
             <?php endforeach; ?>

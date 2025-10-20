@@ -1,9 +1,17 @@
 <?php
 
 require_once(__DIR__ . "/../model/Usuario.php");
+require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 
 class UsuarioService
 {
+
+    private UsuarioDAO $usuarioDAO;
+
+    public function __construct() {
+        $this->usuarioDAO = new UsuarioDAO();
+    }
+
     /**
      * Valida e cria uma Sala a partir dos dados recebidos do formulário ou de uma requisição
      * @param array $dados
@@ -11,7 +19,7 @@ class UsuarioService
      * @throws Exception se algum dado estiver inválido
      */
     /* Método para validar os dados do usuário que vem do formulário */
-    public function validarDados(Usuario $usuario, ?string $confSenha)
+    public function validarDados(Usuario $usuario, ?string $confSenha, bool $validarPapel = true)
     {
         $erros = array();
 
@@ -35,13 +43,13 @@ class UsuarioService
         if (! $usuario->getSenha())
             array_push($erros, "O campo [Senha] é obrigatório.");
 
-        if (! $usuario->getSenha() !== null && $usuario->getSenha() <= 6)
+        if ($usuario->getSenha() !== null && strlen($usuario->getSenha()) < 6)
             array_push($erros, "A quantidade mínima de caracteres da senha é 6.");
 
         if (! $confSenha)
             array_push($erros, "O campo [Confirmação da Senha] é obrigatório.");
 
-        if (! $usuario->getPapel())
+        if ($validarPapel && (! $usuario->getPapel()))
             array_push($erros, "O campo [Papel] é obrigatório");
 
         //Validar se a senha é igual a contra senha
@@ -56,8 +64,6 @@ class UsuarioService
     {
         $erros = array();
 
-        //Validar campos vazios
-
         if (! $usuario->getNome())
             array_push($erros, "O campo [Nome] é obrigatório.");
 
@@ -66,6 +72,12 @@ class UsuarioService
 
         if (! $usuario->getEmail())
             array_push($erros, "O campo [Email] é obrigatório.");
+        else {
+            //Validação de e-mail utilizado por outro usuário
+            $usuarioTeste = $this->usuarioDAO->findByEmail($usuario->getEmail());
+            if($usuarioTeste != null)
+                array_push($erros, "O [Email] informado já está sendo utilizado por outro usuário.");
+        }
 
         if (! $usuario->getTelefone())
             array_push($erros, "O campo [Celular] é obrigatório.");
@@ -76,7 +88,7 @@ class UsuarioService
         if (! $usuario->getSenha())
             array_push($erros, "O campo [Senha] é obrigatório.");
        
-        if (! $usuario->getSenha() !== null && $usuario->getSenha() <= 6)
+        if ($usuario->getSenha() !== null && strlen($usuario->getSenha()) < 6)
             array_push($erros, "A quantidade mínima de caracteres da senha é 6.");
        
         if (! $confSenha)

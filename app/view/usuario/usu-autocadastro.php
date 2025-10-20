@@ -13,33 +13,32 @@ require_once(__DIR__ . "/../include/header.php");
             <div class="form-group">
                 <label for="txtNome">Nome:</label>
                 <input type="text" name="nome" id="txtNome" maxlength="50" placeholder="Nome"
-                       value="<?php echo isset($dados['nome']) ? htmlspecialchars($dados['nome']) : ''; ?>"  />
+                       value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getNome() : ''; ?>"  />
             </div>
 
             <div class="form-group">
                 <label for="txtApelido">Apelido:</label>
                 <input type="text" name="apelido" id="txtApelido" maxlength="50" placeholder="Apelido"
-                       value="<?php echo isset($dados['apelido']) ? htmlspecialchars($dados['apelido']) : ''; ?>"  />
+                       value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getApelido() : ''; ?>"  />
             </div>
 
             <div class="form-group">
                 <label for="txtEmail">E-mail:</label>
                 <input type="email" name="email" id="txtEmail" maxlength="50" placeholder="E-mail"
-                       value="<?php echo isset($dados['email']) ? htmlspecialchars($dados['email']) : ''; ?>"  />
+                       value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getEmail() : ''; ?>"  />
             </div>
 
             <div class="form-group">
                 <label for="txtTelefone">Celular:</label>
                 <input type="text" name="telefone" id="txtTelefone" maxlength="15" placeholder="Celular"
-                       value="<?php echo isset($dados['telefone']) ? htmlspecialchars($dados['telefone']) : ''; ?>"  />
+                       value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getTelefone() : ''; ?>"  />
             </div>
 
             <div class="form-group">
                 <label for="txtDataNascimento">Data de Nascimento:</label>
                 <input type="date" name="data_nascimento" id="txtDataNascimento"
                        value="<?php
-                           echo isset($dados['data_nascimento']) ? htmlspecialchars($dados['data_nascimento'])
-                                : (isset($dados['dataNascimento']) ? htmlspecialchars($dados['dataNascimento']) : '');
+                           echo (isset($dados['usuario']) ? $dados['usuario']->getDataNascimento() : '');
                        ?>"  />
             </div>
 
