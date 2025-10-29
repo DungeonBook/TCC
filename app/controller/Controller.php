@@ -1,56 +1,50 @@
 <?php
-#Classe controller padrão
-
 require_once(__DIR__ . "/../util/config.php");
 
-class Controller {
+class Controller
+{
 
-    //Método que efetua a chamada do ação conforme parâmetro GET recebido pela requisição
-    protected function handleAction() {
-        
-        //Captura a ação do parâmetro GET
+    protected function handleAction()
+    {
+
         $action = NULL;
 
-        if(isset($_GET['action']))
+        if (isset($_GET['action']))
             $action = $_GET['action'];
-        
-        //Chama a ação
+
         $this->callAction($action);
     }
 
-    protected function callAction($methodName) {
-        
-        //Verifica se o método da action recebido por parâmetro existe na classe
-        //Se sim, chama-o
-        if($methodName && method_exists($this, $methodName))
+    protected function callAction($methodName)
+    {
+
+        if ($methodName && method_exists($this, $methodName))
             $this->$methodName();
-        
+
         else {
             echo "Ação não encontrada no controller.<br>";
             echo "Verifique com o administrador do sistema.";
         }
-
     }
 
-    protected function loadView(string $path, array $dados, string $msgErro = "", string $msgSucesso = "") {
+    protected function loadView(string $path, array $dados, string $msgErro = "", string $msgSucesso = "")
+    {
 
         $caminho = __DIR__ . "/../view/" . $path;
-        //echo $caminho;
-        if(file_exists($caminho)) {
-            //Inclui e exibe a view a partir do controller
+        if (file_exists($caminho)) {
             require $caminho;
-
         } else {
             echo "Erro ao carrega a view solicitada<br>";
             echo "Caminho: " . $caminho;
         }
     }
 
-    protected function usuarioEstaLogado() {
-        if(session_status() != PHP_SESSION_ACTIVE)
+    protected function usuarioEstaLogado()
+    {
+        if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
 
-        if(! isset($_SESSION[SESSAO_USUARIO_ID])) {
+        if (! isset($_SESSION[SESSAO_USUARIO_ID])) {
             header("location: " . LOGIN_PAGE);
             return false;
         }
@@ -58,15 +52,14 @@ class Controller {
         return true;
     }
 
-    protected function getIdUsuarioLogado() {
-        if(session_status() != PHP_SESSION_ACTIVE)
+    protected function getIdUsuarioLogado()
+    {
+        if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
-        
-        if(isset($_SESSION[SESSAO_USUARIO_ID]))
+
+        if (isset($_SESSION[SESSAO_USUARIO_ID]))
             return $_SESSION[SESSAO_USUARIO_ID];
 
         return 0;
     }
-
-    
 }

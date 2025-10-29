@@ -1,5 +1,4 @@
 <?php
-#Classe controller para a Logar do sistema
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../service/LoginService.php");
@@ -25,19 +24,15 @@ class LoginController extends Controller
         $this->loadView("login/login.php", []);
     }
 
-    /* Método para logar um usuário a partir dos dados informados no formulário */
     protected function logon()
     {
         $email = isset($_POST['email']) ? trim($_POST['email']) : null;
         $senha = isset($_POST['senha']) ? trim($_POST['senha']) : null;
 
-        //Validar os campos
         $erros = $this->loginService->validarCampos($email, $senha);
         if (empty($erros)) {
-            //Valida o email a partir do banco de dados
             $usuario = $this->usuarioDao->findByEmailSenha($email, $senha);
             if ($usuario) {
-                //Se encontrou o usuário, salva a sessão e redireciona para a HOME do sistema
                 $this->loginService->salvarUsuarioSessao($usuario);
 
                 header("location: " . HOME_PAGE);
@@ -47,7 +42,6 @@ class LoginController extends Controller
             }
         }
 
-        //Se há erros, volta para o formulário            
         $msg = implode("<br>", $erros);
         $dados["email"] = $email;
         $dados["senha"] = $senha;
@@ -55,7 +49,6 @@ class LoginController extends Controller
         $this->loadView("login/login.php", $dados, $msg);
     }
 
-    /* Método para logar um usuário a partir dos dados informados no formulário */
     protected function logout()
     {
         $this->loginService->removerUsuarioSessao();
@@ -65,5 +58,4 @@ class LoginController extends Controller
 }
 
 
-#Criar objeto da classe para assim executar o construtor
 new LoginController();

@@ -2,6 +2,7 @@
 require_once(__DIR__ . "/../include/header.php");
 require_once(__DIR__ . "/../include/menu.php");
 ?>
+
 <!-- link de CSS da incerção/ edição de um novo usuário -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/usu-form.css">

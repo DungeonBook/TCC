@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-    margin-top: 100px;
+    margin-top: 0;
     padding: 40px;
     max-width: 1200px;
     margin-left: auto;
@@ -113,7 +113,7 @@ p {
     border-radius: 15px;
     padding: 25px;
     max-width: 600px;
-    margin: 40px auto;
+    margin: 20px auto;
     box-shadow: 0 0 20px rgba(170, 0, 0, 0.7);
 
 }

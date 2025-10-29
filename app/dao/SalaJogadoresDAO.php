@@ -16,6 +16,28 @@ class SalaJogadoresDAO
         $stm->execute([$usuarioId, $salaId]);
     }
 
+    public function countJogadoresBySala(int $salaId): int
+    {
+        $conn = Connection::getConn();
+        $sql = "SELECT COUNT(*) AS total FROM salas_jogadores WHERE sala_id = :sala_id";
+        $stm = $conn->prepare($sql);
+        $stm->bindValue(":sala_id", $salaId);
+        $stm->execute();
+        return (int)$stm->fetch(PDO::FETCH_ASSOC)['total'];
+    }
+
+    public function usuarioEstaNaSala(int $salaId, int $usuarioId): bool
+    {
+        $conn = Connection::getConn();
+        $sql = "SELECT COUNT(*) AS total FROM salas_jogadores 
+            WHERE sala_id = :sala_id AND usuario_id = :usuario_id";
+        $stm = $conn->prepare($sql);
+        $stm->bindValue(":sala_id", $salaId);
+        $stm->bindValue(":usuario_id", $usuarioId);
+        $stm->execute();
+        return $stm->fetch(PDO::FETCH_ASSOC)['total'] > 0;
+    }
+
     public function listJogadoresBySala(int $salaId)
     {
         $conn = Connection::getConn();

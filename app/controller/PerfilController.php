@@ -35,12 +35,9 @@ class PerfilController extends Controller
 
     protected function edit()
     {
-        
+
         $idUsuarioLogado = $this->getIdUsuarioLogado();
         $usuario = $this->usuarioDao->findById($idUsuarioLogado);
-
-        //print_r($usuario->getPapel());
-        //die;
 
         if ($usuario) {
             $dados['id'] = $usuario->getId();
@@ -48,7 +45,6 @@ class PerfilController extends Controller
             $dados["usuario"] = $usuario;
 
             $this->loadView("perfil/form_perfil.php", $dados);
-
         } else
             echo "Usuário não encontrado!";
     }
@@ -80,14 +76,12 @@ class PerfilController extends Controller
 
         if (! $erros) {
             try {
-                //1- Salvar a foto em um arquivo
                 $foto = $_FILES["foto"];
-                if($foto["size"] > 0) {
+                if ($foto["size"] > 0) {
                     $arquivoFoto = $this->arquivoService->salvarArquivo($foto);
 
-                    //2- Atualizar o registro do usuário com o nome da foto
                     $usuario->setFoto($arquivoFoto);
-                } else if($fotoAtual)
+                } else if ($fotoAtual)
                     $usuario->setFoto($fotoAtual);
 
                 $this->usuarioDao->updatePerfil($usuario);
@@ -107,41 +101,7 @@ class PerfilController extends Controller
         $msgErro = implode("<br>", $erros);
 
         $this->loadView("perfil/form_perfil.php", $dados, $msgErro);
-
     }
-
-    /*
-    protected function save()
-    {
-        $foto = $_FILES["foto"];
-
-        //Validar se o usuário mandou a foto de perfil
-        $erros = $this->usuarioService->validarFotoPerfil($foto);
-        if (! $erros) {
-            //1- Salvar a foto em um arquivo
-            $arquivoFoto = $this->arquivoService->salvarArquivo($foto);
-
-            //2- Atualizar o registro do usuário com o nome da foto
-            $usuario = new Usuario();
-            $usuario->setFoto($arquivoFoto);
-            $usuario->setId($this->getIdUsuarioLogado());
-            $this->usuarioDao->updateFotoPerfil($usuario);
-
-            //3- Redirecionar para o PerfilController action view
-            header("location: " . BASEURL . "/controller/PerfilController.php?action=view");
-
-            exit;
-        }
-
-        $idUsuarioLogado = $this->getIdUsuarioLogado();
-        $usuario = $this->usuarioDao->findById($idUsuarioLogado);
-        $dados['usuario'] = $usuario;
-
-        $msgErro = implode("<br>", $erros);
-
-        $this->loadView("perfil/perfil.php", $dados, $msgErro);
-    }
-        */
 }
 
 new PerfilController();

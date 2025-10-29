@@ -49,9 +49,6 @@ class UsuarioController extends Controller
 
         $usuario = $this->findUsuarioById();
 
-        //print_r($usuario->getPapel());
-        //die;
-
         if ($usuario) {
             $dados['id'] = $usuario->getId();
             $usuario->setSenha("");

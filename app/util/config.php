@@ -1,7 +1,4 @@
 <?php
-#Nome do arquivo: config.php
-#Objetivo: define constantes para serem utilizadas no projeto
-
 //Mostrar erros do PHP
 ini_set('display_errors', 1);
 error_reporting(E_ALL);

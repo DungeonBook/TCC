@@ -1,18 +1,16 @@
 <?php
-
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/SalaDAO.php");
 require_once(__DIR__ . "/../dao/SalaJogadoresDAO.php");
 
 class SalaJogadoresController extends Controller
 {
-
     private SalaDAO $salaDAO;
     private SalaJogadoresDAO $salaJogadoresDAO;
 
     public function __construct()
     {
-        if (! $this->usuarioEstaLogado())
+        if (!$this->usuarioEstaLogado())
             return;
 
         $this->salaDAO = new SalaDAO();
@@ -23,57 +21,59 @@ class SalaJogadoresController extends Controller
 
     protected function participar()
     {
-        //TODO - Receber os dados da sala
         $sala = $this->findSalaById();
         if ($sala == null) {
-            echo "Sala inválida!";
-            exit;
+            $this->loadView("sala_jogadores/participar.php", [], "Sala inválida!");
+            return;
         }
 
-        // TODO - Consultar no banco
-        $quatidadeJogadoresNaSala = 0;
+        $quantidadeJogadoresNaSala = $this->salaJogadoresDAO->countJogadoresBySala($sala->getId());
 
         $msgErro = "";
+
         if ($sala->getStatus() == false) {
             $msgErro = "A sala escolhida está inativa!";
-        } else if ($quatidadeJogadoresNaSala >= $sala->getQuantMaxJogadores()) { //Validar se tem vaga na sala
+        } elseif ($quantidadeJogadoresNaSala >= $sala->getQuantMaxJogadores()) {
             $msgErro = "A sala escolhida já está lotada!";
-        } else {
-            //TODO - Verificar se o usuário logado já está na sala
+        } elseif ($this->salaJogadoresDAO->usuarioEstaNaSala($sala->getId(), $this->getIdUsuarioLogado())) {
+            $msgErro = "Você já está participando desta sala!";
         }
 
         if ($msgErro) {
+            $this->loadView("sala_jogadores/participar.php", [], $msgErro);
+            return;
+        }
 
-            $this->loadView("sala_jogadores/participar.php", [],  $msgErro);
-        } else {
-            try {
-                $this->salaJogadoresDAO->insert($sala->getId(), $this->getIdUsuarioLogado());
+        try {
+            $this->salaJogadoresDAO->insert($sala->getId(), $this->getIdUsuarioLogado());
 
-                header("location: " . BASEURL .
-                    "/controller/SalaJogadoresController.php?action=detalharPartida&idSala=" . $sala->getId());
-            } catch (PDOException $e) {
-                $this->loadView(
-                    "sala_jogadores/participar.php",
-                    [],
-                    "Erro ao participar da sala."
-                );
-            }
+            header("location: " . BASEURL .
+                "/controller/SalaJogadoresController.php?action=detalharPartida&idSala=" . $sala->getId());
+            exit;
+        } catch (PDOException $e) {
+            $this->loadView(
+                "sala_jogadores/participar.php",
+                [],
+                "Erro ao participar da sala: " . $e->getMessage()
+            );
         }
     }
 
     protected function detalharPartida()
     {
-        //TODO - Receber os dados da sala
         $sala = $this->findSalaById();
         if ($sala == null) {
-            echo "Sala inválida!";
-            exit;
+            $this->loadView("sala_jogadores/participar.php", [], "Sala inválida!");
+            return;
         }
 
-        //TODO - Buscar os dados dos jogadores da sala (mestre de mesa já deve estar cadastrado automaticamente)
-        echo "View com os detalhes da partida";
-    }
+        $jogadores = $this->salaJogadoresDAO->listJogadoresBySala($sala->getId());
 
+        $dados["sala"] = $sala;
+        $dados["jogadores"] = $jogadores;
+
+        $this->loadView("sala_jogadores/detalhar-partida.php", $dados);
+    }
 
     private function findSalaById()
     {
@@ -81,7 +81,7 @@ class SalaJogadoresController extends Controller
             return null;
         }
 
-        return $this->salaDAO->findSalaById($_GET['idSala']); // Buscar no banco
+        return $this->salaDAO->findSalaById($_GET['idSala']);
     }
 }
 

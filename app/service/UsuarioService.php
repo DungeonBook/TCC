@@ -23,8 +23,6 @@ class UsuarioService
     {
         $erros = array();
 
-        //Validar campos vazios
-
         if (! $usuario->getNome())
             array_push($erros, "O campo [Nome] é obrigatório.");
 
@@ -52,14 +50,12 @@ class UsuarioService
         if ($validarPapel && (! $usuario->getPapel()))
             array_push($erros, "O campo [Papel] é obrigatório");
 
-        //Validar se a senha é igual a contra senha
         if ($usuario->getSenha() && $confSenha && $usuario->getSenha() != $confSenha)
             array_push($erros, "O campo Senha deve ser igual ao Confirmação da senha.");
 
         return $erros;
     }
 
-    /* Método para validar os dados do usuário que vem do formulário */
     public function validarAutoCadastro(Usuario $usuario, ?string $confSenha)
     {
         $erros = array();
@@ -73,7 +69,6 @@ class UsuarioService
         if (! $usuario->getEmail())
             array_push($erros, "O campo [Email] é obrigatório.");
         else {
-            //Validação de e-mail utilizado por outro usuário
             $usuarioTeste = $this->usuarioDAO->findByEmail($usuario->getEmail());
             if($usuarioTeste != null)
                 array_push($erros, "O [Email] informado já está sendo utilizado por outro usuário.");
@@ -94,15 +89,12 @@ class UsuarioService
         if (! $confSenha)
             array_push($erros, "O campo [Confirmação da Senha] é obrigatório.");
 
-        //Validar se a senha é igual a contra senha
         if ($usuario->getSenha() && $confSenha && $usuario->getSenha() != $confSenha)
             array_push($erros, "O campo Senha deve ser igual ao Confirmação da senha.");
 
         return $erros;
     }
 
-
-    /* Método para validar se o usuário selecionou uma foto de perfil */
     public function validarFotoPerfil(array $foto)
     {
         $erros = array();

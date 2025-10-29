@@ -8,13 +8,11 @@ class HomeController extends Controller {
     private UsuarioDAO $usuarioDAO;
 
     public function __construct() {
-        //Verificar se o usuário está logado
         if(! $this->usuarioEstaLogado())
             return;
 
         $this->usuarioDAO = new UsuarioDAO();
 
-        //Tratar a ação solicitada no parâmetro "action"
         $this->handleAction();
     }
 
@@ -27,5 +25,4 @@ class HomeController extends Controller {
     
 }
 
-//Criar o objeto do controller
 new HomeController();

@@ -1,6 +1,4 @@
 function carregarUsuarios(BASEURL) {
-    //Requisição AJAX para buscar os usuários 
-    // cadastrados em formato JSON
 
     var xhttp = new XMLHttpRequest();
 
@@ -15,14 +13,12 @@ function carregarUsuarios(BASEURL) {
         var usuarios = JSON.parse(json);
 
         for(var i=0; i<usuarios.length; i++) {
-            //Criar elemento HTML
             var item = document.createElement("li");
             item.innerHTML = usuarios[i].nome;
 
             listaUsuarios.appendChild(item);
         }
 
-        //alert(json);
     }
 
     xhttp.send();

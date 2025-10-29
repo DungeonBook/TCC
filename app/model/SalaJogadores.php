@@ -7,10 +7,9 @@ include_once(__DIR__ . "/Sala.php");
 class SalaJogadores
 {
 
-    private ?int $id; //id
-    private ?Usuario $jogador; //usuario_id
-    private ?Sala $sala; //sala_id
-
+    private ?int $id;
+    private ?Usuario $jogador;
+    private ?Sala $sala;
     /**
      * Get the value of id
      */
