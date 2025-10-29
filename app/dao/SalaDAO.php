@@ -8,7 +8,6 @@ include_once(__DIR__ . "/../dao/UsuarioDAO.php");
 
 class SalaDAO
 {
-    //Método para listar os usuários a partir da base de dados
     public function list()
     {
         $conn = Connection::getConn();
@@ -53,7 +52,6 @@ class SalaDAO
         return $this->mapSalas($result);
     }
 
-    //Identificador = senha para salas de partida privada
     public function findSalaById(int $idSala): ?Sala
     {
         $conn = Connection::getConn();
@@ -109,7 +107,6 @@ class SalaDAO
         $stm->execute();
     }
 
-    //Método para atualizar um Usuario
     public function update(Sala $sala)
     {
         $conn = Connection::getConn();
@@ -133,7 +130,6 @@ class SalaDAO
         $stm->execute();
     }
 
-    //Método para excluir um Usuario pelo seu ID
     public function deleteById(int $id)
     {
         $conn = Connection::getConn();

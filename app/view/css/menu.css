@@ -39,9 +39,9 @@ body {
     text-decoration: none;
     color: #d4af37;
     font-size: 1.1em;
-    transition: all 0.3s ease;
     padding: 6px 12px;
     border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
 .menu-links li a:hover {
@@ -56,9 +56,8 @@ body {
 
 .perfil-btn {
     background: none;
-    border: none;
     color: #d4af37;
-    font-size: 1.1em;
+    font-size: 1.05em;
     cursor: pointer;
     font-family: 'Caudex', cursive;
     transition: color 0.3s ease, text-shadow 0.3s ease;

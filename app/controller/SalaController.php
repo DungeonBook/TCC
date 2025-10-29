@@ -25,7 +25,6 @@ class SalaController extends Controller
         $this->salaDAO = new SalaDAO();
         $this->usuarioDAO = new UsuarioDAO();
         $this->modalidadeDAO = new ModalidadeDAO();
-
         $this->salaService = new SalaService();
 
         $this->handleAction();
@@ -35,29 +34,31 @@ class SalaController extends Controller
     {
 
         $dados["salasDisp"] = $this->salaDAO->listAtivas();
- 
-        $this->loadView("sala/sala-list.php", $dados,  $msgErro, $msgSucesso);
 
+        $this->loadView("sala/sala-list.php", $dados,  $msgErro, $msgSucesso);
     }
 
 
-     protected function listMinhasSalas(string $msgErro = "", string $msgSucesso = "")
+    protected function listMinhasSalas(string $msgErro = "", string $msgSucesso = "")
     {
 
         $dados["minhasSalas"] = $this->salaDAO->listByUsuario($this->getIdUsuarioLogado());
- 
+
         $this->loadView("sala/minhas-salas.php", $dados,  $msgErro, $msgSucesso);
     }
-    
 
-     protected function listMeusJogos(string $msgErro = "", string $msgSucesso = "")
+
+    protected function listMeusJogos(string $msgErro = "", string $msgSucesso = "")
     {
+        require_once(__DIR__ . "/../../dao/SalaJogadoresDAO.php");
 
-        $dados["meusJogos"] = array(); //TODO - Trazer as salas que o usuário já se cadastrou
+        $salaJogadoresDAO = new SalaJogadoresDAO();
 
-        $this->loadView("sala/meus-jogos.php", $dados,  $msgErro, $msgSucesso);
+        $dados["meusJogos"] = $salaJogadoresDAO->listJogadoresBySala($this->getIdUsuarioLogado());
 
+        $this->loadView("sala/meus-jogos.php", $dados, $msgErro, $msgSucesso);
     }
+
 
     protected function create()
     {
@@ -147,7 +148,7 @@ class SalaController extends Controller
             return null;
         }
 
-        return $this->salaDAO->findSalaById($_GET['id']); // Buscar no banco
+        return $this->salaDAO->findSalaById($_GET['id']);
     }
 
     protected function delete()
@@ -176,8 +177,8 @@ class SalaController extends Controller
             $salaDAO = new SalaDAO();
             $sala = $salaDAO->findSalaById($id);
             $dados['sala'] = $sala;
-            
-            $dados['usuarioLogadoisCriador'] = 
+
+            $dados['usuarioLogadoisCriador'] =
                 $this->getIdUsuarioLogado() == $sala->getCriador()->getId();
 
             if ($dados['sala']) {

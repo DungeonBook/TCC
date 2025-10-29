@@ -60,6 +60,10 @@ require_once(__DIR__ . "/../include/menu.php");
     </div>
 </div>
 
+    <div style="margin-top:30px;">
+        <?php require_once(__DIR__ . "/../include/msg.php"); ?>
+    </div>
+
 <?php
 require_once(__DIR__ . "/../include/footer.php");
 ?>
