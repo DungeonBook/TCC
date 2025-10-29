@@ -13,49 +13,49 @@ require_once(__DIR__ . "/../include/header.php");
             <div class="form-group">
                 <label for="txtNome">Nome:</label>
                 <input type="text" name="nome" id="txtNome" maxlength="50" placeholder="Nome"
-                       value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getNome() : ''; ?>"  />
+                    value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getNome() : ''; ?>" />
             </div>
 
             <div class="form-group">
                 <label for="txtApelido">Apelido:</label>
                 <input type="text" name="apelido" id="txtApelido" maxlength="50" placeholder="Apelido"
-                       value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getApelido() : ''; ?>"  />
+                    value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getApelido() : ''; ?>" />
             </div>
 
             <div class="form-group">
                 <label for="txtEmail">E-mail:</label>
                 <input type="email" name="email" id="txtEmail" maxlength="50" placeholder="E-mail"
-                       value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getEmail() : ''; ?>"  />
+                    value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getEmail() : ''; ?>" />
             </div>
 
             <div class="form-group">
                 <label for="txtTelefone">Celular:</label>
                 <input type="text" name="telefone" id="txtTelefone" maxlength="15" placeholder="Celular"
-                       value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getTelefone() : ''; ?>"  />
+                    value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getTelefone() : ''; ?>" />
             </div>
 
             <div class="form-group">
                 <label for="txtDataNascimento">Data de Nascimento:</label>
                 <input type="date" name="data_nascimento" id="txtDataNascimento"
-                       value="<?php
-                           echo (isset($dados['usuario']) ? $dados['usuario']->getDataNascimento() : '');
-                       ?>"  />
+                    value="<?php
+                            echo (isset($dados['usuario']) ? $dados['usuario']->getDataNascimento() : '');
+                            ?>" />
             </div>
 
             <div class="form-group">
                 <label for="txtSenha">Senha:</label>
-                <input type="password" name="senha" id="txtSenha" maxlength="50" placeholder="Senha"  />
+                <input type="password" name="senha" id="txtSenha" maxlength="50" placeholder="Senha" />
             </div>
 
-            <div class="form-group" >
+            <div class="form-group">
                 <label for="txtConfSenha">Confirme a Senha:</label>
-                <input type="password" name="conf_senha" id="txtConfSenha" maxlength="50" placeholder="Confirme a Senha"  />
+                <input type="password" name="conf_senha" id="txtConfSenha" maxlength="50" placeholder="Confirme a Senha" />
             </div>
         </div>
 
         <div class="actions" style="margin-top: 24px;">
-            <button type="submit" class="btn">Cadastrar</button>
             <a href="./LoginController.php?action=login" style="align-self:center; margin-left:12px;">Já possui conta? Faça login</a>
+            <button type="submit" class="btn">Cadastre-se</button>
         </div>
     </form>
 

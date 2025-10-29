@@ -13,7 +13,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
     max-width: 900px;
-    margin-top: 50px;
+    margin-top: 20px;
     backdrop-filter: blur(6px);
 }
 
@@ -125,7 +125,7 @@ button[type="submit"] {
     color: #d4af37;
     font-family: 'Cinzel', serif;
     text-decoration: none;
-    font-size: 0.95em;
+    font-size: 1.20em;
     transition: all 0.3s ease;
 }
 

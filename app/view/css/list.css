@@ -13,7 +13,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
     max-width: 900px;
-    margin: 50px auto;
+    margin: 20px auto;
     backdrop-filter: blur(6px);
 }
 

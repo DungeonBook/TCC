@@ -84,8 +84,8 @@ require_once(__DIR__ . "/../include/menu.php");
         <input type="hidden" id="hddId" name="id" value="<?= $dados['id']; ?>" />
 
         <div class="actions">
-            <button type="submit" class="btn">Salvar</button>
             <a class="btn" href="<?= BASEURL ?>/controller/UsuarioController.php?action=list">Voltar</a>
+            <button type="submit" class="btn">Salvar</button>
         </div>
         
     </form>

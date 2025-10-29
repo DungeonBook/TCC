@@ -72,19 +72,19 @@ require_once(__DIR__ . "/../include/menu.php");
                 <input type="file" id="fileFoto" name="foto" accept="image/*"
                     placeholder="selecione uma foto" />
 
-                <input type="hidden" name="foto_atual" 
+                <input type="hidden" name="foto_atual"
                     value="<?= isset($dados["usuario"]) ? $dados["usuario"]->getFoto() : '' ?>">
             </div>
         </div>
 
         <div class="actions">
-            <button type="submit" class="btn">Salvar</button>
             <a class="btn" href="<?= BASEURL ?>/controller/PerfilController.php?action=view">Voltar</a>
+            <button type="submit" class="btn">Salvar</button>
         </div>
-        
+
     </form>
 
-     <!-- Mensagens do sistema -->
+    <!-- Mensagens do sistema -->
     <div style="margin-top:20px;">
         <?php include_once(__DIR__ . "/../include/msg.php"); ?>
     </div>
