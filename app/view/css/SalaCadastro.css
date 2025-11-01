@@ -50,7 +50,10 @@ label {
 input[type="text"],
 input[type="password"],
 input[type="date"],
-select {
+input[type="time"],
+input[type="number"],
+select,
+textarea {
     background-color: #2b0f0f;
     border: 2px solid #5c2a21;
     border-radius: 10px;
@@ -63,8 +66,14 @@ select {
     transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
     border-color: #aa0000;
     box-shadow: 0 0 8px #aa0000;
 }

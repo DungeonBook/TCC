@@ -1,11 +1,11 @@
 <?php
-require_once(__DIR__ . "/../include/header.php");
-require_once(__DIR__ . "/../include/menu.php");
+require_once(__DIR__ . "/../include/Header.php");
+require_once(__DIR__ . "/../include/Menu.php");
 ?>
 
 <!-- link de CSS das salas que criei -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= BASEURL ?>/view/css/salas.css">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/Salas.css">
 
 <div class="container">
     
@@ -23,7 +23,7 @@ require_once(__DIR__ . "/../include/menu.php");
                     <h3><?= htmlspecialchars($sala->getNomeSala()) ?></h3>
                     <p><strong>Tema:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
                     <p><strong>Data:</strong> <?= htmlspecialchars($sala->getDataFormatada()) ?> às <?= htmlspecialchars($sala->getHoraInicio()) ?></p>
-                    <p><strong>Ativo:</strong> <?= htmlspecialchars($sala->getStatusDescricao()) ?></p>
+                    <p><strong>Status:</strong> <?= htmlspecialchars($sala->getStatusDescricao()) ?></p>
                     <a href="./SalaController.php?action=detalhar&id=<?= $sala->getId() ?>" class="btn-detalhes">Ver Detalhes</a>
                 </div>
             <?php endforeach; ?>
@@ -36,6 +36,6 @@ require_once(__DIR__ . "/../include/menu.php");
 
 
 <?php
-require_once(__DIR__ . "/../include/footer.php");
+require_once(__DIR__ . "/../include/Footer.php");
 
 ?>

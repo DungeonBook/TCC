@@ -35,7 +35,7 @@ class SalaController extends Controller
 
         $dados["salasDisp"] = $this->salaDAO->listAtivas();
 
-        $this->loadView("sala/sala-list.php", $dados,  $msgErro, $msgSucesso);
+        $this->loadView("sala/SalaList.php", $dados,  $msgErro, $msgSucesso);
     }
 
 
@@ -44,7 +44,7 @@ class SalaController extends Controller
 
         $dados["minhasSalas"] = $this->salaDAO->listByUsuario($this->getIdUsuarioLogado());
 
-        $this->loadView("sala/minhas-salas.php", $dados,  $msgErro, $msgSucesso);
+        $this->loadView("sala/MinhasSalas.php", $dados,  $msgErro, $msgSucesso);
     }
 
 
@@ -56,7 +56,7 @@ class SalaController extends Controller
 
         $dados["meusJogos"] = $salaJogadoresDAO->listJogadoresBySala($this->getIdUsuarioLogado());
 
-        $this->loadView("sala/meus-jogos.php", $dados, $msgErro, $msgSucesso);
+        $this->loadView("sala/MeusJogos.php", $dados, $msgErro, $msgSucesso);
     }
 
 
@@ -65,7 +65,7 @@ class SalaController extends Controller
         $dados['id'] = 0;
         $dados['modalidades'] = $this->modalidadeDAO->list();
 
-        $this->loadView("sala/sala-cadastro.php", $dados);
+        $this->loadView("sala/SalaCadastro.php", $dados);
     }
 
     protected function edit()
@@ -77,7 +77,7 @@ class SalaController extends Controller
 
             $dados['modalidades'] = $this->modalidadeDAO->list();
 
-            $this->loadView("sala/sala-cadastro.php", $dados);
+            $this->loadView("sala/SalaCadastro.php", $dados);
         } else
             $this->list("Sala não encontrada!");
     }
@@ -139,7 +139,7 @@ class SalaController extends Controller
 
         $msgErro = implode("<br>", $erros);
 
-        $this->loadView("sala/sala-cadastro.php", $dados, $msgErro);
+        $this->loadView("sala/SalaCadastro.php", $dados, $msgErro);
     }
 
     private function findSalaById()
@@ -183,7 +183,7 @@ class SalaController extends Controller
 
             if ($dados['sala']) {
 
-                $this->loadView("sala/sala-detalhes.php", $dados);
+                $this->loadView("sala/SalaDetalhes.php", $dados);
             } else {
                 $_SESSION['msg'] = "Sala não encontrada.";
                 header("Location: ./SalaController.php?action=list");

@@ -125,6 +125,15 @@ class Usuario
         return $this;
     }
 
+    public function getUsuDataFormatada(): ?string
+    {
+        if ($this->dataNascimento) {
+            $date = date_create($this->dataNascimento);
+            return date_format($date, 'd/m/Y');
+        }
+        return "";
+    }
+
     /**
      * Get the value of dataNascimento
      */
@@ -148,7 +157,7 @@ class Usuario
      */
     public function getSenha(): ?string
     {
-        
+
         return $this->senha;
     }
 

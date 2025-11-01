@@ -1,24 +1,24 @@
 <?php
-require_once(__DIR__ . "/../include/header.php");
-require_once(__DIR__ . "/../include/menu.php");
-require_once(__DIR__ . "/../../dao/SalaJogadoresDAO.php");
-require_once(__DIR__ . "/../../dao/SalaDAO.php");
-require_once(__DIR__ . "/../../model/Usuario.php");
+require_once(__DIR__ . "/../include/Header.php");
+require_once(__DIR__ . "/../include/Menu.php");
+//require_once(__DIR__ . "/../../dao/SalaJogadoresDAO.php");
+//require_once(__DIR__ . "/../../dao/SalaDAO.php");
+//require_once(__DIR__ . "/../../model/Usuario.php");
 ?>
 
 <!-- link de CSS da participação de um usuário na sala-->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= BASEURL ?>/view/css/participar.css">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/Participar.css">
 
 <div class="container">
 
     <?php
 
-    session_start();
 
-    $usuarioLogado = $_SESSION["usuario"] ?? null;
-    $salaId = $_GET["id"] ?? null;
+    //$usuarioLogado = $_SESSION["usuario"] ?? null;
+    //$salaId = $_GET["id"] ?? null;
 
+    /*
     $msg = "";
 
     if (!$usuarioLogado) {
@@ -44,14 +44,14 @@ require_once(__DIR__ . "/../../model/Usuario.php");
         } catch (Exception $e) {
             $msg = "Erro ao participar da sala: " . $e->getMessage();
         }
-    }
+    }*/
     ?>
 
     <div class="participar-container">
         <h1 class="participar-titulo">Participar da Sala</h1>
 
         <div class="participar-msg">
-            <?php require_once(__DIR__ . "/../include/msg.php"); ?>
+            <?php require_once(__DIR__ . "/../include/Msg.php"); ?>
 
             <div class="participar-botoes">
                 <a href="<?= BASEURL ?>/controller/SalaController.php?action=list">Página inicial</a>
@@ -64,5 +64,5 @@ require_once(__DIR__ . "/../../model/Usuario.php");
     </div>
 
     <?php
-    require_once(__DIR__ . "/../include/footer.php");
+    require_once(__DIR__ . "/../include/Footer.php");
     ?>

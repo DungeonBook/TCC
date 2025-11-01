@@ -21,7 +21,7 @@ class LoginController extends Controller
 
     protected function login()
     {
-        $this->loadView("login/login.php", []);
+        $this->loadView("login/Login.php", []);
     }
 
     protected function logon()
@@ -46,14 +46,14 @@ class LoginController extends Controller
         $dados["email"] = $email;
         $dados["senha"] = $senha;
 
-        $this->loadView("login/login.php", $dados, $msg);
+        $this->loadView("login/Login.php", $dados, $msg);
     }
 
     protected function logout()
     {
         $this->loginService->removerUsuarioSessao();
 
-        $this->loadView("login/login.php", [], "", "Usuário deslogado com sucesso!");
+        $this->loadView("login/Login.php", [], "", "Usuário deslogado com sucesso!");
     }
 }
 

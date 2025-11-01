@@ -1,10 +1,10 @@
 <?php
-require_once(__DIR__ . "/../include/header.php");
+require_once(__DIR__ . "/../include/Header.php");
 ?>
 
 <!-- link de CSS do login -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= BASEURL ?>/view/css/login.css">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/Login.css">
 
 <div class="container">
 
@@ -31,10 +31,10 @@ require_once(__DIR__ . "/../include/header.php");
 
     <!-- Mensagens do sistema -->
     <div style="margin-top:20px;">
-        <?php include_once(__DIR__ . "/../include/msg.php") ?>
+        <?php include_once(__DIR__ . "/../include/Msg.php") ?>
     </div>
 </div>
 
 <?php
-require_once(__DIR__ . "/../include/footer.php");
+require_once(__DIR__ . "/../include/Footer.php");
 ?>

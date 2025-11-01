@@ -1,9 +1,6 @@
 <?php
-#Nome do arquivo: usuario/list.php
-#Objetivo: interface para listagem dos usuários do sistema
-
-require_once(__DIR__ . "/../include/header.php");
-require_once(__DIR__ . "/../include/menu.php");
+require_once(__DIR__ . "/../include/Header.php");
+require_once(__DIR__ . "/../include/Menu.php");
 ?>
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/home.css">
 
@@ -27,5 +24,5 @@ require_once(__DIR__ . "/../include/menu.php");
 <script src="<?= BASEURL ?>/view/js/home_ajax.js"></script>
 
 <?php  
-require_once(__DIR__ . "/../include/footer.php");
+require_once(__DIR__ . "/../include/Footer.php");
 ?>

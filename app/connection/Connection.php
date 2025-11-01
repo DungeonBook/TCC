@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . "/../util/config.php");
+require_once(__DIR__ . "/../util/Config.php");
 
 class Connection {
 

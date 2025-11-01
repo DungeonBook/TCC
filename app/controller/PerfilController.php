@@ -30,7 +30,7 @@ class PerfilController extends Controller
         $usuario = $this->usuarioDao->findById($idUsuarioLogado);
         $dados['usuario'] = $usuario;
 
-        $this->loadView("perfil/perfil.php", $dados);
+        $this->loadView("perfil/Perfil.php", $dados);
     }
 
     protected function edit()
@@ -44,7 +44,7 @@ class PerfilController extends Controller
             $usuario->setSenha("");
             $dados["usuario"] = $usuario;
 
-            $this->loadView("perfil/form_perfil.php", $dados);
+            $this->loadView("perfil/FormPerfil.php", $dados);
         } else
             echo "Usuário não encontrado!";
     }
@@ -100,7 +100,7 @@ class PerfilController extends Controller
 
         $msgErro = implode("<br>", $erros);
 
-        $this->loadView("perfil/form_perfil.php", $dados, $msgErro);
+        $this->loadView("perfil/FormPerfil.php", $dados, $msgErro);
     }
 }
 

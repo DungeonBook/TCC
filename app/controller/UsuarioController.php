@@ -1,5 +1,4 @@
 <?php
-#Classe controller para Usuário
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
 require_once(__DIR__ . "/../service/UsuarioService.php");
@@ -27,7 +26,7 @@ class UsuarioController extends Controller
 
         $dados["lista"] = $this->usuarioDao->list();
 
-        $this->loadView("usuario/list.php", $dados,  $msgErro, $msgSucesso);
+        $this->loadView("usuario/List.php", $dados,  $msgErro, $msgSucesso);
     }
 
     protected function create()
@@ -38,14 +37,14 @@ class UsuarioController extends Controller
         $dados['id'] = 0;
         $dados['papeis'] = UsuarioPapel::getAllAsArray();
 
-        $this->loadView("usuario/usu-form.php", $dados);
+        $this->loadView("usuario/UsuForm.php", $dados);
     }
 
     protected function edit()
     {
         if (! $this->usuarioEstaLogado())
             return;
-        
+
 
         $usuario = $this->findUsuarioById();
 
@@ -56,8 +55,7 @@ class UsuarioController extends Controller
 
             $dados['papeis'] = UsuarioPapel::getAllAsArray();
 
-            $this->loadView("usuario/usu-form.php", $dados);
-
+            $this->loadView("usuario/UsuForm.php", $dados);
         } else
             $this->list("Usuário não encontrado!");
     }
@@ -66,7 +64,7 @@ class UsuarioController extends Controller
     {
 
         if (! $this->usuarioEstaLogado())
-            return;        
+            return;
 
         $id = $_POST['id'];
         $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;
@@ -76,7 +74,7 @@ class UsuarioController extends Controller
         $data_nascimento = trim($_POST['data_nascimento']) != "" ? trim($_POST['data_nascimento']) : NULL;
         $senha = trim($_POST['senha']) != "" ? trim($_POST['senha']) : NULL;
         $confSenha = trim($_POST['conf_senha']) != "" ? trim($_POST['conf_senha']) : NULL;
-        
+
         $papel = $_POST['papel'];
 
         $usuario = new Usuario();
@@ -112,10 +110,10 @@ class UsuarioController extends Controller
 
         $msgErro = implode("<br>", $erros);
 
-        $this->loadView("usuario/usu-form.php", $dados, $msgErro);
+        $this->loadView("usuario/UsuForm.php", $dados, $msgErro);
     }
 
-    
+
 
     protected function delete()
     {
@@ -139,7 +137,7 @@ class UsuarioController extends Controller
     {
         $dados['id'] = 0;
 
-        $this->loadView("usuario/usu-autocadastro.php", $dados);
+        $this->loadView("usuario/UsuAutocadastro.php", $dados);
     }
 
     protected function saveAutoCadastro()
@@ -171,7 +169,7 @@ class UsuarioController extends Controller
                 header("location: " . BASEURL . "/controller/LoginController.php?action=login");
                 exit;
             } catch (PDOException $exception) {
-                
+
                 array_push($erros, "Erro ao gravar no banco de dados:; " . $exception);
             }
         }
@@ -181,7 +179,7 @@ class UsuarioController extends Controller
 
         $msgErro = implode("<br>", $erros);
 
-        $this->loadView("usuario/usu-autocadastro.php", $dados, $msgErro);
+        $this->loadView("usuario/UsuAutocadastro.php", $dados, $msgErro);
     }
 
 

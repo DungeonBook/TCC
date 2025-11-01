@@ -1,11 +1,11 @@
 <?php
-require_once(__DIR__ . "/../include/header.php");
-require_once(__DIR__ . "/../include/menu.php");
+require_once(__DIR__ . "/../include/Header.php");
+require_once(__DIR__ . "/../include/Menu.php");
 ?>
 
 <!-- link de CSS do perfil do usuario -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= BASEURL ?>/view/css/perfil.css">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/Perfil.css">
 
 <div class="container">
 
@@ -19,8 +19,12 @@ require_once(__DIR__ . "/../include/menu.php");
 
     <div class="dados-usuario">
         <p><strong>Nome:</strong> <?= htmlspecialchars($dados['usuario']->getNome()) ?></p>
+        <p><strong>Apelido:</strong> <?= htmlspecialchars($dados['usuario']->getApelido()) ?></p>
         <p><strong>Email:</strong> <?= htmlspecialchars($dados['usuario']->getEmail()) ?></p>
-        <p><strong>Papel:</strong> <?= htmlspecialchars($dados['usuario']->getPapel()) ?></p>
+        <p><strong>Celular:</strong> <?= htmlspecialchars($dados['usuario']->getTelefone()) ?></p>
+        <p><strong>Aniversário:</strong>
+            <?= htmlspecialchars($dados['usuario']->getUsuDataFormatada()) ?></p>
+        <p><strong>Usuário:</strong> <?= htmlspecialchars($dados['usuario']->getPapel()) ?></p>
     </div>
 
     <form id="frmUsuario" method="POST"
@@ -30,23 +34,23 @@ require_once(__DIR__ . "/../include/menu.php");
         <input type="hidden" name="fotoAnterior" value="<?= $dados['usuario']->getFoto() ?>">
 
         <div class="botoes-perfil">
-            <a class="btn-success"
-                href="<?= BASEURL ?>/controller/PerfilController.php?action=edit">
-                Editar Perfil
-            </a>
-
             <a class="btn btn-secondary"
                 href="<?= BASEURL ?>/controller/SalaController.php?action=list">
                 Voltar
             </a>
+
+            <a class="btn-success"
+                href="<?= BASEURL ?>/controller/PerfilController.php?action=edit">
+                Editar Perfil
+            </a>
         </div>
 
         <div class="msg-retorno">
-            <?php require_once(__DIR__ . "/../include/msg.php"); ?>
+            <?php require_once(__DIR__ . "/../include/Msg.php"); ?>
         </div>
     </form>
 </div>
 
 <?php
-require_once(__DIR__ . "/../include/footer.php");
+require_once(__DIR__ . "/../include/Footer.php");
 ?>

@@ -6,7 +6,7 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME]))
 
 <!-- link de CSS do menu -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?= BASEURL ?>/view/css/menu.css">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/Menu.css">
 
 <nav class="menu">
     <div class="menu-logo">

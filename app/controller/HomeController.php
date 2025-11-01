@@ -20,7 +20,7 @@ class HomeController extends Controller {
 
         $dados["qtdUsuarios"] = $this->usuarioDAO->quantidadeUsuarios(); 
 
-        $this->loadView("home/home.php", $dados);
+        $this->loadView("home/Home.php", $dados);
     }
     
 }
