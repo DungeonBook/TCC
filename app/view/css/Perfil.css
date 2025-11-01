@@ -9,12 +9,23 @@ body {
 .container {
     max-width: 800px;
     margin: 20px auto;
+    top: 0%;
     padding: 40px;
     background: linear-gradient(180deg, #3b0a00 0%, #2a0000 100%);
     border: 2px solid #800000;
     border-radius: 20px;
     box-shadow: 800000;
     position: relative;
+}
+
+h3 {
+    font-weight: bold;
+    font-size: 1.8em;
+    color: #d4af37;
+    text-shadow: 2px 2px 6px #000;
+    margin-bottom: 40px;
+    text-align: center;
+    letter-spacing: 3px;
 }
 
 .foto-perfil {
@@ -113,6 +124,7 @@ body {
     margin-top: 20px;
     text-align: center;
 }
+
 @media (max-width: 768px) {
     .container {
         padding: 25px;

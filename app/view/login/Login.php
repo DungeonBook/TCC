@@ -8,7 +8,7 @@ require_once(__DIR__ . "/../include/Header.php");
 
 <div class="container">
 
-    <h1>Login</h1>
+    <h3>Login</h3>
 
     <!-- Formulário de login -->
     <form id="frmLogin" action="./LoginController.php?action=logon" method="POST">

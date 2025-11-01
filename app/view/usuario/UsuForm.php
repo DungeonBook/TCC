@@ -8,6 +8,7 @@ require_once(__DIR__ . "/../include/Menu.php");
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/UsuForm.css">
 
 <div class="container">
+    <h3>Novo Usuário</h3>
 
     <h3>
         <?php if ($dados['id'] == 0) echo "";

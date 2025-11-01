@@ -77,7 +77,7 @@ class SalaController extends Controller
 
             $dados['modalidades'] = $this->modalidadeDAO->list();
 
-            $this->loadView("sala/SalaCadastro.php", $dados);
+            $this->loadView("sala/SalaEdit.php", $dados);
         } else
             $this->list("Sala não encontrada!");
     }

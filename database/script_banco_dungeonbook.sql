@@ -76,7 +76,7 @@ INSERT INTO
     )
 VALUES
     (
-        'administrador',
+        'Administrador',
         'Eduarda Prestes',
         'Duda',
         'rpeduarda09@gmail.com',
@@ -85,7 +85,7 @@ VALUES
         '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
     ),
     (
-        'administrador',
+        'Administrador',
         'Leonardo',
         'Leo',
         'agathasakamoto14@gmail.com',
@@ -94,7 +94,7 @@ VALUES
         '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
     ),
     (
-        'administrador',
+        'Administrador',
         'Guilherme Pazinato',
         'Pazinato',
         'pazinatoguilherme1@gmail.com',
@@ -103,7 +103,7 @@ VALUES
         '$2y$10$RfPcWzc2.0iAXxurnR8qdOSy.9m3Q4jRSkM4hko6QiPWUYgYPmRh.'
     ),
     (
-        'administrador',
+        'Administrador',
         'Raul Carvalho',
         'Raul',
         'raul170507@gmail.com',

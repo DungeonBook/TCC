@@ -71,7 +71,7 @@ class UsuarioService
         else {
             $usuarioTeste = $this->usuarioDAO->findByEmail($usuario->getEmail());
             if($usuarioTeste != null)
-                array_push($erros, "O [Email] informado já está sendo utilizado por outro usuário.");
+                array_push($erros, "O [Email] informado já está sendo utilizado.");
         }
 
         if (! $usuario->getTelefone())

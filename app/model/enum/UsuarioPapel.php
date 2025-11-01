@@ -5,8 +5,8 @@ class UsuarioPapel
 
     public static string $SEPARADOR = "|";
 
-    const JOGADOR = "jogador";
-    const ADMINISTRADOR = "administrador";
+    const JOGADOR = "Jogador";
+    const ADMINISTRADOR = "Administrador";
 
     public static function getAllAsArray()
     {

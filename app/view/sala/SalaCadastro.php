@@ -8,11 +8,7 @@ require_once(__DIR__ . "/../include/Menu.php");
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/SalaCadastro.css">
 
 <div class="container">
-
-    <h3>
-        <?php if ($dados['id'] == 0);
-        else echo "Editar Sala"; ?>
-    </h3>
+    <h3>Nova Sala</h3>
 
     <form id="frmSala" method="POST"
         action="<?= BASEURL ?>/controller/SalaController.php?action=save">
@@ -52,7 +48,7 @@ require_once(__DIR__ . "/../include/Menu.php");
             </div>
 
             <div class="form-group">
-                <label for="txtHoraFim">Horário de fim:</label>
+                <label for="txtHoraFim">Horário do fim:</label>
                 <input type="time" id="txtHoraFim" name="horaFim"
                     value="<?php echo (isset($dados["sala"]) ? $dados["sala"]->getHoraFim() : ''); ?>" />
             </div>

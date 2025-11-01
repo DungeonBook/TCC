@@ -8,6 +8,7 @@ require_once(__DIR__ . "/../include/Menu.php");
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Perfil.css">
 
 <div class="container">
+    <h3>Perfil</h3>
 
     <div class="foto-perfil">
         <?php if ($dados['usuario']->getFoto()): ?>
