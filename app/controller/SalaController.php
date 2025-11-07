@@ -50,11 +50,7 @@ class SalaController extends Controller
 
     protected function listMeusJogos(string $msgErro = "", string $msgSucesso = "")
     {
-        require_once(__DIR__ . "/../../dao/SalaJogadoresDAO.php");
-
-        $salaJogadoresDAO = new SalaJogadoresDAO();
-
-        $dados["meusJogos"] = $salaJogadoresDAO->listJogadoresBySala($this->getIdUsuarioLogado());
+        $dados["meusJogos"] = $this->salaDAO->listByParticipante($this->getIdUsuarioLogado());
 
         $this->loadView("sala/MeusJogos.php", $dados, $msgErro, $msgSucesso);
     }
@@ -193,6 +189,29 @@ class SalaController extends Controller
             header("Location: ./SalaController.php?action=list");
             exit;
         }
+    }
+
+    protected function buscarPorModalidade()
+    {
+        if (! $this->usuarioEstaLogado())
+            return;
+
+        $modalidadeId = isset($_GET['modalidade_id']) ? intval($_GET['modalidade_id']) : 0;
+
+        if ($modalidadeId <= 0) {
+            $this->list("Selecione uma modalidade válida.");
+            return;
+        }
+
+        $salas = $this->salaDAO->buscarPorModalidade($modalidadeId);
+
+        if (empty($salas)) {
+            $mensagem = "Nenhuma sala encontrada para a modalidade selecionada.";
+            $this->list($mensagem);
+            return;
+        }
+
+        include(__DIR__ . '/../view/sala/SalaList.php');
     }
 }
 

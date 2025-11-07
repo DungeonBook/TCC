@@ -36,6 +36,25 @@ class SalaDAO
         return $this->mapSalas($result);
     }
 
+    public function listByParticipante(int $idUsuario)
+    {
+        $conn = Connection::getConn();
+
+        $sql = "SELECT s.*, m.descricao modalidade_descricao FROM salas s
+                    JOIN modalidades m ON (m.id = s.modalidade_id)
+                WHERE s.criador_id = :id OR 
+                    EXISTS(SELECT sj.id FROM salas_jogadores sj WHERE sj.sala_id = s.id and sj.usuario_id = :id)
+                ORDER BY s.data DESC";
+        $stm = $conn->prepare($sql);
+        $stm->bindValue("id", $idUsuario);
+
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+        return $this->mapSalas($result);
+    }
+
+
     public function listAtivas()
     {
         $conn = Connection::getConn();
@@ -84,6 +103,25 @@ class SalaDAO
             return null;
         }
     }
+
+    public function buscarPorModalidade($modalidadeId)
+    {
+
+        $conn = Connection::getConn();
+
+        $stmt = $conn->prepare("SELECT * FROM salas WHERE modalidade_id = :modalidadeId");
+        $stmt->bindValue(":modalidadeId", $modalidadeId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $salas = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $salas[] = $this->mapSalas($row);
+        }
+
+        return $salas;
+    }
+
+
 
     public function insert(Sala $sala)
     {

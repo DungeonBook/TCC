@@ -67,24 +67,13 @@ require_once(__DIR__ . "/../include/Menu.php");
                     value="<?= isset($dados['confSenha']) ? $dados['confSenha'] : '' ?>" />
             </div>
 
-            <div class="form-group">
+            <div class="foto">
                 <label for="fileFoto">Foto:</label>
 
                 <div class="input-foto">
                     <input type="file" id="fileFoto" name="foto" accept="image/*" hidden>
                     <div class="file-display">
-                        <span id="file-name"><?= isset($dados["usuario"]) && $dados["usuario"]->getFoto() ? basename($dados["usuario"]->getFoto()) : 'Nenhum arquivo escolhido' ?></span>
-                        <label for="fileFoto" class="file-btn">Escolher</label>
-                    </div>
-
-                    <div class="preview-container" id="preview-container">
-                        <?php
-                        $fotoSrc = '';
-                        if (isset($dados["usuario"]) && $dados["usuario"]->getFoto()) {
-                            $fotoSrc = BASEURL . '/uploads/' . $dados["usuario"]->getFoto();
-                        }
-                        ?>
-                        <img id="preview" src="<?= htmlspecialchars($fotoSrc) ?>" alt="" <?= $fotoSrc ? '' : 'style="display:none;"' ?>>
+                        <label for="fileFoto" class="file-btn">Nova Foto</label>
                     </div>
 
                     <input type="hidden" name="foto_atual" value="<?= isset($dados["usuario"]) ? $dados["usuario"]->getFoto() : '' ?>">

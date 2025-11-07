@@ -29,23 +29,64 @@ require_once(__DIR__ . "/../include/Menu.php");
             </div>
         <?php endif; ?>
 
-        <p>Data da partida:</p>
+        <p>Data da partida: <?= $dados["sala"]->getDataFormatada() ?></p>
 
         <p>Número de jogadores: <?= $dados['numeroJogadores'] ?></p>
 
 
         <p>Jogadores:</p>
-        <ul>
-        <?php foreach ($dados['jogadores'] as $jogador): ?>
-             <li><?php print_r($jogador['apelido']); ?></li>
-        <?php endforeach; ?>
-        </ul>
+        <table id="tabUsuarios">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Jogador</th>
+                    <th>Papel</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                        <td>
+                            <?php if($dados["sala"]->getCriador()->getFoto()): ?>
+                                <img src="<?= BASEURL_ARQUIVOS . "/" . $dados["sala"]->getCriador()->getFoto(); ?>" 
+                                    width="100px" height="auto">
+                            <?php else: ?>    
+                                <img src="<?= BASEURL . "/view/img/fotoPadrao.png" ?>" 
+                                    width="100px" height="auto">
+                            <?php endif; ?>                             
+                        </td>
+                        <td><?= $dados["sala"]->getCriador()->getApelido(); ?></td>
+                        <td>Mestre de mesa</td>
+                        <td></td>
+                    </tr>
 
+
+                <?php foreach ($dados['jogadores'] as $jog): ?>
+                    <tr>
+                        <td>
+                            <?php if($jog->getJogador()->getFoto()): ?>
+                                <img src="<?= BASEURL_ARQUIVOS . "/" . $jog->getJogador()->getFoto(); ?>" 
+                                    width="100px" height="auto">
+                            <?php else: ?>    
+                                <img src="<?= BASEURL . "/view/img/fotoPadrao.png" ?>" 
+                                    width="100px" height="auto">
+                            <?php endif; ?>                             
+                        </td>
+                        <td><?= $jog->getJogador()->getApelido(); ?></td>
+                        <td>Participantes</td>
+                        <td>
+                            <?php if($dados['usuarioLogadoisCriador']): ?>
+                                <a class="btn"
+                                    onclick="return confirm('Confirma a exclusão do jogador?');"
+                                    href="<?= BASEURL ?>/controller/SalaJogadoresController.php?action=deleteJogador&id=<?= $jog->getId() ?>">
+                                    Excluir</a>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>       
     </div>
-
-    <?php
-    print_r($dados);
-    ?>
 
     <?php
     require_once(__DIR__ . "/../include/Footer.php");

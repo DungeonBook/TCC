@@ -8,7 +8,6 @@ require_once(__DIR__ . "/../include/Menu.php");
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/UsuForm.css">
 
 <div class="container">
-    <h3>Novo Usuário</h3>
 
     <h3>
         <?php if ($dados['id'] == 0) echo "";
@@ -80,6 +79,7 @@ require_once(__DIR__ . "/../include/Menu.php");
                     <?php endforeach; ?>
                 </select>
             </div>
+
         </div>
 
         <input type="hidden" id="hddId" name="id" value="<?= $dados['id']; ?>" />
@@ -88,7 +88,7 @@ require_once(__DIR__ . "/../include/Menu.php");
             <a class="btn" href="<?= BASEURL ?>/controller/UsuarioController.php?action=list">Voltar</a>
             <button type="submit" class="btn">Salvar</button>
         </div>
-        
+
     </form>
 
     <!-- Mensagens do sistema -->

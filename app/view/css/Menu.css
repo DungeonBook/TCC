@@ -88,7 +88,7 @@ body {
     border-radius: 8px;
     min-width: 160px;
     z-index: 10;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .dropdown-content a {
@@ -114,4 +114,35 @@ body {
 .menu-logo .titulo,
 .menu-perfil .perfil-btn {
     font-family: 'Caudex', cursive;
+}
+
+.menu-filtro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.filtro-select {
+    background-color: #3a0000;
+    color: #d4af37;
+    border: 2px solid #d4af37;
+    font-family: 'Caudex', cursive;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.btn-filtro {
+    background-color: #800000;
+    color: #d4af37;
+    border: 2px solid #d4af37;
+    font-family: 'Caudex', cursive;
+    border-radius: 8px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn-filtro:hover {
+    background-color: #a00000;
+    color: #fff2a8;
 }

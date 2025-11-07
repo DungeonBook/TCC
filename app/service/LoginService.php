@@ -8,10 +8,10 @@ class LoginService {
         $arrayMsg = array();
 
         if(! $login)
-            array_push($arrayMsg, "O campo Email é obrigatório.");
+            array_push($arrayMsg, "O campo [Email] é obrigatório.");
 
         if(! $senha)
-            array_push($arrayMsg, "O campo Senha é obrigatório.");
+            array_push($arrayMsg, "O campo [Senha] é obrigatório.");
 
         return $arrayMsg;
     }

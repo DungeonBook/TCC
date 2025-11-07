@@ -51,7 +51,7 @@ class UsuarioService
             array_push($erros, "O campo [Papel] é obrigatório");
 
         if ($usuario->getSenha() && $confSenha && $usuario->getSenha() != $confSenha)
-            array_push($erros, "O campo Senha deve ser igual ao Confirmação da senha.");
+            array_push($erros, "O campo [Confirmação da senha] deve ser igual ao campo [Senha].");
 
         return $erros;
     }
@@ -90,7 +90,7 @@ class UsuarioService
             array_push($erros, "O campo [Confirmação da Senha] é obrigatório.");
 
         if ($usuario->getSenha() && $confSenha && $usuario->getSenha() != $confSenha)
-            array_push($erros, "O campo Senha deve ser igual ao Confirmação da senha.");
+            array_push($erros, "O campo [Confirmação da senha] deve ser igual ao campo [Senha].");
 
         return $erros;
     }
@@ -100,7 +100,7 @@ class UsuarioService
         $erros = array();
 
         if ($foto['size'] <= 0)
-            array_push($erros, "Informe a foto para o perfil!");
+            array_push($erros, "Informe a foto do perfil!");
 
         return $erros;
     }

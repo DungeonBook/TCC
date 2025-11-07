@@ -42,7 +42,7 @@ class SalaJogadoresDAO
     {
         $conn = Connection::getConn();
 
-        $sql = "SELECT u.*, sj.sala_id 
+        $sql = "SELECT sj.id id_sala_jogador, u.*, sj.sala_id 
                 FROM salas_jogadores sj
                     JOIN usuarios u ON (u.id = sj.usuario_id)
                 WHERE sj.sala_id = :sala_id
@@ -62,12 +62,20 @@ class SalaJogadoresDAO
         $jogadores = [];
 
         foreach ($rows as $row) {
-            $jogadores[] = [
-                'id' => $row['id'],
-                'apelido' => $row['apelido'] ?? null,
-                'email' => $row['email'] ?? null,
-                'sala_id' => $row['sala_id'] ?? null
-            ];
+            $jogador = new SalaJogadores();
+            $jogador->setId($row['id_sala_jogador']);
+
+            $sala = new Sala();
+            $sala->setId($row['sala_id']);
+            $jogador->setSala($sala);
+
+            $usuario = new Usuario();
+            $usuario->setFoto($row['foto']);
+            $usuario->setApelido($row['apelido']);
+            $jogador->setJogador($usuario);
+
+
+            $jogadores[] = $jogador;
         }
 
         return $jogadores;

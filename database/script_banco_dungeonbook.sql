@@ -53,16 +53,6 @@ CREATE TABLE IF NOT EXISTS `salas_jogadores` (
     CONSTRAINT `fk_salas_jogadores_sala` FOREIGN KEY (`sala_id`) REFERENCES `salas` (`id`) ON DELETE CASCADE
 ) ENGINE = InnoDB;
 
--- Table `chat`
-CREATE TABLE IF NOT EXISTS `chat` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `salas_jogadores_id` INT NOT NULL,
-    `data_hora` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `mensagem` TEXT NOT NULL,
-    PRIMARY KEY (`id`),
-    CONSTRAINT `fk_chat_salas_jogadores` FOREIGN KEY (`salas_jogadores_id`) REFERENCES `salas_jogadores` (`id`) ON DELETE CASCADE
-) ENGINE = InnoDB;
-
 -- Dados iniciais do base de dados
 INSERT INTO
     usuarios (
