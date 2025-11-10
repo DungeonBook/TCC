@@ -67,21 +67,16 @@ require_once(__DIR__ . "/../include/Menu.php");
                     value="<?= isset($dados['confSenha']) ? $dados['confSenha'] : '' ?>" />
             </div>
 
-            <div class="foto">
+            <div class="form-group">
                 <label for="fileFoto">Foto:</label>
 
-                <div class="input-foto">
-                    <input type="file" id="fileFoto" name="foto" accept="image/*" hidden>
-                    <div class="file-display">
-                        <label for="fileFoto" class="file-btn">Nova Foto</label>
-                    </div>
+                <input type="file" id="fileFoto" name="foto" accept="image/*" hidden>
+                <label for="fileFoto" class="file-input-simples">Nova Foto</label>
 
-                    <input type="hidden" name="foto_atual" value="<?= isset($dados["usuario"]) ? $dados["usuario"]->getFoto() : '' ?>">
-                </div>
+                <input type="hidden" name="foto_atual" value="<?= isset($dados["usuario"]) ? $dados["usuario"]->getFoto() : '' ?>">
             </div>
 
         </div>
-
 
         <div class="actions">
             <a class="btn" href="<?= BASEURL ?>/controller/PerfilController.php?action=view">Voltar</a>

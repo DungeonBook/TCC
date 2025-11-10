@@ -57,7 +57,7 @@ require_once(__DIR__ . "/../include/Menu.php");
             <div class="botao-container">
                 <a class="btn"
                     href="<?= BASEURL ?>/controller/UsuarioController.php?action=create">
-                    Novo usuário</a>
+                    Novo Usuário</a>
             </div>
 
         </div>

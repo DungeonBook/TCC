@@ -22,7 +22,7 @@ class SalaJogadoresController extends Controller
     protected function participar()
     {
         $sala = $this->findSalaById();
-        
+
         if ($sala == null) {
             $this->loadView("salaJogadores/Participar.php", [], "Sala inválida!");
             return;
@@ -38,7 +38,7 @@ class SalaJogadoresController extends Controller
             $msgErro = "A sala escolhida já está lotada!";
         } elseif ($this->salaJogadoresDAO->usuarioEstaNaSala($sala->getId(), $this->getIdUsuarioLogado())) {
             $msgErro = "Você já está participando desta sala!";
-        } else if($sala->getCriador()->getId() == $this->getIdUsuarioLogado()) { 
+        } else if ($sala->getCriador()->getId() == $this->getIdUsuarioLogado()) {
             $msgErro = "O mestre de mesa já está partipando da sala!";
         }
 
@@ -50,7 +50,7 @@ class SalaJogadoresController extends Controller
         try {
             $this->salaJogadoresDAO->insert($sala->getId(), $this->getIdUsuarioLogado());
 
-            header("location: " . BASEURL ."/controller/SalaJogadoresController.php?action=detalharPartida&idSala=" . $sala->getId());
+            header("location: " . BASEURL . "/controller/SalaJogadoresController.php?action=detalharPartida&idSala=" . $sala->getId());
             exit;
         } catch (PDOException $e) {
             $this->loadView(
@@ -61,11 +61,27 @@ class SalaJogadoresController extends Controller
         }
     }
 
-    protected function deleteJogador() {
-        //TODO 
+    protected function deleteJogador()
+    {
+        if (!$this->usuarioEstaLogado())
+            return;
 
-        echo "A eduarda se comprometeu a implementar esta funcionalidade!";
+        $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+        if ($id > 0) {
+            $this->salaJogadoresDAO->deleteById($id);
+
+            header("Location: " . BASEURL . "/controller/SalaJogadoresController.php?action=detalharPartida");
+            exit;
+        } else {
+
+            $this->loadView(
+                "salaJogadores/Participar.php",
+                [],
+                "Jogador inválido ");
+        }
     }
+
 
     protected function detalharPartida($msg = '')
     {
@@ -85,7 +101,7 @@ class SalaJogadoresController extends Controller
         $dados["numeroJogadores"] = $this->salaJogadoresDAO->countJogadoresBySala($sala->getId());
 
         $dados['usuarioLogadoisCriador'] =
-                $this->getIdUsuarioLogado() == $sala->getCriador()->getId();
+            $this->getIdUsuarioLogado() == $sala->getCriador()->getId();
 
 
         $this->loadView("salaJogadores/DetalharPartida.php", $dados);

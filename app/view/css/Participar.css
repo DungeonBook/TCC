@@ -1,30 +1,20 @@
 body {
-    background-color: #2a0000;
-    font-family: 'Caudex', serif;
+    background-color: #550000;
+    font-family: 'Caudex', cursive;
     color: #d4af37;
     margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    padding: 20px;
 }
 
-.participar-container {
+.container {
     background: rgba(40, 10, 10, 0.9);
-    border: 3px solid #d4af37;
-    border-radius: 15px;
-    padding: 50px 60px;
-    width: 480px;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-}
-
-.participar-titulo {
-    font-family: 'MedievalSharp', cursive;
-    font-size: 2em;
-    margin-bottom: 25px;
-    color: #ffd700;
-    letter-spacing: 1px;
+    border: 3px solid #800000;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+    max-width: 950px;
+    margin: 40px auto;
+    backdrop-filter: blur(6px);
 }
 
 h3 {
@@ -37,48 +27,124 @@ h3 {
     letter-spacing: 3px;
 }
 
-.mensagem {
-    background: rgba(80, 20, 20, 0.7);
-    border: 2px solid #a67c00;
-    border-radius: 10px;
-    padding: 15px;
-    font-size: 1.1em;
-    color: #ffd700;
-    margin-top: 20px;
-    box-shadow: inset 0 0 10px rgba(212, 175, 55, 0.3);
-}
-
-.participar-botoes {
-    margin-top: 40px;
-}
-
-.btn-voltar {
-    text-decoration: none;
-    font-family: 'Caudex', serif;
-    background-color: #550000;
-    color: #d4af37;
-    border: 2px solid #d4af37;
-    padding: 10px 25px;
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 20px;
+    border: 2px solid #5c2a21;
     border-radius: 12px;
-    transition: 0.3s ease;
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
 }
 
-.btn-voltar:hover {
-    background-color: #d4af37;
-    color: #3a0000;
-    box-shadow: 0 0 12px #ffd700;
-    transform: scale(1.05);
+thead {
+    background: linear-gradient(135deg, #550000, #3a0000);
+}
+
+thead th {
+    color: #f8e6c1;
+    font-size: 1.05em;
+    padding: 12px 10px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-bottom: 2px solid #5c2a21;
+}
+
+tbody tr {
+    background-color: rgba(20, 5, 5, 0.85);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(45, 10, 10, 0.85);
+}
+
+tbody tr:hover {
+    background-color: #660000;
+    transform: scale(1.01);
+}
+
+td {
+    padding: 12px;
+    border-bottom: 2px solid #5c2a21;
+    color: #d4af37;
+    vertical-align: middle;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button,
+.btn {
+    background: linear-gradient(135deg, #800000, #550000, #aa0000);
+    border: 2px solid #b85c3a;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 1em;
+    color: #f8e6c1;
     cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 12px #aa0000, inset 0 0 8px #550000;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
-@media (max-width: 600px) {
-    .participar-container {
-        width: 85%;
-        padding: 30px 20px;
+button:hover,
+.btn:hover {
+    background: linear-gradient(135deg, #990000, #660000, #bb2222);
+    box-shadow: 0 0 8px #d4af37, 0 0 15px #880000, inset 0 0 6px #660000;
+    border: 2px solid #fff2a8;
+    transform: scale(1.03);
+    color: #fff2a8;
+}
+
+.botao-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.botao-container .btn {
+    display: inline-block;
+    min-width: 180px;
+    font-size: 1.05em;
+}
+
+
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
     }
 
-    .participar-titulo {
-        font-size: 1.6em;
+    thead {
+        display: none;
+    }
+
+    tbody tr {
+        margin-bottom: 15px;
+        border: 2px solid #5c2a21;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 10px;
+        border: none;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #fff2a8;
     }
 }

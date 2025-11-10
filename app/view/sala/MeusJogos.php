@@ -8,16 +8,17 @@ require_once(__DIR__ . "/../include/Menu.php");
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Salas.css">
 
 <div class="container">
-    
+
     <?php if (isset($msgSucesso) && $msgSucesso != null) : ?>
         <div class="alert alert-success" role="alert">
             <?= $msgSucesso ?>
         </div>
     <?php endif; ?>
-        
-    <div class="grid-salas">
-        <?php if (!empty($dados["meusJogos"])): ?>
-            <?php foreach ($dados["meusJogos"] as $sala): ?>
+
+
+    <?php if (!empty($dados['meusJogos'])): ?>
+        <div class="grid-salas">
+            <?php foreach ($dados['meusJogos'] as $sala): ?>
                 <div class="card-sala">
                     <img src="<?= BASEURL ?>/view/img/<?= $sala->getImagemModalidade() ?>" alt="Sala RPG">
                     <h3><?= htmlspecialchars($sala->getNomeSala()) ?></h3>
@@ -26,15 +27,14 @@ require_once(__DIR__ . "/../include/Menu.php");
                     <a href="./SalaController.php?action=detalhar&id=<?= $sala->getId() ?>" class="btn-detalhes">Ver Detalhes</a>
                 </div>
             <?php endforeach; ?>
-        <?php else: ?>
-            <p>Ainda não participou de nenhum jogo.</p>
-        <?php endif; ?>
-    </div>
+        </div>
+    <?php else: ?>
+        <div class="no-salas-container">
+            <p class="no-salas">Você ainda não participou de nenhum jogo.</p>
+        </div>
+    <?php endif; ?>
 
-</div>
+    <?php
+    require_once(__DIR__ . "/../include/Footer.php");
 
-
-<?php
-require_once(__DIR__ . "/../include/Footer.php");
-
-?>
+    ?>

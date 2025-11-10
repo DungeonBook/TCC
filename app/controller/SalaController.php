@@ -206,8 +206,8 @@ class SalaController extends Controller
         $salas = $this->salaDAO->buscarPorModalidade($modalidadeId);
 
         if (empty($salas)) {
-            $mensagem = "Nenhuma sala encontrada para a modalidade selecionada.";
-            $this->list($mensagem);
+            $msgErro = "Nenhuma sala encontrada para a modalidade selecionada.";
+            $this->list($msgErro);
             return;
         }
 

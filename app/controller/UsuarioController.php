@@ -55,7 +55,7 @@ class UsuarioController extends Controller
 
             $dados['papeis'] = UsuarioPapel::getAllAsArray();
 
-            $this->loadView("usuario/UsuForm.php", $dados);
+            $this->loadView("usuario/UsuFormEdit.php", $dados);
         } else
             $this->list("Usuário não encontrado!");
     }

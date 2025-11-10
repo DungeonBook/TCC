@@ -57,6 +57,17 @@ class SalaJogadoresDAO
         return $this->mapJogadores($result);
     }
 
+    public function deleteById($id)
+    {
+        $conn = Connection::getConn();
+
+        $sql = "DELETE FROM salas_jogadores WHERE id = :id";
+        $stm = $conn->prepare($sql);
+        $stm->bindValue(":id", $id, PDO::PARAM_INT);
+        $stm->execute();
+    }
+
+
     private function mapJogadores(array $rows)
     {
         $jogadores = [];
