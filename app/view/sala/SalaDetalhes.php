@@ -53,11 +53,14 @@ require_once(__DIR__ . "/../include/Menu.php");
             <div class="actions">
                 <a href="./SalaController.php?action=list" class="btn-detalhes">Voltar</a>
             </div>
+
+            <div class="participar-msg">
+                <?php require_once(__DIR__ . "/../include/Msg.php"); ?>
+            </div>
+
+        <?php endif; ?>
         </div>
 
-    <?php endif; ?>
-</div>
-
-<?php
-require_once(__DIR__ . "/../include/Footer.php");
-?>
+        <?php
+        require_once(__DIR__ . "/../include/Footer.php");
+        ?>

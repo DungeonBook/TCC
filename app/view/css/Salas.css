@@ -15,7 +15,6 @@ body {
 }
 
 h1 {
-
     font-weight: bold;
     font-size: 1.8em;
     color: #d4af37;
@@ -26,12 +25,12 @@ h1 {
 }
 
 .no-salas-container {
-    display: flex;                /* ativa centralização flexível */
-    justify-content: center;      /* centro horizontal */
-    align-items: center;          /* centro vertical */
-    width: 100%;                  /* ocupa toda a largura */
-    min-height: 50vh;             /* ocupa metade da tela (ajuste como quiser) */
-    text-align: center;           /* segurança extra */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 50vh;
+    text-align: center;
 }
 
 .no-salas {
@@ -41,7 +40,6 @@ h1 {
     text-shadow: 2px 2px 6px #000;
     margin: 0;
 }
-
 
 .grid-salas {
     display: grid;
@@ -119,16 +117,99 @@ h1 {
     color: #fff2a8;
 }
 
-
 .card-sala-detalhe {
-    background: rgba(20, 5, 5, 0.9);
-    border: 2px solid #550000;
-    border-radius: 15px;
-    padding: 25px;
-    max-width: 600px;
-    margin: 20px auto;
-    box-shadow: 0 0 20px rgba(170, 0, 0, 0.7);
+    background: rgba(40, 10, 10, 0.9);
+    border: 3px solid #800000; 
+    border-radius: 18px;
+    padding: 36px 48px;
+    max-width: 640px;
+    margin: 56px auto;
+    box-shadow: 0 0 28px rgba(140, 0, 0, 0.85);
+    text-align: center;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    position: relative;
+    overflow: visible;
+}
 
+.card-sala-detalhe::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 20px;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(212,175,55,0.06), transparent 25%);
+    box-shadow: 0 0 40px rgba(170, 20, 20, 0.5);
+    z-index: -1;
+}
+
+.card-sala-detalhe:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 48px rgba(170, 20, 20, 0.9);
+}
+
+.card-sala-detalhe h1 {
+    font-size: 2.05em;
+    margin-bottom: 22px;
+    letter-spacing: 2px;
+    color: #d4af37;
+    text-shadow: 2px 2px 6px #000;
+}
+
+.card-sala-detalhe p {
+    font-size: 1.05em;
+    line-height: 1.8em;
+    color: #f2e0b5;
+    margin: 10px 0;
+}
+
+.card-sala-detalhe p strong {
+    color: #d4af37;
+    font-weight: bold;
+}
+
+.card-sala-detalhe hr {
+    border: none;
+    height: 1px;
+    background: rgba(212,175,55,0.12);
+    margin: 20px auto;
+    width: 60%;
+}
+
+.actions {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.actions .btn-block {
+    display: block;
+    margin: 12px auto 0;
+}
+
+@media (max-width: 768px) {
+    .card-sala-detalhe {
+        padding: 22px;
+        margin: 30px 18px;
+        max-width: calc(100% - 36px);
+    }
+
+    .card-sala-detalhe h1 {
+        font-size: 1.6em;
+    }
+
+    .card-sala-detalhe p {
+        font-size: 1em;
+    }
+
+    .actions {
+        gap: 12px;
+    }
+
+    .btn, .btn-detalhes {
+        padding: 10px 16px;
+    }
 }
 
 .acoes-sala {
@@ -151,13 +232,6 @@ a {
 a:hover {
     color: #d4af37;
     text-decoration: underline;
-}
-
-.actions {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
 }
 
 .actions+.actions {
