@@ -1,5 +1,4 @@
 <?php
-#Classe controller para Usuário
 require_once(__DIR__ . "/Controller.php");
 require_once(__DIR__ . "/../dao/SalaDAO.php");
 require_once(__DIR__ . "/../dao/UsuarioDAO.php");
@@ -34,6 +33,7 @@ class SalaController extends Controller
     {
 
         $dados["salasDisp"] = $this->salaDAO->listAtivas();
+        $dados["modalidades"] = $this->modalidadeDAO->list();
 
         $this->loadView("sala/SalaList.php", $dados,  $msgErro, $msgSucesso);
     }
@@ -43,6 +43,7 @@ class SalaController extends Controller
     {
 
         $dados["minhasSalas"] = $this->salaDAO->listByUsuario($this->getIdUsuarioLogado());
+        $dados["modalidades"] = $this->modalidadeDAO->list();
 
         $this->loadView("sala/MinhasSalas.php", $dados,  $msgErro, $msgSucesso);
     }
@@ -51,6 +52,7 @@ class SalaController extends Controller
     protected function listMeusJogos(string $msgErro = "", string $msgSucesso = "")
     {
         $dados["meusJogos"] = $this->salaDAO->listByParticipante($this->getIdUsuarioLogado());
+        $dados["modalidades"] = $this->modalidadeDAO->list();
 
         $this->loadView("sala/MeusJogos.php", $dados, $msgErro, $msgSucesso);
     }
@@ -203,15 +205,16 @@ class SalaController extends Controller
             return;
         }
 
-        $salas = $this->salaDAO->buscarPorModalidade($modalidadeId);
+        $dados["salasDisp"] = $this->salaDAO->buscarPorModalidade($modalidadeId);
+        $dados["modalidades"] = $this->modalidadeDAO->list();
 
-        if (empty($salas)) {
+        if (empty($dados["salasDisp"])) {
             $msgErro = "Nenhuma sala encontrada para a modalidade selecionada.";
-            $this->list($msgErro);
+            $this->loadView("sala/SalaList.php", $dados, $msgErro);
             return;
         }
 
-        include(__DIR__ . '/../view/sala/SalaList.php');
+        $this->loadView("sala/SalaList.php", $dados);
     }
 }
 

@@ -1,5 +1,4 @@
 <?php
-
 include_once(__DIR__ . "/../connection/Connection.php");
 include_once(__DIR__ . "/../model/Sala.php");
 include_once(__DIR__ . "/../model/Usuario.php");
@@ -109,19 +108,17 @@ class SalaDAO
 
         $conn = Connection::getConn();
 
-        $stmt = $conn->prepare("SELECT * FROM salas WHERE modalidade_id = :modalidadeId");
+        $sql = "SELECT s.*, m.descricao modalidade_descricao FROM salas s
+                    JOIN modalidades m ON (m.id = s.modalidade_id)
+                    WHERE s.modalidade_id = :modalidadeId
+                    ORDER BY s.data DESC";
+        $stmt = $conn->prepare($sql);
         $stmt->bindValue(":modalidadeId", $modalidadeId, PDO::PARAM_INT);
         $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $salas = [];
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $salas[] = $this->mapSalas($row);
-        }
-
-        return $salas;
+        return $this->mapSalas($result);
     }
-
-
 
     public function insert(Sala $sala)
     {

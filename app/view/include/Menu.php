@@ -13,27 +13,33 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME])) $nome = $_SESSION[SESSAO_USUARIO_NOME
         <li><a href="<?= BASEURL ?>/controller/SalaController.php?action=listMeusJogos">Meus Jogos</a></li>
         <li><a href="<?= BASEURL ?>/controller/SalaController.php?action=create">Nova Sala</a></li>
 
-        TODO - Lembrar
-        <?php if (isset($_SESSION['usuarioEstaLogado']) && $_SESSION['usuarioEstaLogado']->getPapel() === 'Administrador'): ?>
+        <?php if (isset($_SESSION['getIdUsuarioLogado']) && $_SESSION['getIdUsuarioLogado']->getPapel() === 'Administrador'): ?>
             <li><a href="<?= BASEURL ?>/view/usuario/List.php">Usuários</a></li>
         <?php endif; ?>
 
+        <?php
+        $current_url = $_SERVER['REQUEST_URI'];
+        $show_filter = (
+            strpos($current_url, 'action=list') !== false ||
+            strpos($current_url, 'action=listMinhasSalas') !== false ||
+            strpos($current_url, 'action=listMeusJogos') !== false
+        );
 
-        <div class="menu-filtro">
-            <form action="<?= BASEURL ?>/controller/SalaController.php" method="get">
-                <input type="hidden" name="action" value="buscarPorModalidade">
-                <select name="modalidade_id" class="filtro-select" onchange="this.form.submit()">
-                    <option value="">Filtrar por modalidade...</option>
+        if ($show_filter):
+        ?>
+            <select name="modalidade_id" class="filtro-select" onchange="this.form.submit()">
+                <option value="">Buscar por modalidade</option>
+                <?php if (isset($modalidades) && is_array($modalidades)): ?>
                     <?php foreach ($modalidades as $mod): ?>
                         <option value="<?= $mod->getId() ?>">
                             <?= htmlspecialchars($mod->getDescricao()) ?>
                         </option>
                     <?php endforeach; ?>
-                </select>
-            </form>
-        </div>
-    </ul>
+                <?php endif; ?>
+            </select>
 
+        <?php endif; ?>
+    </ul>
 
     <div class="menu-perfil">
         <div class="dropdown"> <button class="perfil-btn"><?= $nome ?></button>

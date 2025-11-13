@@ -2,12 +2,10 @@
 require_once(__DIR__ . "/../include/Header.php");
 require_once(__DIR__ . "/../include/Menu.php");
 
-//TODO - Lembrar
-
-//if (!isset($_SESSION['usuarioEstaLogado']) || $_SESSION['usuarioEstaLogado']->getPapel() !== 'Administrador') {
-//   header("Location: " . BASEURL . "/view/usuario/List.php");
-//    exit;
-//}
+if (!isset($_SESSION['getIdUsuarioLogado']) || $_SESSION['getIdUsuarioLogado']->getPapel() !== 'Administrador') {
+    header("Location: " . BASEURL . "/view/usuario/List.php");
+    exit;
+}
 ?>
 
 <!-- link de CSS da listagem de usuarios -->
