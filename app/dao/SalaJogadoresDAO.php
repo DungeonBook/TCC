@@ -67,7 +67,6 @@ class SalaJogadoresDAO
         $stm->execute();
     }
 
-
     private function mapJogadores(array $rows)
     {
         $jogadores = [];

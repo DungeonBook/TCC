@@ -1,5 +1,7 @@
 <?php $nome = "(Sessão expirada)";
-if (isset($_SESSION[SESSAO_USUARIO_NOME])) $nome = $_SESSION[SESSAO_USUARIO_NOME]; ?> <!-- link de CSS do menu -->
+if (isset($_SESSION[SESSAO_USUARIO_NOME])) $nome = $_SESSION[SESSAO_USUARIO_NOME]; ?>
+
+<!-- link de CSS do menu -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Menu.css">
 
@@ -10,7 +12,12 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME])) $nome = $_SESSION[SESSAO_USUARIO_NOME
         <li><a href="<?= BASEURL ?>/controller/SalaController.php?action=listMinhasSalas">Minhas Salas</a></li>
         <li><a href="<?= BASEURL ?>/controller/SalaController.php?action=listMeusJogos">Meus Jogos</a></li>
         <li><a href="<?= BASEURL ?>/controller/SalaController.php?action=create">Nova Sala</a></li>
-        <li><a href="<?= BASEURL ?>/controller/UsuarioController.php?action=list">Usuários</a></li>
+
+        TODO - Lembrar
+        <?php if (isset($_SESSION['usuarioEstaLogado']) && $_SESSION['usuarioEstaLogado']->getPapel() === 'Administrador'): ?>
+            <li><a href="<?= BASEURL ?>/view/usuario/List.php">Usuários</a></li>
+        <?php endif; ?>
+
 
         <div class="menu-filtro">
             <form action="<?= BASEURL ?>/controller/SalaController.php" method="get">

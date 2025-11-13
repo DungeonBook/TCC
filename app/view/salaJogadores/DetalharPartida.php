@@ -1,96 +1,87 @@
 <?php
 require_once(__DIR__ . "/../include/Header.php");
 require_once(__DIR__ . "/../include/Menu.php");
-//require_once(__DIR__ . "/../../dao/SalaJogadoresDAO.php");
-//require_once(__DIR__ . "/../../dao/SalaDAO.php");
-//require_once(__DIR__ . "/../../model/Usuario.php");
 ?>
 
-<!-- link de CSS da participação de um usuário na sala-->
+<!-- link de CSS -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Participar.css">
 
 <div class="container">
-
-
-    <!-- mensagens de erro, se houverem -->
-
     <div class="participar-container mt-5">
-        <h3 class=""><?= $dados['sala']->getNomeSala() ?></h3>
-
+        <h3><?= htmlspecialchars($dados['sala']->getNomeSala()) ?></h3>
 
         <?php if (!empty($dados['msg'])): ?>
             <div class="participar-msg">
-
-                <?= $dados['msg'] ?></p>
-
+                <p><?= $dados['msg'] ?></p>
             </div>
         <?php endif; ?>
+
         <table id="tabUsuarios">
             <thead>
                 <tr>
                     <th></th>
-                    <th>Jogador</th>
-                    <th>Papel</th>
+                    <th>Jogadores</th>
                     <th></th>
+                    <?php if ($dados['usuarioLogadoisCriador']): ?>
+                        <th>Ações</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
 
                 <tr>
                     <td>
-                        <?php if ($dados["sala"]->getCriador()->getFoto()): ?>
-                            <img src="<?= BASEURL_ARQUIVOS . "/" . $dados["sala"]->getCriador()->getFoto(); ?>"
-                                width="100px" height="auto">
-                        <?php else: ?>
-                            <img src="<?= BASEURL . "/view/img/fotoPadrao.png" ?>"
-                                width="100px" height="auto">
-                        <?php endif; ?>
+                        <img src="<?= $dados["sala"]->getCriador()->getFoto()
+                            ? BASEURL_ARQUIVOS . "/" . $dados["sala"]->getCriador()->getFoto()
+                            : BASEURL . "/view/img/fotoPadrao.png" ?>"
+                            alt="Foto do mestre" class="foto-jogador">
                     </td>
-                    <td><?= $dados["sala"]->getCriador()->getApelido(); ?></td>
+                    <td><?= htmlspecialchars($dados["sala"]->getCriador()->getApelido()) ?></td>
                     <td>Mestre de mesa</td>
-                    <td></td>
+                    <?php if ($dados['usuarioLogadoisCriador']): ?>
+                        <td></td>
+                    <?php endif; ?>
                 </tr>
 
+                <!-- PARTICIPANTES -->
                 <?php foreach ($dados['jogadores'] as $jog): ?>
-
                     <tr>
                         <td>
-                            <?php if ($jog->getJogador()->getFoto()): ?>
-                                <img src="<?= BASEURL_ARQUIVOS . "/" . $jog->getJogador()->getFoto(); ?>"
-                                    width="100px" height="auto">
-                            <?php else: ?>
-                                <img src="<?= BASEURL . "/view/img/fotoPadrao.png" ?>"
-                                    width="100px" height="auto">
-                            <?php endif; ?>
+                            <img src="<?= $jog->getJogador()->getFoto()
+                                ? BASEURL_ARQUIVOS . "/" . $jog->getJogador()->getFoto()
+                                : BASEURL . "/view/img/fotoPadrao.png" ?>"
+                                alt="Foto do jogador" class="foto-jogador">
                         </td>
 
-                        <td><?= $jog->getJogador()->getApelido(); ?></td>
+                        <td><?= htmlspecialchars($jog->getJogador()->getApelido()) ?></td>
                         <td>Participante</td>
 
-                        <td>
-                            <?php if ($dados['usuarioLogadoisCriador']): ?>
+                        <?php if ($dados['usuarioLogadoisCriador']): ?>
+                            <td>
                                 <a class="btn"
-                                    onclick="return confirm('Confirma a exclusão do jogador?');"
-                                    href="<?= BASEURL ?>/controller/SalaJogadoresController.php?action=deleteJogador&id=<?= $jog->getId() ?>">
-                                    Excluir</a>
-                            <?php endif; ?>
-                        </td>
+                                   onclick="return confirm('Confirma a exclusão do jogador?');"
+                                   href="<?= BASEURL ?>/controller/SalaJogadoresController.php?action=deleteJogador&id=<?= $jog->getId() ?>">
+                                    Excluir
+                                </a>
+                            </td>
+                        <?php endif; ?>
                     </tr>
-
                 <?php endforeach; ?>
+
             </tbody>
         </table>
+    </div>
 
-        <div class="actions">
-            <a class="btn" href="<?= BASEURL ?>/controller/SalaController.php?action=list">Voltar</a>
-        </div>
+    <div class="botao-container">
+        <a class="btn" href="<?= BASEURL ?>/controller/SalaController.php?action=list">Voltar</a>
     </div>
 
     <div style="margin-top:30px;">
         <?php require_once(__DIR__ . "/../include/Msg.php"); ?>
     </div>
+</div>
 
-    <?php
-    require_once(__DIR__ . "/../include/Footer.php");
-    ?>
+<?php
+require_once(__DIR__ . "/../include/Footer.php");
+?>

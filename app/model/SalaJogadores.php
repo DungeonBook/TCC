@@ -1,6 +1,5 @@
 <?php
 
-include_once(__DIR__ . "/Chat.php");
 include_once(__DIR__ . "/Usuario.php");
 include_once(__DIR__ . "/Sala.php");
 

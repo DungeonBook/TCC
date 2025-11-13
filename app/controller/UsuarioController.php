@@ -21,6 +21,7 @@ class UsuarioController extends Controller
 
     protected function list(string $msgErro = "", string $msgSucesso = "")
     {
+
         if (! $this->usuarioEstaLogado())
             return;
 

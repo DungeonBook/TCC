@@ -1,6 +1,9 @@
 <?php
 require_once(__DIR__ . "/../include/Header.php");
 require_once(__DIR__ . "/../include/Menu.php");
+
+//<?php if ($sala->getStatus() == true && !$isCriador && !$usuarioEstaNaSala) :
+
 ?>
 
 <!-- link de CSS do detalhamento de salas -->
@@ -40,6 +43,9 @@ require_once(__DIR__ . "/../include/Menu.php");
 
             <div class="actions">
                 <?php if ($sala->getStatus() == true and ($isCriador == false)) : ?>
+
+                
+
                     <a href="./SalaJogadoresController.php?action=participar&idSala=<?= $sala->getId() ?>"
                         class="btn"
                         onclick="return confirm('Deseja participar da sala?');">Participar</a>

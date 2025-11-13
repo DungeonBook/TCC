@@ -15,6 +15,7 @@ body {
     max-width: 950px;
     margin: 40px auto;
     backdrop-filter: blur(6px);
+    text-align: center;
 }
 
 h3 {
@@ -27,6 +28,18 @@ h3 {
     letter-spacing: 3px;
 }
 
+/* ==== FOTO DO JOGADOR ==== */
+table img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #b85c3a;
+    box-shadow: 0 0 8px #000;
+    display: block;
+    margin: 0 auto;
+}
+
 table {
     width: 100%;
     border-collapse: separate;
@@ -36,6 +49,7 @@ table {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
+    text-align: center;
 }
 
 thead {
@@ -46,10 +60,10 @@ thead th {
     color: #f8e6c1;
     font-size: 1.05em;
     padding: 12px 10px;
-    text-align: left;
     text-transform: uppercase;
     letter-spacing: 2px;
     border-bottom: 2px solid #5c2a21;
+    text-align: center;
 }
 
 tbody tr {
@@ -67,23 +81,24 @@ tbody tr:hover {
 }
 
 td {
-    padding: 12px;
+    padding: 15px;
     border-bottom: 2px solid #5c2a21;
     color: #d4af37;
     vertical-align: middle;
+    text-align: center;
 }
 
-.actions {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+/* ==== BOTÃO VOLTAR ==== */
+.botao-container {
+    text-align: center;
+    margin-top: 35px;
 }
 
 button,
 .btn {
     background: linear-gradient(135deg, #800000, #550000, #aa0000);
     border: 2px solid #b85c3a;
-    padding: 8px 14px;
+    padding: 8px 20px;
     border-radius: 10px;
     font-size: 1em;
     color: #f8e6c1;
@@ -106,20 +121,14 @@ button:hover,
     color: #fff2a8;
 }
 
-.botao-container {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.botao-container .btn {
-    display: inline-block;
-    min-width: 180px;
-    font-size: 1.05em;
-}
-
-
 @media (max-width: 768px) {
-    table, thead, tbody, th, td, tr {
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
         display: block;
     }
 
@@ -147,4 +156,62 @@ button:hover,
         text-transform: uppercase;
         color: #fff2a8;
     }
+
+    .foto-jogador {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #b85c3a;
+        box-shadow: 0 0 8px #000;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .participar-container {
+        background: rgba(40, 10, 10, 0.9);
+        border: 3px solid #800000;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+        max-width: 700px;
+        margin: 60px auto;
+        text-align: center;
+        backdrop-filter: blur(6px);
+    }
+
+    .participar-titulo {
+        font-family: 'Caudex', cursive;
+        font-size: 1.8em;
+        color: #d4af37;
+        text-shadow: 2px 2px 6px #000;
+        margin-bottom: 25px;
+        letter-spacing: 3px;
+    }
+
+    .participar-msg {
+        background: rgba(80, 20, 20, 0.8);
+        border: 2px solid #b85c3a;
+        color: #f8e6c1;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 0 12px #000;
+        margin-bottom: 25px;
+    }
+
+    .mensagem {
+        color: #fff2a8;
+        font-size: 1.05em;
+        margin-bottom: 25px;
+    }
+
+    .botao-container {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .botao-container .btn {
+        min-width: 220px;
+    }
+
 }
