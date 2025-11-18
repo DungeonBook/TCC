@@ -25,6 +25,9 @@ class UsuarioController extends Controller
         if (! $this->usuarioEstaLogado())
             return;
 
+        if(! $this->isUsuarioAdmin())
+            die("Acesso negado!");
+
         $dados["lista"] = $this->usuarioDao->list();
 
         $this->loadView("usuario/List.php", $dados,  $msgErro, $msgSucesso);
@@ -34,6 +37,9 @@ class UsuarioController extends Controller
     {
         if (! $this->usuarioEstaLogado())
             return;
+
+        if(! $this->isUsuarioAdmin())
+            die("Acesso negado!");
 
         $dados['id'] = 0;
         $dados['papeis'] = UsuarioPapel::getAllAsArray();
@@ -45,6 +51,9 @@ class UsuarioController extends Controller
     {
         if (! $this->usuarioEstaLogado())
             return;
+
+        if(! $this->isUsuarioAdmin())
+            die("Acesso negado!");
 
 
         $usuario = $this->findUsuarioById();
@@ -66,6 +75,9 @@ class UsuarioController extends Controller
 
         if (! $this->usuarioEstaLogado())
             return;
+
+        if(! $this->isUsuarioAdmin())
+            die("Acesso negado!");
 
         $id = $_POST['id'];
         $nome = trim($_POST['nome']) != "" ? trim($_POST['nome']) : NULL;
@@ -120,6 +132,9 @@ class UsuarioController extends Controller
     {
         if (! $this->usuarioEstaLogado())
             return;
+
+        if(! $this->isUsuarioAdmin())
+            die("Acesso negado!");
 
 
         $usuario = $this->findUsuarioById();

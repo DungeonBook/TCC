@@ -54,17 +54,26 @@ class SalaDAO
     }
 
 
-    public function listAtivas()
+    public function listAtivas($modalidadeId = 0)
     {
         $conn = Connection::getConn();
 
         $sql = "SELECT s.*, m.descricao modalidade_descricao FROM salas s
                     JOIN modalidades m ON (m.id = s.modalidade_id)
-                WHERE cast(concat(data, ' ', hora_inicio) as datetime) > now()
-                ORDER BY s.data DESC";
+                WHERE cast(concat(data, ' ', hora_inicio) as datetime) > now()";
+
+        if($modalidadeId > 0)
+            $sql .= " AND s.modalidade_id = ?";
+
+        $sql .= " ORDER BY s.data DESC";
+
         $stm = $conn->prepare($sql);
 
-        $stm->execute();
+        if($modalidadeId  > 0)
+            $stm->execute([$modalidadeId]);
+        else 
+            $stm->execute();
+
         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
         return $this->mapSalas($result);

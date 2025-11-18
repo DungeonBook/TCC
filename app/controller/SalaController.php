@@ -31,9 +31,13 @@ class SalaController extends Controller
 
     protected function list(string $msgErro = "", string $msgSucesso = "")
     {
+        $modalidadeId = 0;
+        if(isset($_GET["modalidade_id"]) )
+            $modalidadeId = $_GET["modalidade_id"]; 
 
-        $dados["salasDisp"] = $this->salaDAO->listAtivas();
+        $dados["salasDisp"] = $this->salaDAO->listAtivas($modalidadeId);
         $dados["modalidades"] = $this->modalidadeDAO->list();
+        
 
         $this->loadView("sala/SalaList.php", $dados,  $msgErro, $msgSucesso);
     }

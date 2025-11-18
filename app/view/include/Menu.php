@@ -1,5 +1,16 @@
-<?php $nome = "(Sessão expirada)";
-if (isset($_SESSION[SESSAO_USUARIO_NOME])) $nome = $_SESSION[SESSAO_USUARIO_NOME]; ?>
+<?php 
+
+$nome = "(Sessão expirada)";
+if (isset($_SESSION[SESSAO_USUARIO_NOME])) 
+    $nome = $_SESSION[SESSAO_USUARIO_NOME]; 
+
+include_once(__DIR__ . "/../../model/enum/UsuarioPapel.php");
+
+require_once(__DIR__ . "/../../dao/ModalidadeDAO.php");
+$modalidadeDAO = new ModalidadeDAO();
+$modalidades = $modalidadeDAO->list();
+
+?>
 
 <!-- link de CSS do menu -->
 <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
@@ -13,31 +24,30 @@ if (isset($_SESSION[SESSAO_USUARIO_NOME])) $nome = $_SESSION[SESSAO_USUARIO_NOME
         <li><a href="<?= BASEURL ?>/controller/SalaController.php?action=listMeusJogos">Meus Jogos</a></li>
         <li><a href="<?= BASEURL ?>/controller/SalaController.php?action=create">Nova Sala</a></li>
 
-        <?php if (isset($_SESSION['getIdUsuarioLogado']) && $_SESSION['getIdUsuarioLogado']->getPapel() === 'Administrador'): ?>
-            <li><a href="<?= BASEURL ?>/view/usuario/List.php">Usuários</a></li>
+
+        <?php if (isset($_SESSION[SESSAO_USUARIO_PAPEL]) && $_SESSION[SESSAO_USUARIO_PAPEL] ===  UsuarioPapel::ADMINISTRADOR): ?>
+            <li><a href="<?= BASEURL ?>/controller/UsuarioController.php?action=list">Usuários</a></li>
         <?php endif; ?>
 
         <?php
-        $current_url = $_SERVER['REQUEST_URI'];
-        $show_filter = (
-            strpos($current_url, 'action=list') !== false ||
-            strpos($current_url, 'action=listMinhasSalas') !== false ||
-            strpos($current_url, 'action=listMeusJogos') !== false
-        );
-
-        if ($show_filter):
+            $current_url = $_SERVER['REQUEST_URI'];
+            if(str_contains($current_url, 'SalaController.php?action=list') && 
+                (! str_contains($current_url, 'SalaController.php?action=listM'))):
         ?>
-            <select name="modalidade_id" class="filtro-select" onchange="this.form.submit()">
-                <option value="">Buscar por modalidade</option>
-                <?php if (isset($modalidades) && is_array($modalidades)): ?>
-                    <?php foreach ($modalidades as $mod): ?>
-                        <option value="<?= $mod->getId() ?>">
-                            <?= htmlspecialchars($mod->getDescricao()) ?>
-                        </option>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </select>
-
+            <form method="get">
+                <input type="hidden" name="action" value="list"> 
+            
+                <select name="modalidade_id" class="filtro-select" onchange="this.form.submit()">
+                    <option value="">Buscar por modalidade</option>
+                    <?php if (isset($modalidades) && is_array($modalidades)): ?>
+                        <?php foreach ($modalidades as $mod): ?>
+                            <option value="<?= $mod->getId() ?>">
+                                <?= htmlspecialchars($mod->getDescricao()) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+            </form>
         <?php endif; ?>
     </ul>
 

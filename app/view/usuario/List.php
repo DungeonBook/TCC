@@ -2,10 +2,6 @@
 require_once(__DIR__ . "/../include/Header.php");
 require_once(__DIR__ . "/../include/Menu.php");
 
-if (!isset($_SESSION['getIdUsuarioLogado']) || $_SESSION['getIdUsuarioLogado']->getPapel() !== 'Administrador') {
-    header("Location: " . BASEURL . "/view/usuario/List.php");
-    exit;
-}
 ?>
 
 <!-- link de CSS da listagem de usuarios -->
@@ -48,10 +44,12 @@ if (!isset($_SESSION['getIdUsuarioLogado']) || $_SESSION['getIdUsuarioLogado']->
                                     Editar</a>
                             </td>
                             <td>
-                                <a class="btn"
-                                    onclick="return confirm('Confirma a exclusão do usuário?');"
-                                    href="<?= BASEURL ?>/controller/UsuarioController.php?action=delete&id=<?= $usu->getId() ?>">
-                                    Excluir</a>
+                                <?php if($usu->getPapel() != UsuarioPapel::ADMINISTRADOR): ?>
+                                    <a class="btn"
+                                        onclick="return confirm('Confirma a exclusão do usuário?');"
+                                        href="<?= BASEURL ?>/controller/UsuarioController.php?action=delete&id=<?= $usu->getId() ?>">
+                                        Excluir</a>
+                                <?php endif; ?>
                             </td>
 
 

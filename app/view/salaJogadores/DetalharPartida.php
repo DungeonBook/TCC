@@ -24,7 +24,7 @@ require_once(__DIR__ . "/../include/Menu.php");
                     <th>Jogadores</th>
                     <th></th>
                     <?php if ($dados['usuarioLogadoisCriador']): ?>
-                        <th>Ações</th>
+                        <th></th>
                     <?php endif; ?>
                 </tr>
             </thead>
@@ -61,7 +61,7 @@ require_once(__DIR__ . "/../include/Menu.php");
                             <td>
                                 <a class="btn"
                                    onclick="return confirm('Confirma a exclusão do jogador?');"
-                                   href="<?= BASEURL ?>/controller/SalaJogadoresController.php?action=deleteJogador&id=<?= $jog->getId() ?>">
+                                   href="<?= BASEURL ?>/controller/SalaJogadoresController.php?action=deleteJogador&id=<?= $jog->getId() ?>&idSala=<?= $jog->getSala()->getId() ?>">
                                     Excluir
                                 </a>
                             </td>

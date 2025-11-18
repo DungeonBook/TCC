@@ -67,11 +67,12 @@ class SalaJogadoresController extends Controller
             return;
 
         $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+        $idSala = isset($_GET['idSala']) ? intval($_GET['idSala']) : 0;
 
         if ($id > 0) {
             $this->salaJogadoresDAO->deleteById($id);
 
-            header("Location: " . BASEURL . "/controller/SalaJogadoresController.php?action=detalharPartida");
+            header("Location: " . BASEURL . "/controller/SalaJogadoresController.php?action=detalharPartida&idSala=" . $idSala);
             exit;
         } else {
 

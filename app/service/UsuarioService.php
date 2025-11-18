@@ -31,6 +31,8 @@ class UsuarioService
 
         if (! $usuario->getEmail())
             array_push($erros, "O campo [Email] é obrigatório.");
+        else if(! filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL))
+            array_push($erros, "O campo [Email] deve possuir o formato [jogador@dungeonbook.com].");
 
         if (! $usuario->getTelefone())
             array_push($erros, "O campo [Celular] é obrigatório.");
@@ -68,6 +70,8 @@ class UsuarioService
 
         if (! $usuario->getEmail())
             array_push($erros, "O campo [Email] é obrigatório.");
+        else if(! filter_var($usuario->getEmail(), FILTER_VALIDATE_EMAIL))
+            array_push($erros, "O campo [Email] deve possuir o formato [jogador@dungeonbook.com].");
         else {
             $usuarioTeste = $this->usuarioDAO->findByEmail($usuario->getEmail());
             if($usuarioTeste != null)

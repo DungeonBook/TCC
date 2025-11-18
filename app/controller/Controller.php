@@ -62,4 +62,15 @@ class Controller
 
         return 0;
     }
+
+    protected function isUsuarioAdmin()
+    {
+        if (session_status() != PHP_SESSION_ACTIVE)
+            session_start();
+
+        if (isset($_SESSION[SESSAO_USUARIO_PAPEL]))
+            return $_SESSION[SESSAO_USUARIO_PAPEL] == UsuarioPapel::ADMINISTRADOR;
+
+        return false;
+    }
 }
