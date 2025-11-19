@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../include/Menu.php");
 ?>
 
 <!-- link de CSS das salas que participei -->
-<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Salas.css">
 
 <div class="container">

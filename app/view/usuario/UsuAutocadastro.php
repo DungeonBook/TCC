@@ -2,7 +2,7 @@
 require_once(__DIR__ . "/../include/Header.php");
 ?>
 <!-- link de CSS do autocadastro -->
-<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/UsuAutocadastro.css">
 
 <div class="container">

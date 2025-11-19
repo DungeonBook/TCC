@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 $nome = "(Sessão expirada)";
-if (isset($_SESSION[SESSAO_USUARIO_NOME])) 
-    $nome = $_SESSION[SESSAO_USUARIO_NOME]; 
+if (isset($_SESSION[SESSAO_USUARIO_NOME]))
+    $nome = $_SESSION[SESSAO_USUARIO_NOME];
 
 include_once(__DIR__ . "/../../model/enum/UsuarioPapel.php");
 
@@ -13,7 +13,7 @@ $modalidades = $modalidadeDAO->list();
 ?>
 
 <!-- link de CSS do menu -->
-<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Menu.css">
 
 <nav class="menu">
@@ -30,13 +30,15 @@ $modalidades = $modalidadeDAO->list();
         <?php endif; ?>
 
         <?php
-            $current_url = $_SERVER['REQUEST_URI'];
-            if(str_contains($current_url, 'SalaController.php?action=list') && 
-                (! str_contains($current_url, 'SalaController.php?action=listM'))):
+        $current_url = $_SERVER['REQUEST_URI'];
+        if (
+            str_contains($current_url, 'SalaController.php?action=list') &&
+            (! str_contains($current_url, 'SalaController.php?action=listM'))
+        ):
         ?>
             <form method="get">
-                <input type="hidden" name="action" value="list"> 
-            
+                <input type="hidden" name="action" value="list">
+
                 <select name="modalidade_id" class="filtro-select" onchange="this.form.submit()">
                     <option value="">Buscar por modalidade</option>
                     <?php if (isset($modalidades) && is_array($modalidades)): ?>

@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../include/Menu.php");
 ?>
 
 <!-- link de CSS do perfil do usuario -->
-<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Caudex&family=Almendra&family=Almendra+SC&family=Fondamento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?= BASEURL ?>/view/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Perfil.css">
 
 <div class="container">
@@ -45,6 +45,18 @@ require_once(__DIR__ . "/../include/Menu.php");
                 Editar Perfil
             </a>
         </div>
+
+<!---
+        TODO - Excluir próprio perfil
+
+        <div>
+            <a class="btn"
+                onclick="return confirm('Confirma a exclusão do usuário?');"
+                href="<?= BASEURL ?>/controller/SalaController.php?action=delete&id=<?= $usu->getId() ?>">
+                Excluir</a>
+        </div>
+
+--->
 
         <div class="msg-retorno">
             <?php require_once(__DIR__ . "/../include/Msg.php"); ?>
