@@ -44,7 +44,6 @@ require_once(__DIR__ . "/../include/Menu.php");
                     <?php endif; ?>
                 </tr>
 
-                <!-- PARTICIPANTES -->
                 <?php foreach ($dados['jogadores'] as $jog): ?>
                     <tr>
                         <td>
@@ -55,7 +54,7 @@ require_once(__DIR__ . "/../include/Menu.php");
                         </td>
 
                         <td><?= htmlspecialchars($jog->getJogador()->getApelido()) ?></td>
-                        <td>Participante</td>
+                        <td></td>
 
                         <?php if ($dados['usuarioLogadoisCriador']): ?>
                             <td>

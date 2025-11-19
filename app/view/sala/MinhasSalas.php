@@ -21,7 +21,7 @@ require_once(__DIR__ . "/../include/Menu.php");
                 <div class="card-sala">
                     <img src="<?= BASEURL ?>/view/img/<?= $sala->getImagemModalidade() ?>" alt="Sala RPG">
                     <h3><?= htmlspecialchars($sala->getNomeSala()) ?></h3>
-                    <p><strong>Tema:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
+                    <p><strong>Modalidade:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
                     <p><strong>Data:</strong> <?= htmlspecialchars($sala->getDataFormatada()) ?> às <?= htmlspecialchars($sala->getHoraInicio()) ?></p>
                     <p><strong>Status:</strong> <?= htmlspecialchars($sala->getStatusDescricao()) ?></p>
                     <a href="./SalaController.php?action=detalhar&id=<?= $sala->getId() ?>" class="btn-detalhes">Ver Detalhes</a>

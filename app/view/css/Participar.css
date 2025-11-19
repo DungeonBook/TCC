@@ -28,13 +28,12 @@ h3 {
     letter-spacing: 3px;
 }
 
-/* ==== FOTO DO JOGADOR ==== */
 table img {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #b85c3a;
+    border: 2px solid #800000;
     box-shadow: 0 0 8px #000;
     display: block;
     margin: 0 auto;
@@ -88,7 +87,6 @@ td {
     text-align: center;
 }
 
-/* ==== BOTÃO VOLTAR ==== */
 .botao-container {
     text-align: center;
     margin-top: 35px;
@@ -162,7 +160,7 @@ button:hover,
         height: 100px;
         border-radius: 50%;
         object-fit: cover;
-        border: 2px solid #b85c3a;
+        border: 2px solid #800000;
         box-shadow: 0 0 8px #000;
         display: block;
         margin: 0 auto;
@@ -215,3 +213,4 @@ button:hover,
     }
 
 }
+
