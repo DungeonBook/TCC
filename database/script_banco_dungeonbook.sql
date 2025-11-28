@@ -64,6 +64,7 @@ INSERT INTO
         data_nascimento,
         senha
     )
+
 VALUES
     (
         'Administrador',
@@ -116,7 +117,3 @@ VALUES ('Fantasia'),
 	('Terror'),
 	('Steampunk'),
 	('Cyberpunk');
-
-
-        
-        

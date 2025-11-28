@@ -9,6 +9,8 @@ require_once(__DIR__ . "/../include/Menu.php");
 
 <div class="container">
 
+    <h3>Minhas Salas</h3>
+
     <?php if (isset($msgSucesso) && $msgSucesso != null) : ?>
         <div class="alert alert-success" role="alert">
             <?= $msgSucesso ?>

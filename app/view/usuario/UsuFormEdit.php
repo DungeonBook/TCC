@@ -9,8 +9,8 @@ require_once(__DIR__ . "/../include/Menu.php");
 
 <div class="container">
     <h3>Editar Usuário</h3>
-    
-        <?php if ($dados['id'] == 0) echo ""?>
+
+    <?php if ($dados['id'] == 0) echo "" ?>
 
 
     <form id="frmUsuario" method="POST"
@@ -66,18 +66,27 @@ require_once(__DIR__ . "/../include/Menu.php");
                     value="<?= isset($dados['confSenha']) ? $dados['confSenha'] : '' ?>" />
             </div>
 
-            <div class="form-group">
-                <label for="selPapel">Papel:</label>
-                <select name="papel" id="selPapel">
-                    <option value="">Selecione o papel</option>
-                    <?php foreach ($dados["papeis"] as $papel): ?>
-                        <option value="<?= $papel ?>"
-                            <?= (isset($dados["usuario"]) && $dados["usuario"]->getPapel() == $papel) ? "selected" : "" ?>>
-                            <?= $papel ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+            <?php
+            $papelLogado = $_SESSION[SESSAO_USUARIO_PAPEL] ?? null;
+
+            if ($papelLogado !== UsuarioPapel::ADMINISTRADOR): ?>
+
+                <div class="form-group">
+                    <label for="selPapel">Papel:</label>
+                    <select name="papel" id="selPapel">
+                        <option value="">Selecione o papel</option>
+                        <?php foreach ($dados["papeis"] as $papel): ?>
+                            <option value="<?= $papel ?>"
+                                <?= (isset($dados["usuario"]) && $dados["usuario"]->getPapel() == $papel) ? "selected" : "" ?>>
+                                <?= $papel ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+            <?php endif; ?>
+
+
 
         </div>
 

@@ -155,15 +155,19 @@ button:hover,
         color: #fff2a8;
     }
 
+    table img,
     .foto-jogador {
         width: 100px;
         height: 100px;
         border-radius: 50%;
+        overflow: hidden;
         object-fit: cover;
         border: 2px solid #800000;
         box-shadow: 0 0 8px #000;
         display: block;
         margin: 0 auto;
+        max-width: none;
+        max-height: none;
     }
 
     .participar-container {
@@ -213,4 +217,3 @@ button:hover,
     }
 
 }
-

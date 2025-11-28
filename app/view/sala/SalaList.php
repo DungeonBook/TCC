@@ -8,7 +8,9 @@ require_once(__DIR__ . "/../include/Menu.php");
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Salas.css">
 
 <div class="container">
-  
+
+    <h3>Página Incial</h3>
+
 
     <?php if (isset($msgSucesso) && $msgSucesso != null) : ?>
         <div class="alert alert-success" role="alert">

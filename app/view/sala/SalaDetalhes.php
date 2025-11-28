@@ -3,7 +3,6 @@ require_once(__DIR__ . "/../include/Header.php");
 require_once(__DIR__ . "/../include/Menu.php");
 ?>
 
-<!-- link de CSS do detalhamento de salas -->
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/bootstrap.min.css">
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Salas.css">
 
@@ -19,16 +18,58 @@ require_once(__DIR__ . "/../include/Menu.php");
 
             <h1><?= htmlspecialchars($sala->getNomeSala()) ?></h1>
 
-            <p><strong>Mestre de mesa:</strong> <?= htmlspecialchars($sala->getCriador()->getApelido()) ?></p>
-            <p><strong>Quantidade miníma de jogadores:</strong> <?= htmlspecialchars($sala->getQuantMinJogadores()) ?></p>
-            <p><strong>Quantidade máxima de jogadores:</strong> <?= htmlspecialchars($sala->getQuantMaxJogadores()) ?></p>
-            <p><strong>Data da partida:</strong> <?= htmlspecialchars($sala->getDataFormatada()) ?></p>
-            <p><strong>Horário de início da partida:</strong> <?= htmlspecialchars($sala->getHoraInicio()) ?></p>
-            <p><strong>Horário de fim da partida:</strong> <?= htmlspecialchars($sala->getHoraFim()) ?></p>
-            <p><strong>Localização:</strong> <?= htmlspecialchars($sala->getLocalizacao()) ?></p>
-            <p><strong>Descrição:</strong> <?= htmlspecialchars($sala->getDescricao()) ?></p>
-            <p><strong>Modalidade:</strong> <?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></p>
-            <p><strong>Status:</strong> <?= htmlspecialchars($sala->getStatusDescricao()) ?></p>
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <span class="info-label">Mestre de mesa:</span>
+                    <span class="info-value"><?= htmlspecialchars($sala->getCriador()->getApelido()) ?></span>
+                </div>
+                <div class="info-box">
+                    <span class="info-label">Status:</span>
+                    <span class="info-value"><?= htmlspecialchars($sala->getStatusDescricao()) ?></span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Mín. Jogadores:</span>
+                    <span class="info-value"><?= htmlspecialchars($sala->getQuantMinJogadores()) ?></span>
+                </div>
+                <div class="info-box">
+                    <span class="info-label">Máx. Jogadores:</span>
+                    <span class="info-value"><?= htmlspecialchars($sala->getQuantMaxJogadores()) ?></span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Data da partida:</span>
+                    <span class="info-value"><?= htmlspecialchars($sala->getDataFormatada()) ?></span>
+                </div>
+                <div class="info-box">
+                    <span class="info-label">Modalidade:</span>
+                    <span class="info-value"><?= htmlspecialchars($sala->getModalidade()->getDescricao()) ?></span>
+                </div>
+
+                <div class="info-box">
+                    <span class="info-label">Início:</span>
+                    <span class="info-value"><?= htmlspecialchars($sala->getHoraInicio()) ?></span>
+                </div>
+                <div class="info-box">
+                    <span class="info-label">Fim:</span>
+                    <span class="info-value"><?= htmlspecialchars($sala->getHoraFim()) ?></span>
+                </div>
+
+                <div class="info-box info-full-row">
+                    <span class="info-label">Localização:</span>
+                    <span class="info-value"><?= htmlspecialchars($sala->getLocalizacao()) ?></span>
+                </div>
+
+            </div>
+            <hr class="separator-line" />
+
+            <div class="description-box">
+                <p class="description-title">Descrição:</p>
+                <p class="description-text"><?= htmlspecialchars($sala->getDescricao()) ?></p>
+            </div>
+
+            <hr class="separator-line" />
 
             <div class="actions">
                 <?php if ($isCriador): ?>
@@ -38,23 +79,17 @@ require_once(__DIR__ . "/../include/Menu.php");
                 <?php endif; ?>
             </div>
 
-            <div class="actions">
+            <div class="actions actions-inline">
                 <?php if ($sala->getStatus() == true and ($isCriador == false)) : ?>
-
-                
-
                     <a href="./SalaJogadoresController.php?action=participar&idSala=<?= $sala->getId() ?>"
                         class="btn"
                         onclick="return confirm('Deseja participar da sala?');">Participar</a>
                 <?php endif; ?>
+                <a href="./SalaJogadoresController.php?action=detalharPartida&idSala=<?= $sala->getId() ?>" class="btn">Participantes</a>
             </div>
 
             <div class="actions">
-                <a href="./SalaJogadoresController.php?action=detalharPartida&idSala=<?= $sala->getId() ?>" class="btn-detalhes">Participantes</a>
-            </div>
-
-            <div class="actions">
-                <a href="./SalaController.php?action=list" class="btn-detalhes">Voltar</a>
+                <a href="./SalaController.php?action=list" class="btn">Voltar</a>
             </div>
 
             <div class="participar-msg">
