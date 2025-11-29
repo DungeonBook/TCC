@@ -55,7 +55,25 @@ class LoginController extends Controller
 
         $this->loadView("login/Login.php", [], "", "Usuário deslogado com sucesso!");
     }
+
+    public function deleteSelf()
+{
+    if (!isset($_SESSION[SESSAO_USUARIO_ID])) {
+        $this->loadView("login/Login.php", [], "", "Sessão expirada!");
+        return;
+    }
+
+    $id = $_SESSION[SESSAO_USUARIO_ID];
+
+    require_once(__DIR__ . "/../dao/UsuarioDAO.php");
+    $dao = new UsuarioDAO();
+    $dao->deleteById($id);
+
+    $this->loginService->removerUsuarioSessao();
+
+    $this->loadView("login/Login.php", [], "", "Conta excluída!");
 }
 
+}
 
 new LoginController();

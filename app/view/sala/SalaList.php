@@ -9,7 +9,7 @@ require_once(__DIR__ . "/../include/Menu.php");
 
 <div class="container">
 
-    <h3>Página Incial</h3>
+    <h3>Página Inicial</h3>
 
 
     <?php if (isset($msgSucesso) && $msgSucesso != null) : ?>

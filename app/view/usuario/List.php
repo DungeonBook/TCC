@@ -44,7 +44,7 @@ require_once(__DIR__ . "/../include/Menu.php");
                                     Editar</a>
                             </td>
                             <td>
-                                <?php if($usu->getPapel() != UsuarioPapel::ADMINISTRADOR): ?>
+                                <?php if ($usu->getPapel() != UsuarioPapel::ADMINISTRADOR): ?>
                                     <a class="btn"
                                         onclick="return confirm('Confirma a exclusão do usuário?');"
                                         href="<?= BASEURL ?>/controller/UsuarioController.php?action=delete&id=<?= $usu->getId() ?>">
@@ -57,12 +57,11 @@ require_once(__DIR__ . "/../include/Menu.php");
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <div class="botao-container">
-                <a class="btn"
-                    href="<?= BASEURL ?>/controller/UsuarioController.php?action=create">
-                    Novo Usuário</a>
-            </div>
 
+            <div class="botao-container">
+                <a class="btn" href="<?= BASEURL ?>/controller/SalaController.php?action=list">Voltar</a>
+                <a class="btn" href="<?= BASEURL ?>/controller/UsuarioController.php?action=create">Novo Usuário</a>
+            </div>
         </div>
     </div>
 </div>

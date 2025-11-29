@@ -28,16 +28,23 @@ class Controller
     }
 
     protected function loadView(string $path, array $dados, string $msgErro = "", string $msgSucesso = "")
-    {
-
-        $caminho = __DIR__ . "/../view/" . $path;
-        if (file_exists($caminho)) {
-            require $caminho;
-        } else {
-            echo "Erro ao carrega a view solicitada<br>";
-            echo "Caminho: " . $caminho;
-        }
+{
+    foreach ($dados as $chave => $valor) {
+        $$chave = $valor;
     }
+
+    $msgErro = $msgErro;
+    $msgSucesso = $msgSucesso;
+
+    $caminho = __DIR__ . "/../view/" . $path;
+
+    if (file_exists($caminho)) {
+        require $caminho;
+    } else {
+        echo "Erro ao carregar a view solicitada<br>";
+        echo "Caminho: " . $caminho;
+    }
+}
 
     protected function usuarioEstaLogado()
     {

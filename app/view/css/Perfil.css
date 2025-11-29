@@ -123,6 +123,26 @@ h3 {
     color: #fff2a8;
 }
 
+.botoes-acoes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.botao-voltar {
+    width: 100%;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 30px;
+    clear: both;
+}
+
+.botao-voltar a {
+    display: inline-block;
+}
+
+
 .msg-retorno {
     margin-top: 20px;
     text-align: center;

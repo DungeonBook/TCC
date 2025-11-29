@@ -17,7 +17,11 @@ $modalidades = $modalidadeDAO->list();
 <link rel="stylesheet" href="<?= BASEURL ?>/view/css/Menu.css">
 
 <nav class="menu">
-    <div class="menu-logo"> <span class="titulo">DungeonBook</span> </div>
+    <div class="menu-logo">
+        <img src="<?= BASEURL ?>/view/img/logo_dungeonbook.png" class="logo-img">
+        <span class="titulo">DungeonBook</span>
+    </div>
+
     <ul class="menu-links">
         <li><a href="<?= BASEURL ?>/controller/SalaController.php?action=list">Página inicial</a></li>
         <li><a href="<?= BASEURL ?>/controller/SalaController.php?action=listMinhasSalas">Minhas Salas</a></li>

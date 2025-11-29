@@ -49,6 +49,27 @@ class PerfilController extends Controller
             echo "Usuário não encontrado!";
     }
 
+    public function deleteSelf(string $msgErro = "", string $msgSucesso = "")
+    {
+        if (! $this->usuarioEstaLogado())
+            return;
+
+        $id = $_SESSION[SESSAO_USUARIO_ID];
+
+        require_once(__DIR__ . "/../dao/UsuarioDAO.php");
+        $dao = new UsuarioDAO();
+
+        $dao->deleteById($id);
+
+        session_unset();
+        session_destroy();
+
+        $msgSucesso = "Conta excluída!";
+
+        $this->loadView("login/Login.php", [], $msgErro, $msgSucesso);
+    }
+
+
     protected function saveEditPerfil()
     {
 

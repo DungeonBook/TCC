@@ -34,29 +34,25 @@ require_once(__DIR__ . "/../include/Menu.php");
 
         <input type="hidden" name="fotoAnterior" value="<?= $dados['usuario']->getFoto() ?>">
 
-        <div class="botoes-perfil">
-            <a class="btn btn-secondary"
-                href="<?= BASEURL ?>/controller/SalaController.php?action=list">
-                Voltar
-            </a>
-
+        <div class="botoes-perfil botoes-acoes">
             <a class="btn-success"
                 href="<?= BASEURL ?>/controller/PerfilController.php?action=edit">
                 Editar Perfil
             </a>
+
+            <a class="btn-success"
+                onclick="return confirm('Tem certeza que deseja excluir sua conta? Esta ação não pode ser desfeita!');"
+                href="<?= BASEURL ?>/controller/PerfilController.php?action=deleteSelf">
+                Excluir Conta
+            </a>
         </div>
 
-<!---
-        TODO - Excluir próprio perfil
-
-        <div>
-            <a class="btn"
-                onclick="return confirm('Confirma a exclusão do usuário?');"
-                href="<?= BASEURL ?>/controller/SalaController.php?action=delete&id=<?= $usu->getId() ?>">
-                Excluir</a>
+        <div class="botao-voltar">
+            <a class="btn-secondary"
+                href="<?= BASEURL ?>/controller/SalaController.php?action=list">
+                Voltar
+            </a>
         </div>
-
---->
 
         <div class="msg-retorno">
             <?php require_once(__DIR__ . "/../include/Msg.php"); ?>
