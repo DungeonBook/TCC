@@ -53,42 +53,100 @@ require_once(__DIR__ . "/../include/Menu.php");
             </div>
 
             <div class="form-group">
-                <label for="txtSenha">Senha:</label>
-                <input type="password" id="txtPassword" name="senha" maxlength="50"
-                    placeholder="Informe a senha"
-                    value="<?= isset($dados["usuario"]) ? $dados["usuario"]->getSenha() : '' ?>" />
+                <label for="txtPassword">Senha:</label>
+
+                <div style="position: relative;">
+                    <input type="password"
+                        id="txtPassword"
+                        name="senha"
+                        maxlength="50"
+                        placeholder="Informe a senha"
+                        value="<?= isset($dados["usuario"]) ? $dados["usuario"]->getSenha() : '' ?>"
+                        style="padding-right: 40px;" />
+
+                    <img id="toggleSenha1"
+                        src="<?= BASEURL ?>/view/img/Visualizar.png"
+                        alt="Mostrar senha"
+                        style="
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                user-select: none;
+             ">
+                </div>
             </div>
+
 
             <div class="form-group">
                 <label for="txtConfSenha">Confirmação da senha:</label>
-                <input type="password" id="txtConfSenha" name="conf_senha" maxlength="50"
-                    placeholder="Informe a confirmação da senha"
-                    value="<?= isset($dados['confSenha']) ? $dados['confSenha'] : '' ?>" />
+
+                <div style="position: relative;">
+                    <input type="password"
+                        id="txtConfSenha"
+                        name="conf_senha"
+                        maxlength="50"
+                        placeholder="Informe a confirmação da senha"
+                        value="<?= isset($dados['confSenha']) ? $dados['confSenha'] : '' ?>"
+                        style="padding-right: 40px;" />
+
+                    <img id="toggleSenha2"
+                        src="<?= BASEURL ?>/view/img/Visualizar.png"
+                        alt="Mostrar senha"
+                        style="
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                user-select: none;
+             ">
+                </div>
             </div>
 
 
-            //TODO 
+            <script>
+                function configurarToggle(idInput, idIcone) {
+                    const input = document.getElementById(idInput);
+                    const icone = document.getElementById(idIcone);
+
+                    icone.addEventListener('click', function() {
+                        const isPassword = input.type === "password";
+
+                        input.type = isPassword ? "text" : "password";
+                        icone.src = isPassword ?
+                            "<?= BASEURL ?>/view/img/NaoVisualizar.png" :
+                            "<?= BASEURL ?>/view/img/Visualizar.png";
+                    });
+                }
+
+                configurarToggle("txtPassword", "toggleSenha1");
+                configurarToggle("txtConfSenha", "toggleSenha2");
+            </script>
+
             <?php
-            $papelLogado = $_SESSION[SESSAO_USUARIO_PAPEL] ?? null;
+            $papelUsuarioEditado = $dados["usuario"]->getPapel();
 
-            if ($papelLogado !== UsuarioPapel::ADMINISTRADOR): ?>
-
+            if ($papelUsuarioEditado !== UsuarioPapel::ADMINISTRADOR):
+            ?>
                 <div class="form-group">
                     <label for="selPapel">Papel:</label>
                     <select name="papel" id="selPapel">
                         <option value="">Selecione o papel</option>
                         <?php foreach ($dados["papeis"] as $papel): ?>
                             <option value="<?= $papel ?>"
-                                <?= (isset($dados["usuario"]) && $dados["usuario"]->getPapel() == $papel) ? "selected" : "" ?>>
+                                <?= ($dados["usuario"]->getPapel() == $papel) ? "selected" : "" ?>>
                                 <?= $papel ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-
             <?php endif; ?>
-
-
 
         </div>
 

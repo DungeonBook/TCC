@@ -33,24 +33,90 @@ require_once(__DIR__ . "/../include/Header.php");
                 <input type="text" name="telefone" id="txtTelefone" maxlength="15" placeholder="Celular"
                     value="<?php echo isset($dados['usuario']) ? $dados['usuario']->getTelefone() : ''; ?>" />
             </div>
-
             <div class="form-group">
                 <label for="txtDataNascimento">Data de Nascimento:</label>
-                <input type="date" name="data_nascimento" id="txtDataNascimento"
-                    value="<?php
-                            echo (isset($dados['usuario']) ? $dados['usuario']->getDataNascimento() : '');
-                            ?>" />
+                <input type="date"
+                    name="data_nascimento"
+                    id="txtDataNascimento"
+                    value="<?= isset($dados['usuario']) ? $dados['usuario']->getDataNascimento() : '' ?>" />
             </div>
 
             <div class="form-group">
-                <label for="txtSenha">Senha:</label>
-                <input type="password" name="senha" id="txtSenha" maxlength="50" placeholder="Senha" />
+                <label for="txtPassword">Senha:</label>
+
+                <div style="position: relative;">
+                    <input type="password"
+                        id="txtPassword"
+                        name="senha"
+                        maxlength="50"
+                        placeholder="Informe a senha"
+                        value="<?= isset($dados["usuario"]) ? $dados["usuario"]->getSenha() : '' ?>"
+                        style="padding-right: 40px;" />
+
+                    <img id="toggleSenha1"
+                        src="<?= BASEURL ?>/view/img/Visualizar.png"
+                        alt="Mostrar senha"
+                        style="
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                user-select: none;
+            ">
+                </div>
             </div>
 
+
+
             <div class="form-group">
-                <label for="txtConfSenha">Confirme a Senha:</label>
-                <input type="password" name="conf_senha" id="txtConfSenha" maxlength="50" placeholder="Confirme a Senha" />
+                <label for="txtConfSenha">Confirmação da senha:</label>
+
+                <div style="position: relative;">
+                    <input type="password"
+                        id="txtConfSenha"
+                        name="conf_senha"
+                        maxlength="50"
+                        placeholder="Informe a confirmação da senha"
+                        value="<?= isset($dados['confSenha']) ? $dados['confSenha'] : '' ?>"
+                        style="padding-right: 40px;" />
+
+                    <img id="toggleSenha2"
+                        src="<?= BASEURL ?>/view/img/Visualizar.png"
+                        alt="Mostrar senha"
+                        style="
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                user-select: none;
+             ">
+                </div>
             </div>
+
+            <script>
+                function configurarToggle(idInput, idIcone) {
+                    const input = document.getElementById(idInput);
+                    const icone = document.getElementById(idIcone);
+
+                    icone.addEventListener('click', function() {
+                        const isPassword = input.type === "password";
+
+                        input.type = isPassword ? "text" : "password";
+                        icone.src = isPassword ?
+                            "<?= BASEURL ?>/view/img/NaoVisualizar.png" :
+                            "<?= BASEURL ?>/view/img/Visualizar.png";
+                    });
+                }
+
+                configurarToggle("txtPassword", "toggleSenha1");
+                configurarToggle("txtConfSenha", "toggleSenha2");
+            </script>
         </div>
 
         <div class="actions" style="margin-top: 24px;">
